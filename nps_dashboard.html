@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard NPS Executivo | Abril 2026</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --promoter: #10b981;
+            --passive: #f59e0b;
+            --detractor: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            background: var(--card-bg);
+            padding: 1.5rem 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-title h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .header-info {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .info-item {
+            text-align: right;
+        }
+
+        .info-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .info-value {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .btn-import {
+            background: var(--primary);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .btn-import:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        /* Top Cards */
+        .executive-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid transparent;
+        }
+
+        .card.nps {
+            border-left-color: var(--primary);
+        }
+
+        .card.promoters {
+            border-left-color: var(--success);
+        }
+
+        .card.passives {
+            border-left-color: var(--warning);
+        }
+
+        .card.detractors {
+            border-left-color: var(--danger);
+        }
+
+        .card-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-value {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .card-footer {
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* Main Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+        }
+
+        /* Sidebar Filters */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .filter-group {
+            background: var(--card-bg);
+            padding: 1.25rem;
+            border-radius: 1rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .filter-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-main);
+        }
+
+        .filter-group select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid var(--border);
+            border-radius: 0.4rem;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            outline: none;
+        }
+
+        /* Charts Section */
+        .main-charts {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .chart-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .chart-container {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            height: 450px;
+            /* Fixed height to prevent resize loops */
+            position: relative;
+        }
+
+        .chart-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Rankings */
+        .ranking-container {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: left;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        td {
+            padding: 1rem 0;
+            font-size: 0.9rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge-success {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .badge-warning {
+            background: #fef9c3;
+            color: #854d0e;
+        }
+
+        .badge-danger {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* Qualitative */
+        .word-item {
+            position: absolute;
+            transition: all 0.3s;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .word-item:hover {
+            color: var(--primary) !important;
+            transform: scale(1.1);
+            z-index: 10;
+        }
+
+        .qualitative-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .word-cloud-box {
+            background: var(--card-bg);
+            padding: 1.25rem;
+            border-radius: 1rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            height: 320px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .word-cloud-box.promoter-box {
+            border-top: 4px solid var(--success);
+        }
+
+        .word-cloud-box.neutral-box {
+            border-top: 4px solid var(--warning);
+        }
+
+        .word-cloud-box.detractor-box {
+            border-top: 4px solid var(--danger);
+        }
+
+        .cloud-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .cloud-canvas {
+            flex-grow: 1;
+            position: relative;
+            width: 100%;
+        }
+
+        .insights-box {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .insight-card {
+            padding: 1rem;
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border);
+        }
+
+        .insight-card.alert {
+            background: #fff7ed;
+            border-color: #fdba74;
+        }
+
+        .insight-card.success {
+            background: #f0fdf4;
+            border-color: #86efac;
+        }
+
+        .insight-title {
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .insight-text {
+            font-size: 0.85rem;
+            color: var(--text-main);
+        }
+
+        /* Modal / Import */
+        #csvInput {
+            display: none;
+        }
+
+        @media (max-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .chart-row {
+                grid-template-columns: 1fr;
+            }
+
+            .qualitative-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <div class="header-title">
+                <h1>Dashboard NPS Analítico</h1>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Gestão da Experiência do Cliente</p>
+            </div>
+            <div class="header-info">
+                <div class="info-item">
+                    <p class="info-label">Mês de Referência</p>
+                    <p class="info-value" id="refMonth">Abril / 2026</p>
+                </div>
+                <div class="info-item">
+                    <p class="info-label">Atualizado em</p>
+                    <p class="info-value" id="updateDate">07/05/2026 14:30</p>
+                </div>
+                <button class="btn-import" onclick="document.getElementById('csvInput').click()">
+                    <span>📥</span> Importar CSV
+                </button>
+                <input type="file" id="csvInput" accept=".csv" onchange="handleFileUpload(event)">
+            </div>
+        </header>
+
+        <!-- Executive Cards -->
+        <div class="executive-cards">
+            <div class="card nps">
+                <p class="card-label">NPS Geral</p>
+                <p class="card-value" id="npsScore">0</p>
+                <div class="card-footer" id="npsStatus">--</div>
+            </div>
+            <div class="card">
+                <p class="card-label">Total Respostas</p>
+                <p class="card-value" id="totalRespondents">0</p>
+                <div class="card-footer">Participação Mensal</div>
+            </div>
+            <div class="card promoters">
+                <p class="card-label">Promotores</p>
+                <p class="card-value" id="countPromoters">0</p>
+                <div class="card-footer" id="percPromoters">0%</div>
+            </div>
+            <div class="card passives">
+                <p class="card-label">Neutros</p>
+                <p class="card-value" id="countPassives">0</p>
+                <div class="card-footer" id="percPassives">0%</div>
+            </div>
+            <div class="card detractors">
+                <p class="card-label">Ofensores</p>
+                <p class="card-value" id="countDetractors">0</p>
+                <div class="card-footer" id="percDetractors">0%</div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <!-- Filters -->
+            <aside class="sidebar">
+                <div class="filter-group">
+                    <label>Unidade</label>
+                    <select id="filterUnidade" onchange="applyFilters()">
+                        <option value="all">Todas as Unidades</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Torre</label>
+                    <select id="filterTorre" onchange="applyFilters()">
+                        <option value="all">Todas as Torres</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Produto</label>
+                    <select id="filterProduto" onchange="applyFilters()">
+                        <option value="all">Todos os Produtos</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Classificação NPS</label>
+                    <select id="filterClass" onchange="applyFilters()">
+                        <option value="all">Todas as Notas</option>
+                        <option value="Promotor">Promotores (9-10)</option>
+                        <option value="Neutro">Neutros (7-8)</option>
+                        <option value="Ofensor">Ofensores (0-6)</option>
+                    </select>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="main-charts">
+                <div class="chart-row">
+                    <div class="chart-container">
+                        <div class="chart-title">Evolução NPS e Volume</div>
+                        <div style="height: 350px; position: relative;">
+                            <canvas id="timelineChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <div class="chart-title">Distribuição %</div>
+                        <div style="height: 350px; position: relative;">
+                            <canvas id="distributionChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-row">
+                    <div class="chart-container">
+                        <div class="chart-title">Distribuição de Notas (0 a 10)</div>
+                        <div style="height: 350px; position: relative;">
+                            <canvas id="scoreChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="ranking-container" style="height: 450px; overflow-y: auto;">
+                        <div class="chart-title">Top Áreas Críticas (Pior NPS)</div>
+                        <table id="rankingTable">
+                            <thead>
+                                <tr>
+                                    <th>Tipo</th>
+                                    <th>Segmento</th>
+                                    <th>Vol.</th>
+                                    <th>NPS</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Dynamic -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <div class="qualitative-grid">
+            <div class="word-cloud-box promoter-box">
+                <div class="cloud-label"><span>Nuvem: Promotores</span> <span>🟢</span></div>
+                <div id="cloudPromoters" class="cloud-canvas"></div>
+            </div>
+            <div class="word-cloud-box neutral-box">
+                <div class="cloud-label"><span>Nuvem: Neutros</span> <span>🟡</span></div>
+                <div id="cloudNeutrals" class="cloud-canvas"></div>
+            </div>
+            <div class="word-cloud-box detractor-box">
+                <div class="cloud-label"><span>Nuvem: Ofensores</span> <span>🔴</span></div>
+                <div id="cloudDetractors" class="cloud-canvas"></div>
+            </div>
+        </div>
+
+        <div class="insights-box" style="margin-top: 2rem;">
+            <div class="chart-title">Insights e Alertas Operacionais Estratégicos</div>
+            <div id="insightsList"
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
+                <!-- Dynamic -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- Global State ---
+        let rawData = [];
+        let filteredData = [];
+        let charts = {};
+
+        const STOPWORDS = new Set([
+            'a', 'o', 'e', 'do', 'da', 'de', 'um', 'uma', 'os', 'as', 'com', 'em', 'para', 'que', 'ao', 'na', 'no',
+            'atendimento', 'cliente', 'sistema', 'produto', 'equipe', 'muito', 'pelo', 'mais', 'como', 'esta', 'está',
+            'isso', 'nossa', 'nosso', 'meu', 'minha', 'tudo', 'quem', 'qual', 'sem', 'tem', 'vou', 'ter', 'foi', 'pode', 'não'
+        ]);
+
+        // --- Data Management ---
+
+        function init() {
+            generateSimulatedData();
+            updateDashboard();
+        }
+
+        function generateSimulatedData() {
+            const units = ['MV - PROJETOS', 'FLOWTI', 'CONECTE-SE', 'MV - HOSPITALAR', 'MEDICINA DIAGNOSTICA', 'MAIDA', 'PLANO DE SAUDE', 'TI'];
+            const towers = ['IMPLANTAÇÃO', 'DATABASE', 'INTEGRAÇÃO', 'MICROSOFT', 'MOBILIDADE', 'PEP', 'OPENSOURCE', 'SUPRIMENTOS', 'ERP', 'ASSISTENCIAL'];
+            const products = ['Oracle', 'Windows Server', 'Linux', 'Painel.Cir', 'Vivace Connect', 'Mges', 'Tomcat', 'Sigh'];
+
+            const data = [];
+            const baseDate = new Date(2026, 3, 1); // April 2026
+
+            for (let i = 1; i <= 350; i++) {
+                const rand = Math.random();
+                let score;
+                if (rand > 0.65) score = 9 + Math.floor(Math.random() * 2); // 35% Promoters
+                else if (rand > 0.45) score = 0 + Math.floor(Math.random() * 7); // 20% Detractors
+                else score = 7 + Math.floor(Math.random() * 2); // 45% Passives
+
+                const dateOffset = Math.floor(Math.random() * 30);
+                const date = new Date(baseDate);
+                date.setDate(date.getDate() + dateOffset);
+
+                data.push({
+                    ticket: `TKT-${202600 + i}`,
+                    data: date,
+                    unidade: units[Math.floor(Math.random() * units.length)],
+                    torre: towers[Math.floor(Math.random() * towers.length)],
+                    produto: products[Math.floor(Math.random() * products.length)],
+                    nota: score,
+                    comentario: generateRandomComment(score),
+                    classificacao: score >= 9 ? 'Promotor' : (score >= 7 ? 'Neutro' : 'Ofensor')
+                });
+            }
+            rawData = data;
+            populateFilters();
+        }
+
+        function generateRandomComment(score) {
+            const p = ['Sistema muito estável', 'O fluxo no PEP melhoras constantes', 'Suporte ágil e atencioso', 'Excelente ferramenta'];
+            const n = ['Funciona bem no geral', 'Pode melhorar a performance', 'Interface um pouco datada', 'Atende o esperado'];
+            const o = ['Muito lento em horários de pico', 'Erro ao salvar dados', 'Suporte demora a responder', 'Difícil navegação', 'Muitos cliques'];
+            const comments = score >= 9 ? p : (score >= 7 ? n : o);
+            return comments[Math.floor(Math.random() * comments.length)];
+        }
+
+        function populateFilters() {
+            const units = [...new Set(rawData.map(d => d.unidade))].sort();
+            const towers = [...new Set(rawData.map(d => d.torre))].sort();
+            const products = [...new Set(rawData.map(d => d.produto))].sort();
+
+            const fU = document.getElementById('filterUnidade');
+            const fT = document.getElementById('filterTorre');
+            const fP = document.getElementById('filterProduto');
+
+            fU.innerHTML = '<option value="all">Todas as Unidades</option>';
+            fT.innerHTML = '<option value="all">Todas as Torres</option>';
+            fP.innerHTML = '<option value="all">Todos os Produtos</option>';
+
+            units.forEach(u => fU.add(new Option(u, u)));
+            towers.forEach(t => fT.add(new Option(t, t)));
+            products.forEach(p => fP.add(new Option(p, p)));
+        }
+
+        function applyFilters() {
+            const u = document.getElementById('filterUnidade').value;
+            const t = document.getElementById('filterTorre').value;
+            const p = document.getElementById('filterProduto').value;
+            const c = document.getElementById('filterClass').value;
+
+            filteredData = rawData.filter(d => {
+                return (u === 'all' || d.unidade === u) &&
+                    (t === 'all' || d.torre === t) &&
+                    (p === 'all' || d.produto === p) &&
+                    (c === 'all' || d.classificacao === c);
+            });
+
+            updateDashboard();
+        }
+
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const text = e.target.result;
+                parseCSV(text);
+            };
+            reader.readAsText(file, 'UTF-8');
+        }
+
+        function parseCSV(text) {
+            const lines = text.split('\n');
+            const data = [];
+
+            for (let i = 1; i < lines.length; i++) {
+                const row = lines[i];
+                if (!row.trim()) continue;
+
+                const cols = row.split(';');
+                if (cols.length < 9) continue;
+
+                // Strict Validation for NPS Note (Questao 01)
+                let scoreStr = (cols[8] || '').trim();
+                let score = parseInt(scoreStr);
+
+                // Filter out phone numbers or invalid strings (> 10 is invalid NPS)
+                if (isNaN(score) || score < 0 || score > 10) continue;
+
+                let date = new Date();
+                const rawDate = (cols[1] || '').trim();
+                const dateParts = rawDate.split('/');
+                if (dateParts.length === 3) {
+                    date = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+                }
+
+                data.push({
+                    ticket: (cols[0] || '').trim(),
+                    data: date,
+                    unidade: (cols[2] || 'S/I').trim().toUpperCase(),
+                    torre: (cols[3] || 'S/I').trim().toUpperCase(),
+                    produto: (cols[4] || 'S/I').trim().toUpperCase(),
+                    nota: score,
+                    comentario: ((cols[9] || '') + ' ' + (cols[11] || '')).trim(),
+                    classificacao: score >= 9 ? 'Promotor' : (score >= 7 ? 'Neutro' : 'Ofensor')
+                });
+            }
+
+            rawData = data;
+            populateFilters();
+            applyFilters();
+            alert('Dashboard atualizado com ' + data.length + ' registros válidos.');
+        }
+
+        // --- Updates ---
+
+        function updateDashboard() {
+            const data = filteredData.length > 0 || isFilterActive() ? filteredData : rawData;
+
+            calculateMetrics(data);
+            renderTimelineChart(data);
+            renderDistributionChart(data);
+            renderScoreChart(data);
+            renderRankingTable(data);
+
+            // Multi-category Word Clouds
+            renderCategoryWordCloud(data.filter(d => d.nota >= 9), 'cloudPromoters', 'success');
+            renderCategoryWordCloud(data.filter(d => d.nota >= 7 && d.nota <= 8), 'cloudNeutrals', 'warning');
+            renderCategoryWordCloud(data.filter(d => d.nota <= 6), 'cloudDetractors', 'danger');
+
+            generateInsights(data);
+        }
+
+        function isFilterActive() {
+            return document.getElementById('filterUnidade').value !== 'all' ||
+                document.getElementById('filterTorre').value !== 'all' ||
+                document.getElementById('filterProduto').value !== 'all' ||
+                document.getElementById('filterClass').value !== 'all';
+        }
+
+        function calculateMetrics(data) {
+            const total = data.length;
+            if (total === 0) { resetMetrics(); return; }
+
+            const prom = data.filter(d => d.nota >= 9).length;
+            const ofen = data.filter(d => d.nota <= 6).length;
+            const neut = total - prom - ofen;
+
+            const percProm = (prom / total) * 100;
+            const percOfen = (ofen / total) * 100;
+            const nps = Math.round(percProm - percOfen);
+
+            document.getElementById('npsScore').innerText = nps;
+            document.getElementById('totalRespondents').innerText = total;
+            document.getElementById('countPromoters').innerText = prom;
+            document.getElementById('percPromoters').innerText = percProm.toFixed(1) + '%';
+            document.getElementById('countPassives').innerText = neut;
+            document.getElementById('percPassives').innerText = ((neut / total) * 100).toFixed(1) + '%';
+            document.getElementById('countDetractors').innerText = ofen;
+            document.getElementById('percDetractors').innerText = percOfen.toFixed(1) + '%';
+
+            const status = document.getElementById('npsStatus');
+            if (nps > 75) { status.innerText = 'Excelente'; status.style.color = 'var(--success)'; }
+            else if (nps > 50) { status.innerText = 'Muito Bom'; status.style.color = 'var(--primary)'; }
+            else if (nps > 0) { status.innerText = 'Razoável'; status.style.color = 'var(--warning)'; }
+            else { status.innerText = 'Crítico'; status.style.color = 'var(--danger)'; }
+        }
+
+        function resetMetrics() {
+            ['npsScore', 'totalRespondents', 'countPromoters', 'countPassives', 'countDetractors'].forEach(id => document.getElementById(id).innerText = '0');
+            ['percPromoters', 'percPassives', 'percDetractors'].forEach(id => document.getElementById(id).innerText = '0%');
+            document.getElementById('npsStatus').innerText = '--';
+        }
+
+        // --- Visualization ---
+
+        function renderTimelineChart(data) {
+            const ctx = document.getElementById('timelineChart').getContext('2d');
+            if (charts.timeline) charts.timeline.destroy();
+
+            const monthly = {};
+            data.forEach(d => {
+                const key = d.data.toLocaleString('pt-BR', { month: 'short', year: 'numeric' });
+                if (!monthly[key]) monthly[key] = { prom: 0, ofen: 0, total: 0 };
+                monthly[key].total++;
+                if (d.nota >= 9) monthly[key].prom++;
+                if (d.nota <= 6) monthly[key].ofen++;
+            });
+
+            const labels = Object.keys(monthly);
+            const npsValues = labels.map(l => Math.round(((monthly[l].prom / monthly[l].total) * 100) - ((monthly[l].ofen / monthly[l].total) * 100)));
+            const volumes = labels.map(l => monthly[l].total);
+
+            charts.timeline = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        { label: 'NPS', data: npsValues, borderColor: '#2563eb', backgroundColor: 'rgba(37, 99, 235, 0.1)', fill: true, yAxisID: 'y', tension: 0.3 },
+                        { label: 'Volume', data: volumes, type: 'bar', backgroundColor: '#cbd5e1', yAxisID: 'y1', borderRadius: 4 }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'top' } },
+                    scales: {
+                        y: { type: 'linear', position: 'left', min: -100, max: 100, title: { display: true, text: 'NPS Score' } },
+                        y1: { type: 'linear', position: 'right', grid: { display: false }, title: { display: true, text: 'Respostas' } }
+                    }
+                }
+            });
+        }
+
+        function renderDistributionChart(data) {
+            const ctx = document.getElementById('distributionChart').getContext('2d');
+            if (charts.dist) charts.dist.destroy();
+
+            const prom = data.filter(d => d.nota >= 9).length;
+            const ofen = data.filter(d => d.nota <= 6).length;
+            const neut = data.length - prom - ofen;
+
+            charts.dist = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Promotores', 'Neutros', 'Ofensores'],
+                    datasets: [{ data: [prom, neut, ofen], backgroundColor: ['#10b981', '#f59e0b', '#ef4444'], borderWidth: 0 }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, padding: 15 } } }
+                }
+            });
+        }
+
+        function renderScoreChart(data) {
+            const ctx = document.getElementById('scoreChart').getContext('2d');
+            if (charts.score) charts.score.destroy();
+
+            const scores = Array(11).fill(0);
+            data.forEach(d => { if (d.nota >= 0 && d.nota <= 10) scores[d.nota]++; });
+
+            charts.score = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+                    datasets: [{
+                        label: 'Volume por Nota',
+                        data: scores,
+                        backgroundColor: scores.map((_, i) => i >= 9 ? '#10b981' : (i >= 7 ? '#f59e0b' : '#ef4444')),
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { beginAtZero: true } }
+                }
+            });
+        }
+
+        function renderRankingTable(data) {
+            const tbody = document.querySelector('#rankingTable tbody');
+            tbody.innerHTML = '';
+
+            const aggregations = ['unidade', 'torre', 'produto'];
+            const results = [];
+
+            aggregations.forEach(attr => {
+                const groups = {};
+                data.forEach(d => {
+                    const key = d[attr];
+                    if (!groups[key]) groups[key] = { prom: 0, ofen: 0, total: 0, attr: attr };
+                    groups[key].total++;
+                    if (d.nota >= 9) groups[key].prom++;
+                    if (d.nota <= 6) groups[key].ofen++;
+                });
+
+                for (let key in groups) {
+                    const g = groups[key];
+                    const nps = Math.round(((g.prom / g.total) * 100) - ((g.ofen / g.total) * 100));
+                    results.push({ name: key, type: attr, volume: g.total, nps: nps });
+                }
+            });
+
+            results.sort((a, b) => a.nps - b.nps);
+
+            results.slice(0, 15).forEach(r => {
+                const tr = document.createElement('tr');
+                const status = r.nps > 70 ? 'badge-success' : (r.nps > 30 ? 'badge-warning' : 'badge-danger');
+                tr.innerHTML = `
+                <td style="font-size: 0.65rem; font-weight: 700;">${r.type.toUpperCase()}</td>
+                <td style="font-size: 0.8rem;">${r.name}</td>
+                <td>${r.volume}</td>
+                <td style="font-weight:700;">${r.nps}</td>
+                <td><span class="badge ${status}">${r.nps > 50 ? 'OK' : 'Crítico'}</span></td>
+            `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function renderCategoryWordCloud(data, elementId, colorType) {
+            const cloud = document.getElementById(elementId);
+            cloud.innerHTML = '';
+            if (data.length === 0) return;
+
+            const wordsMap = {};
+            data.forEach(d => {
+                if (!d.comentario) return;
+                d.comentario.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "").split(/\s+/).forEach(w => {
+                    if (w.length > 3 && !STOPWORDS.has(w) && isNaN(w)) wordsMap[w] = (wordsMap[w] || 0) + 1;
+                });
+            });
+
+            const sortedWords = Object.entries(wordsMap).sort((a, b) => b[1] - a[1]).slice(0, 20);
+            if (sortedWords.length === 0) return;
+
+            const maxFreq = sortedWords[0][1];
+            const width = cloud.offsetWidth;
+            const height = cloud.offsetHeight;
+
+            const colorMap = {
+                success: [140, 160], // Greenish
+                warning: [30, 50],   // Orange/Yellow
+                danger: [0, 10]      // Red
+            };
+
+            sortedWords.forEach(([word, freq]) => {
+                const span = document.createElement('span');
+                span.className = 'word-item';
+                span.innerText = word;
+                span.style.fontSize = `${10 + (freq / maxFreq * 20)}px`;
+                const hue = colorMap[colorType][0] + (Math.random() * (colorMap[colorType][1] - colorMap[colorType][0]));
+                span.style.color = `hsl(${hue}, 70%, 40%)`;
+                span.style.left = `${Math.random() * (width - 80)}px`;
+                span.style.top = `${Math.random() * (height - 30)}px`;
+                cloud.appendChild(span);
+            });
+        }
+
+        function generateInsights(data) {
+            const list = document.getElementById('insightsList');
+            list.innerHTML = '';
+            if (data.length === 0) return;
+
+            const nps = parseInt(document.getElementById('npsScore').innerText);
+
+            // 1. Executive Status
+            if (nps < 50) addInsight(list, 'Zona Crítica de NPS', `O score de ${nps} exige revisão imediata dos processos de atendimento e estabilidade.`, 'alert');
+            else addInsight(list, 'Padrão de Excelência', `Manter o NPS em ${nps} demonstra forte engajamento dos clientes.`, 'success');
+
+            // 2. Worst segment by Volume
+            const ofensores = data.filter(d => d.nota <= 6);
+            const productStats = {};
+            ofensores.forEach(d => {
+                productStats[d.produto] = (productStats[d.produto] || 0) + 1;
+            });
+            const topOfenProd = Object.entries(productStats).sort((a, b) => b[1] - a[1])[0];
+            if (topOfenProd) {
+                addInsight(list, 'Foco em Produto', `O produto <strong>${topOfenProd[0]}</strong> concentra o maior volume absoluto de críticas (${topOfenProd[1]} ofensores).`, 'alert');
+            }
+
+            // 3. Operational Criticality (Worst NPS by Tower)
+            const towerStats = {};
+            data.forEach(d => {
+                if (!towerStats[d.torre]) towerStats[d.torre] = { p: 0, o: 0, t: 0 };
+                towerStats[d.torre].t++;
+                if (d.nota >= 9) towerStats[d.torre].p++;
+                if (d.nota <= 6) towerStats[d.torre].o++;
+            });
+
+            let worstTower = { name: '', nps: 100 };
+            for (let t in towerStats) {
+                if (towerStats[t].t < 5) continue; // Min sample
+                const score = (towerStats[t].p / towerStats[t].t * 100) - (towerStats[t].o / towerStats[t].t * 100);
+                if (score < worstTower.nps) worstTower = { name: t, nps: score };
+            }
+            if (worstTower.name) {
+                addInsight(list, 'Gargalo em Torre', `A torre <strong>${worstTower.name}</strong> opera com NPS de ${Math.round(worstTower.nps)}, impactando a média geral.`, 'alert');
+            }
+
+            // 4. Detractor Keywords
+            const negWords = {};
+            ofensores.forEach(d => {
+                if (d.comentario) d.comentario.toLowerCase().split(/\s+/).forEach(w => {
+                    if (w.length > 5 && !STOPWORDS.has(w)) negWords[w] = (negWords[w] || 0) + 1;
+                });
+            });
+            const topNeg = Object.entries(negWords).sort((a, b) => b[1] - a[1])[0];
+            if (topNeg) {
+                addInsight(list, 'Causa Raiz Detratora', `O termo "<strong>${topNeg[0]}</strong>" é citado frequentemente como motivo de insatisfação.`, 'alert');
+            }
+        }
+
+        function addInsight(target, title, text, type) {
+            const div = document.createElement('div');
+            div.className = `insight-card ${type}`;
+            div.innerHTML = `<div class="insight-title">${type === 'alert' ? '⚠️' : '✅'} ${title}</div><div class="insight-text">${text}</div>`;
+            target.appendChild(div);
+        }
+
+        window.onload = init;
+    </script>
+
+</body>
+
+</html>
