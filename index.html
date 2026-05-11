@@ -469,9 +469,9 @@
                     <label>Classificação NPS</label>
                     <select id="filterClass" onchange="applyFilters()">
                         <option value="all">Todas as Notas</option>
-                        <option value="Promotor">Promotores (9-10)</option>
-                        <option value="Neutro">Neutros (7-8)</option>
-                        <option value="Ofensor">Ofensores (0-6)</option>
+                        <option value="Promotor">Promotores (5)</option>
+                        <option value="Neutro">Neutros (3-4)</option>
+                        <option value="Ofensor">Ofensores (0-2)</option>
                     </select>
                 </div>
             </aside>
@@ -495,7 +495,7 @@
 
                 <div class="chart-row">
                     <div class="chart-container">
-                        <div class="chart-title">Distribuição de Notas (0 a 10)</div>
+                        <div class="chart-title">Distribuição de Notas (0 a 5)</div>
                         <div style="height: 350px; position: relative;">
                             <canvas id="scoreChart"></canvas>
                         </div>
@@ -575,9 +575,9 @@
             for (let i = 1; i <= 350; i++) {
                 const rand = Math.random();
                 let score;
-                if (rand > 0.65) score = 9 + Math.floor(Math.random() * 2); // 35% Promoters
-                else if (rand > 0.45) score = 0 + Math.floor(Math.random() * 7); // 20% Detractors
-                else score = 7 + Math.floor(Math.random() * 2); // 45% Passives
+                if (rand > 0.65) score = 5; // 35% Promoters
+                else if (rand > 0.45) score = Math.floor(Math.random() * 3); // 20% Detractors (0, 1, 2)
+                else score = 3 + Math.floor(Math.random() * 2); // 45% Passives (3, 4)
 
                 const dateOffset = Math.floor(Math.random() * 30);
                 const date = new Date(baseDate);
@@ -591,7 +591,7 @@
                     produto: products[Math.floor(Math.random() * products.length)],
                     nota: score,
                     comentario: generateRandomComment(score),
-                    classificacao: score >= 9 ? 'Promotor' : (score >= 7 ? 'Neutro' : 'Ofensor')
+                    classificacao: score === 5 ? 'Promotor' : (score >= 3 ? 'Neutro' : 'Ofensor')
                 });
             }
             rawData = data;
@@ -602,7 +602,7 @@
             const p = ['Sistema muito estável', 'O fluxo no PEP melhoras constantes', 'Suporte ágil e atencioso', 'Excelente ferramenta'];
             const n = ['Funciona bem no geral', 'Pode melhorar a performance', 'Interface um pouco datada', 'Atende o esperado'];
             const o = ['Muito lento em horários de pico', 'Erro ao salvar dados', 'Suporte demora a responder', 'Difícil navegação', 'Muitos cliques'];
-            const comments = score >= 9 ? p : (score >= 7 ? n : o);
+            const comments = score === 5 ? p : (score >= 3 ? n : o);
             return comments[Math.floor(Math.random() * comments.length)];
         }
 
@@ -667,8 +667,8 @@
                 let scoreStr = (cols[8] || '').trim();
                 let score = parseInt(scoreStr);
 
-                // Filter out phone numbers or invalid strings (> 10 is invalid NPS)
-                if (isNaN(score) || score < 0 || score > 10) continue;
+                // Filter out phone numbers or invalid strings (> 5 is invalid NPS in this scale)
+                if (isNaN(score) || score < 0 || score > 5) continue;
 
                 let date = new Date();
                 const rawDate = (cols[1] || '').trim();
@@ -685,7 +685,7 @@
                     produto: (cols[4] || 'S/I').trim().toUpperCase(),
                     nota: score,
                     comentario: ((cols[9] || '') + ' ' + (cols[11] || '')).trim(),
-                    classificacao: score >= 9 ? 'Promotor' : (score >= 7 ? 'Neutro' : 'Ofensor')
+                    classificacao: score === 5 ? 'Promotor' : (score >= 3 ? 'Neutro' : 'Ofensor')
                 });
             }
 
@@ -707,9 +707,9 @@
             renderRankingTable(data);
 
             // Multi-category Word Clouds
-            renderCategoryWordCloud(data.filter(d => d.nota >= 9), 'cloudPromoters', 'success');
-            renderCategoryWordCloud(data.filter(d => d.nota >= 7 && d.nota <= 8), 'cloudNeutrals', 'warning');
-            renderCategoryWordCloud(data.filter(d => d.nota <= 6), 'cloudDetractors', 'danger');
+            renderCategoryWordCloud(data.filter(d => d.nota === 5), 'cloudPromoters', 'success');
+            renderCategoryWordCloud(data.filter(d => d.nota >= 3 && d.nota <= 4), 'cloudNeutrals', 'warning');
+            renderCategoryWordCloud(data.filter(d => d.nota <= 2), 'cloudDetractors', 'danger');
 
             generateInsights(data);
         }
@@ -725,8 +725,8 @@
             const total = data.length;
             if (total === 0) { resetMetrics(); return; }
 
-            const prom = data.filter(d => d.nota >= 9).length;
-            const ofen = data.filter(d => d.nota <= 6).length;
+            const prom = data.filter(d => d.nota === 5).length;
+            const ofen = data.filter(d => d.nota <= 2).length;
             const neut = total - prom - ofen;
 
             const percProm = (prom / total) * 100;
@@ -766,8 +766,8 @@
                 const key = d.data.toLocaleString('pt-BR', { month: 'short', year: 'numeric' });
                 if (!monthly[key]) monthly[key] = { prom: 0, ofen: 0, total: 0 };
                 monthly[key].total++;
-                if (d.nota >= 9) monthly[key].prom++;
-                if (d.nota <= 6) monthly[key].ofen++;
+                if (d.nota === 5) monthly[key].prom++;
+                if (d.nota <= 2) monthly[key].ofen++;
             });
 
             const labels = Object.keys(monthly);
@@ -799,8 +799,8 @@
             const ctx = document.getElementById('distributionChart').getContext('2d');
             if (charts.dist) charts.dist.destroy();
 
-            const prom = data.filter(d => d.nota >= 9).length;
-            const ofen = data.filter(d => d.nota <= 6).length;
+            const prom = data.filter(d => d.nota === 5).length;
+            const ofen = data.filter(d => d.nota <= 2).length;
             const neut = data.length - prom - ofen;
 
             charts.dist = new Chart(ctx, {
@@ -822,17 +822,17 @@
             const ctx = document.getElementById('scoreChart').getContext('2d');
             if (charts.score) charts.score.destroy();
 
-            const scores = Array(11).fill(0);
-            data.forEach(d => { if (d.nota >= 0 && d.nota <= 10) scores[d.nota]++; });
+            const scores = Array(6).fill(0);
+            data.forEach(d => { if (d.nota >= 0 && d.nota <= 5) scores[d.nota]++; });
 
             charts.score = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+                    labels: ['0', '1', '2', '3', '4', '5'],
                     datasets: [{
                         label: 'Volume por Nota',
                         data: scores,
-                        backgroundColor: scores.map((_, i) => i >= 9 ? '#10b981' : (i >= 7 ? '#f59e0b' : '#ef4444')),
+                        backgroundColor: scores.map((_, i) => i === 5 ? '#10b981' : (i >= 3 ? '#f59e0b' : '#ef4444')),
                         borderRadius: 4
                     }]
                 },
@@ -858,8 +858,8 @@
                     const key = d[attr];
                     if (!groups[key]) groups[key] = { prom: 0, ofen: 0, total: 0, attr: attr };
                     groups[key].total++;
-                    if (d.nota >= 9) groups[key].prom++;
-                    if (d.nota <= 6) groups[key].ofen++;
+                    if (d.nota === 5) groups[key].prom++;
+                    if (d.nota <= 2) groups[key].ofen++;
                 });
 
                 for (let key in groups) {
@@ -936,7 +936,7 @@
             else addInsight(list, 'Padrão de Excelência', `Manter o NPS em ${nps} demonstra forte engajamento dos clientes.`, 'success');
 
             // 2. Worst segment by Volume
-            const ofensores = data.filter(d => d.nota <= 6);
+            const ofensores = data.filter(d => d.nota <= 2);
             const productStats = {};
             ofensores.forEach(d => {
                 productStats[d.produto] = (productStats[d.produto] || 0) + 1;
@@ -951,8 +951,8 @@
             data.forEach(d => {
                 if (!towerStats[d.torre]) towerStats[d.torre] = { p: 0, o: 0, t: 0 };
                 towerStats[d.torre].t++;
-                if (d.nota >= 9) towerStats[d.torre].p++;
-                if (d.nota <= 6) towerStats[d.torre].o++;
+                if (d.nota === 5) towerStats[d.torre].p++;
+                if (d.nota <= 2) towerStats[d.torre].o++;
             });
 
             let worstTower = { name: '', nps: 100 };
