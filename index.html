@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard NPS Executivo | Abril 2026</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -21,6 +23,15 @@
             --promoter: #10b981;
             --passive: #f59e0b;
             --detractor: #ef4444;
+            --transition: all 0.3s ease;
+        }
+
+        body.dark-mode {
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: #334155;
         }
 
         * {
@@ -34,6 +45,11 @@
             background-color: var(--bg);
             color: var(--text-main);
             line-height: 1.5;
+            transition: var(--transition);
+        }
+
+        .card, .header-title h1, .filter-group, .chart-container, .ranking-container, .word-cloud-box, .insights-box, header {
+            transition: var(--transition);
         }
 
         .container {
@@ -94,6 +110,46 @@
             align-items: center;
             gap: 0.5rem;
             transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-export {
+            background: #6366f1;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .btn-export:hover {
+            background: #4f46e5;
+            transform: translateY(-1px);
+        }
+
+        .btn-theme {
+            background: var(--border);
+            color: var(--text-main);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.2s;
+        }
+
+        .btn-theme:hover {
+            background: var(--text-muted);
+            color: white;
         }
 
         .btn-import:hover {
@@ -408,9 +464,17 @@
                     <p class="info-label">Atualizado em</p>
                     <p class="info-value" id="updateDate">07/05/2026 14:30</p>
                 </div>
-                <button class="btn-import" onclick="document.getElementById('csvInput').click()">
-                    <span>📥</span> Importar CSV
-                </button>
+                <div style="display: flex; gap: 0.75rem;">
+                    <button class="btn-import" onclick="document.getElementById('csvInput').click()">
+                        <span>📥</span> Importar
+                    </button>
+                    <button class="btn-export" onclick="exportToPDF()">
+                        <span>📄</span> Exportar
+                    </button>
+                    <button class="btn-theme" onclick="toggleTheme()" id="themeBtn">
+                        🌙
+                    </button>
+                </div>
                 <input type="file" id="csvInput" accept=".csv" onchange="handleFileUpload(event)">
             </div>
         </header>
@@ -562,6 +626,53 @@
         function init() {
             generateSimulatedData();
             updateDashboard();
+        }
+
+        function getChartColors() {
+            const isDark = document.body.classList.contains('dark-mode');
+            return {
+                text: isDark ? '#f1f5f9' : '#1e293b',
+                muted: isDark ? '#94a3b8' : '#64748b',
+                grid: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
+            };
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            document.getElementById('themeBtn').innerText = isDark ? '☀️' : '🌙';
+            updateDashboard();
+        }
+
+        async function exportToPDF() {
+            const btn = document.querySelector('.btn-export');
+            btn.innerText = '⌛ Processando...';
+            btn.disabled = true;
+
+            try {
+                const element = document.querySelector('.container');
+                const canvas = await html2canvas(element, {
+                    scale: 2,
+                    backgroundColor: getComputedStyle(document.body).backgroundColor,
+                    useCORS: true,
+                    logging: false
+                });
+
+                const imgData = canvas.toDataURL('image/png');
+                const { jsPDF } = window.jspdf;
+                const pdf = new jsPDF('p', 'mm', 'a4');
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+                pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+                pdf.save(`NPS_Dashboard_${new Date().toLocaleDateString().replace(/\//g, '-')}.pdf`);
+            } catch (e) {
+                console.error(e);
+                alert('Erro ao gerar PDF');
+            } finally {
+                btn.innerHTML = '<span>📄</span> Exportar';
+                btn.disabled = false;
+            }
         }
 
         function generateSimulatedData() {
@@ -773,6 +884,7 @@
             const labels = Object.keys(monthly);
             const npsValues = labels.map(l => Math.round(((monthly[l].prom / monthly[l].total) * 100) - ((monthly[l].ofen / monthly[l].total) * 100)));
             const volumes = labels.map(l => monthly[l].total);
+            const colors = getChartColors();
 
             charts.timeline = new Chart(ctx, {
                 type: 'line',
@@ -786,10 +898,30 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: { legend: { position: 'top' } },
+                    plugins: { 
+                        legend: { position: 'top', labels: { color: colors.text } } 
+                    },
                     scales: {
-                        y: { type: 'linear', position: 'left', min: -100, max: 100, title: { display: true, text: 'NPS Score' } },
-                        y1: { type: 'linear', position: 'right', grid: { display: false }, title: { display: true, text: 'Respostas' } }
+                        y: { 
+                            type: 'linear', 
+                            position: 'left', 
+                            min: -100, 
+                            max: 100, 
+                            ticks: { color: colors.muted },
+                            grid: { color: colors.grid },
+                            title: { display: true, text: 'NPS Score', color: colors.text } 
+                        },
+                        y1: { 
+                            type: 'linear', 
+                            position: 'right', 
+                            grid: { display: false }, 
+                            ticks: { color: colors.muted },
+                            title: { display: true, text: 'Respostas', color: colors.text } 
+                        },
+                        x: {
+                            ticks: { color: colors.muted },
+                            grid: { color: colors.grid }
+                        }
                     }
                 }
             });
@@ -802,7 +934,8 @@
             const prom = data.filter(d => d.nota === 5).length;
             const ofen = data.filter(d => d.nota <= 2).length;
             const neut = data.length - prom - ofen;
-
+            const colors = getChartColors();
+ 
             charts.dist = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
@@ -813,7 +946,12 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     cutout: '70%',
-                    plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, padding: 15 } } }
+                    plugins: { 
+                        legend: { 
+                            position: 'bottom', 
+                            labels: { usePointStyle: true, padding: 15, color: colors.text } 
+                        } 
+                    }
                 }
             });
         }
@@ -824,7 +962,8 @@
 
             const scores = Array(6).fill(0);
             data.forEach(d => { if (d.nota >= 0 && d.nota <= 5) scores[d.nota]++; });
-
+            const colors = getChartColors();
+ 
             charts.score = new Chart(ctx, {
                 type: 'bar',
                 data: {
@@ -840,7 +979,17 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: { legend: { display: false } },
-                    scales: { y: { beginAtZero: true } }
+                    scales: { 
+                        y: { 
+                            beginAtZero: true,
+                            ticks: { color: colors.muted },
+                            grid: { color: colors.grid }
+                        },
+                        x: {
+                            ticks: { color: colors.muted },
+                            grid: { display: false }
+                        }
+                    }
                 }
             });
         }
