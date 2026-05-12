@@ -48,7 +48,14 @@
             transition: var(--transition);
         }
 
-        .card, .header-title h1, .filter-group, .chart-container, .ranking-container, .word-cloud-box, .insights-box, header {
+        .card,
+        .header-title h1,
+        .filter-group,
+        .chart-container,
+        .ranking-container,
+        .word-cloud-box,
+        .insights-box,
+        header {
             transition: var(--transition);
         }
 
@@ -766,34 +773,46 @@
         function parseCSV(text) {
             const lines = text.split('\n');
             const data = [];
+            let skipped = 0;
 
             for (let i = 1; i < lines.length; i++) {
                 const row = lines[i];
                 if (!row.trim()) continue;
 
                 const cols = row.split(';');
-                if (cols.length < 9) continue;
+                if (cols.length < 9) { skipped++; continue; }
 
                 // Strict Validation for NPS Note (Questao 01)
                 let scoreStr = (cols[8] || '').trim();
+                if (scoreStr === '') { skipped++; continue; }
+                
                 let score = parseInt(scoreStr);
 
                 // Filter out phone numbers or invalid strings (> 5 is invalid NPS in this scale)
-                if (isNaN(score) || score < 0 || score > 5) continue;
+                if (isNaN(score) || score < 0 || score > 5) { skipped++; continue; }
+
+                // Essential Field Validation (Unidade, Torre, Produto)
+                const unidade = (cols[2] || '').trim();
+                const torre = (cols[3] || '').trim();
+                const produto = (cols[4] || '').trim();
+
+                if (!unidade || !torre || !produto) { skipped++; continue; }
 
                 let date = new Date();
                 const rawDate = (cols[1] || '').trim();
                 const dateParts = rawDate.split('/');
                 if (dateParts.length === 3) {
                     date = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+                } else {
+                    skipped++; continue;
                 }
 
                 data.push({
                     ticket: (cols[0] || '').trim(),
                     data: date,
-                    unidade: (cols[2] || 'S/I').trim().toUpperCase(),
-                    torre: (cols[3] || 'S/I').trim().toUpperCase(),
-                    produto: (cols[4] || 'S/I').trim().toUpperCase(),
+                    unidade: unidade.toUpperCase(),
+                    torre: torre.toUpperCase(),
+                    produto: produto.toUpperCase(),
                     nota: score,
                     comentario: ((cols[9] || '') + ' ' + (cols[11] || '')).trim(),
                     classificacao: score === 5 ? 'Promotor' : (score >= 3 ? 'Neutro' : 'Ofensor')
@@ -803,7 +822,9 @@
             rawData = data;
             populateFilters();
             applyFilters();
-            alert('Dashboard atualizado com ' + data.length + ' registros válidos.');
+            alert('Dashboard atualizado com sucesso!\n\n' + 
+                  '✅ Registros válidos: ' + data.length + '\n' +
+                  '⚠️ Respostas em branco ou incompletas ignoradas: ' + skipped);
         }
 
         // --- Updates ---
@@ -898,25 +919,25 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: { 
-                        legend: { position: 'top', labels: { color: colors.text } } 
+                    plugins: {
+                        legend: { position: 'top', labels: { color: colors.text } }
                     },
                     scales: {
-                        y: { 
-                            type: 'linear', 
-                            position: 'left', 
-                            min: -100, 
-                            max: 100, 
+                        y: {
+                            type: 'linear',
+                            position: 'left',
+                            min: -100,
+                            max: 100,
                             ticks: { color: colors.muted },
                             grid: { color: colors.grid },
-                            title: { display: true, text: 'NPS Score', color: colors.text } 
+                            title: { display: true, text: 'NPS Score', color: colors.text }
                         },
-                        y1: { 
-                            type: 'linear', 
-                            position: 'right', 
-                            grid: { display: false }, 
+                        y1: {
+                            type: 'linear',
+                            position: 'right',
+                            grid: { display: false },
                             ticks: { color: colors.muted },
-                            title: { display: true, text: 'Respostas', color: colors.text } 
+                            title: { display: true, text: 'Respostas', color: colors.text }
                         },
                         x: {
                             ticks: { color: colors.muted },
@@ -935,7 +956,7 @@
             const ofen = data.filter(d => d.nota <= 2).length;
             const neut = data.length - prom - ofen;
             const colors = getChartColors();
- 
+
             charts.dist = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
@@ -946,11 +967,11 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     cutout: '70%',
-                    plugins: { 
-                        legend: { 
-                            position: 'bottom', 
-                            labels: { usePointStyle: true, padding: 15, color: colors.text } 
-                        } 
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { usePointStyle: true, padding: 15, color: colors.text }
+                        }
                     }
                 }
             });
@@ -963,7 +984,7 @@
             const scores = Array(6).fill(0);
             data.forEach(d => { if (d.nota >= 0 && d.nota <= 5) scores[d.nota]++; });
             const colors = getChartColors();
- 
+
             charts.score = new Chart(ctx, {
                 type: 'bar',
                 data: {
@@ -979,8 +1000,8 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: { legend: { display: false } },
-                    scales: { 
-                        y: { 
+                    scales: {
+                        y: {
                             beginAtZero: true,
                             ticks: { color: colors.muted },
                             grid: { color: colors.grid }
