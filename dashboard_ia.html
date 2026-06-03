@@ -126,6 +126,7 @@
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s;
             display: flex;
             flex-direction: column;
+            min-width: 0; /* Permite que o container de gráficos Grid encolha corretamente */
         }
 
         .chart-card:hover {
@@ -189,6 +190,7 @@
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
+            min-width: 0; /* Permite encolhimento em viewports estreitas */
         }
 
         .kpi-card:hover {
@@ -492,6 +494,35 @@
             color: var(--text-secondary);
             min-width: 35px;
             text-align: right;
+        }
+
+        /* Consultas de Media para Design Responsivo Avançado */
+        @media (max-width: 768px) {
+            body {
+                padding: 1.5rem 1rem;
+            }
+            h1 {
+                font-size: 2.2rem;
+            }
+            p.subtitle {
+                font-size: 1rem;
+            }
+            .filter-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
+                padding: 1rem;
+            }
+            .filter-bar select {
+                width: 100%;
+            }
+            .meta-table th, .meta-table td {
+                padding: 0.75rem 0.5rem;
+                font-size: 0.85rem;
+            }
+            .meta-table td:first-child {
+                max-width: 150px;
+            }
         }
     </style>
 </head>
@@ -1150,6 +1181,17 @@
                 tbody.appendChild(tr);
             });
         }
+
+        // Redimensionar os gráficos Plotly automaticamente ao redimensionar a tela
+        window.addEventListener('resize', () => {
+            const chartIds = ['timelineChart', 'produtoChart', 'validadoChart', 'versaoChart', 'emailChart'];
+            chartIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (el && el.style.display !== 'none') {
+                    Plotly.Plots.resize(el);
+                }
+            });
+        });
     </script>
 </body>
 
