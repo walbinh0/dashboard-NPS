@@ -1,0 +1,720 @@
+Carimbo de data/hora,Assunto:,Descrição:,Mensagem apresentada no sistema:,Resolução:,Ação:,Anexo:,Endereço de e-mail,Produto:,Chamado referência,Versão:,Documento Validado?,[Form Publisher] Edit URL,[Form Publisher] Doc URL,[Form Publisher] Increment,[Form Publisher] PDF URL
+02/04/2026 15:57:10,Botão “Guias” inativo na tela (ATEURG),"Estamos com problemas no botão “Guias”, que direciona para a tela da Central de Guias (ATEURG). Antes da atualização da versão TISS para 4.2, segundo o setor, o botão funcionava corretamente. Atualmente, ele não está sendo exibido como ativo, o que tem causado demora no processo de autorização. Solicitamos a verificação.",Não apresenta mensagem ( dúvidas do cliente_,"O processo de impressão de guias pelo atendimento foi alterado.
+Para a impressão da guia tiss será disponibilizado um botão(Imprimir Guia TISS) na tela de atendimento(ATEURG) e na tela de consulta de atendimento(CON_ATE).
+Para a demais impressões do atendimento seguir o fluxo padrão.
+ Pré Requisitos:
+Adicionar na tela de Cadastro Geral de Parâmetros: CONFIG_SERVICE (LOCALIZAÇÃO: Serviços de Apoio/Global/Configurações/Cadastro Geral de Parâmetros)para o sistema PAEU a chave SN_EXIBE_BTN_IMP_GUIA_TISS com o valor S.
+Remover o cadastro de guias TISS na tela de Relatórios do Atendimento: M_REPO_ATE (LOCALIZAÇÃO: Serviços de Apoio/Global/Configurações/Relatórios do Atendimento).
+",Não teve,https://drive.google.com/open?id=1GT7pBNkJpk8Ww9dLBCUG8aCfIvCiRzKD,jonatha.acioly@mv.com.br,Assistencial ,381759-1,2018.005.58,Validado,https://docs.google.com/forms/d/e/1FAIpQLScUgKnLCJRTptflXzEoZT87sUFDuKhm7xbCUJV3tcwbDedANA/viewform?edit2=2_ABaOnuc3364VnIzpOsepQinlR1A3uMyGuhbePUuSK0Y3LgonywulaFqId-bUfmI3gYKkWA4,https://docs.google.com/document/d/1dvPLeBStp-HovUyRrEMuP-YbDuNTBEu5zUrEfBg_PtM/edit?usp=drivesdk,8,https://drive.google.com/file/d/15u9K1e_GLae08qMnABsPDmx1IbhQZWIV/view?usp=drivesdk
+02/04/2026 16:06:26,como colocar o campo CID obrigatório no atendimento,como colocar o campo CID obrigatório no atendimento,Não teve,"Referente ao ticket mencionado, abaixo o caminho para a obrigatoriedade do CID nos atendimentos;
+Atendimento De internação:
+Serviços de Apoio / Global / Configurações / Hospital/Configuração de internação/Determinar se será obrigatória a informação de CID no registro de internação;
+Atendimento Ambulatorial:
+Atendimento / Ambulatório / Configurações / Parâmetros/Aba ""Atendimento"" Indicar se deverá considerar obrigatória a seleção da CID (Classificação Internacional de Doenças) na tela ""Atendimento Ambulatorial"". Caso seja escolhida a opção ""Sim"", no momento de efetuar o registro do atendimento, será obrigatório informar a CID antes da finalização do atendimento. Caso seja escolhida a opção ""Não"", o preenchimento dessa informação será opcional;
+Atendimento de Urgência:
+Só existe para obrigar o CID no Diagnóstico do paciente.
+Atendimento / Urgência e Emergência / Configurações / Parâmetros/Diagnóstico/
+Estabelecer se o CID deverá ser obrigatoriamente informado na confirmação do diagnóstico do paciente. Caso essa configuração seja ativada, será exigido o preenchimento do CID na confirmação do diagnóstico, não permitindo a continuidade do registro sem essa informação. Se essa configuração for desabilitada, não será obrigatória a informação do CID na tela de ""Diagnóstico do Atendimento""
+",Teste realizado em base de treinamento,"https://drive.google.com/open?id=1WSThEGgEGmWlhZwjsfpSYYVssItTjUvb, https://drive.google.com/open?id=1lzHsa81tuxlDzfp6YHkhWtpGfFKdGEYe, https://drive.google.com/open?id=160fctNov6LId_XBvCG5ml86Ehno6fdoh",jonatha.acioly@mv.com.br,Assistencial,497112-1,SOULMV-H5.2025.8.0-RELEASE,Validado,https://docs.google.com/forms/d/e/1FAIpQLScUgKnLCJRTptflXzEoZT87sUFDuKhm7xbCUJV3tcwbDedANA/viewform?edit2=2_ABaOnucjuFtSClnU2DepOglNOwSC1XmczSyf1M8LSq2Hb6qqecXwPCvPDupMK581EPx42DA,https://docs.google.com/document/d/13NnI8t4Z5GqUuV6Lv_4BckNn_YPCVIbf3_fQGcabpfE/edit?usp=drivesdk,9,https://drive.google.com/file/d/19kanQ7MGteQWjFsGYI6jvAl1MxLee1RO/view?usp=drivesdk
+02/04/2026 16:08:17,"Configuração multi empresa, na tela M_ESPERA_COLETA.","Configuração multi empresa, na tela M_ESPERA_COLETA.",Não tem ,"Existe uma configuração de parâmetros na tela M_CONFIG_PSSD na aba Coleta de Materiais. ""A LISTA DE ESPERA PARA COLETA EXIBIRÁ EXAMES DE TODAS AS EMPRESAS?""  para mostrar pacientes de outra empresa essa config precisa estar setada para SIM.",Teste realizado na base do cliente.,https://drive.google.com/open?id=1p_iaTe93RGgt_BOrACafbfraHW2zPrpL,jonatha.acioly@mv.com.br,Assistencial,494549-1,SOULMV-H5.2025.9.3-RELEASE,Validado,https://docs.google.com/forms/d/e/1FAIpQLScUgKnLCJRTptflXzEoZT87sUFDuKhm7xbCUJV3tcwbDedANA/viewform?edit2=2_ABaOnud_0-VE2ZiLSpFEwloXhPZLBiJZJm59VSPkq_FIxQfzv7BAY_3A5-5PXU2LBkaE2xE,https://docs.google.com/document/d/11av64nsFvZEJOmSnYAj77Fqdh1-5NiWD3kvWWukI6UY/edit?usp=drivesdk,10,https://drive.google.com/file/d/1HTn90tWaZd9HUEfR-NE7a0N0IeUrSR0n/view?usp=drivesdk
+02/04/2026 16:12:02,Tabela AGENDA_CENTRAL_DETALHES,"Prezados bom dia. criei um comprovante de agendamento e preciso verificar os horários bloqueados. Na tela M_BLOQ_DESBLOQ_HR_AGD mostra os campos da tabela AGENDA_CENTRAL_DETALHES, porém, quando tento consultá-la, o banco informa que a mesma não existe.",Não teve,Para consultar agendas com bloqueio a tabela é na AGENDA_CENTRAL e LOG_OPERA_AGENDA_CENTRAL na coluna SN_BLOQUEADO.,Não teve,"https://drive.google.com/open?id=1Pzq3SGIK0X8BLrQaRQrhBYpLKolLOFok, https://drive.google.com/open?id=1SN5CXztAl2Fy1fQendqLftw78xNKIbD7",jonatha.acioly@mv.com.br,Assistencial,366457-1, SOULFULL.2020.10.1,Validado,https://docs.google.com/forms/d/e/1FAIpQLScUgKnLCJRTptflXzEoZT87sUFDuKhm7xbCUJV3tcwbDedANA/viewform?edit2=2_ABaOnucXEeuEAZVNc044bugl3uVZ54uoAk2eOHbdoIcdg7tcgRKLcC0nrBO7ZcGHYQ3tQPE,https://docs.google.com/document/d/1-CK2QDFtCd_WbaUS1CWgNiRW_QpyWA8oZDErkw7DiiI/edit?usp=drivesdk,11,https://drive.google.com/file/d/1o_Do3cGgo1oPPlGwOPBXs9WenPSCcjKB/view?usp=drivesdk
+02/04/2026 16:22:53,"Gostaria de saber se é possível realizar a mudança em lote dos códigos de convênio e plano de uma agenda ou de várias agendas (período), pois a escala está cadastrada para atender ambos (sus e não sus), os pacientes foram marcados para o SUS, mas agora serão atendidos por um outro código de convênio.","Com relação a situação relatada no referido ticket, a tela de cadastro de agendas/M_CAD_AGENDA_CENTRAL só permite realizar alteração e/ou inclusão dos parâmetros da agenda quando não há horários ocupados, ou seja, com paciente agendado o que de acordo com o print em anexo é o caso da agenda em questão, a tela permite a inclusão apenas quando não há agendamentos.
+Para incluir o convênio após a ocupação de horário há a tela de Manutenção de agendas e escalas que permite replicar alterações incluindo ou excluir parâmetros como convênio, item de agendamento, Serviço x Tipo de Atendimento e usuários  nas agendas (com pacientes agendados) e/ou escalas já criadas e liberadas sem que precise regera as agendas, a é acessada no caminho :  Atendimento / Central de Agendamento / Agendamentos / Manutenção de Escalas|Agendas / Manutenção, ao escolhe a opção Ambos no campo- 'Operar Em'  a inclusão será realizada em escalas e agendas.
+Obs.: Os parâmetros de data e horários devem ser exatamente os mesmos das escalas e agendas que deseja incluir o convênio.
+",Não teve,"Com relação a situação relatada no referido ticket, a tela de cadastro de agendas/M_CAD_AGENDA_CENTRAL só permite realizar alteração e/ou inclusão dos parâmetros da agenda quando não há horários ocupados, ou seja, com paciente agendado o que de acordo com o print em anexo é o caso da agenda em questão, a tela permite a inclusão apenas quando não há agendamentos.
+Para incluir o convênio após a ocupação de horário há a tela de Manutenção de agendas e escalas que permite replicar alterações incluindo ou excluir parâmetros como convênio, item de agendamento, Serviço x Tipo de Atendimento e usuários  nas agendas (com pacientes agendados) e/ou escalas já criadas e liberadas sem que precise regera as agendas, a é acessada no caminho :  Atendimento / Central de Agendamento / Agendamentos / Manutenção de Escalas|Agendas / Manutenção, ao escolhe a opção Ambos no campo- 'Operar Em'  a inclusão será realizada em escalas e agendas.
+Obs.: Os parâmetros de data e horários devem ser exatamente os mesmos das escalas e agendas que deseja incluir o convênio.
+",Não teve,https://drive.google.com/open?id=1EqbZDND05rTnkHrAPevDiKr4ARzfzhg0,jonatha.acioly@mv.com.br,Assitencial,478857-1,2020.8.67-RELEASE,Validado,https://docs.google.com/forms/d/e/1FAIpQLScUgKnLCJRTptflXzEoZT87sUFDuKhm7xbCUJV3tcwbDedANA/viewform?edit2=2_ABaOnufvPHQ-myTPqljdeDCRAcT-o2Gjb8UX9rV849AeoJ5S1_dD-zfP1Q432CMHekKvYWI,https://docs.google.com/document/d/1Lthf1MHqraivsMMg-b92WgElKkExgWodzW03m2K2G38/edit?usp=drivesdk,12,https://drive.google.com/file/d/1jQ_eg7n1oIaK8-jA5fhWvBseNcoqYk35/view?usp=drivesdk
+02/04/2026 16:25:47,Onde lançar gastos dentro do módulo SADT?,"Qual seria a melhor opção dentro do módulo SADT para exames de imagem para registro de gastos atribuídos e atrelados a exames. Por exemplo, ressonância.",Não apresenta,"No módulo do DIAGN, especificamente na tela de cadastro de exames de imagem, Diagnóstico e Terapia > Diagnóstico por Imagem > Tabelas > Exames, na aba ""Kits"", é possível configurar os kits utilizados na realização do exame.
+
+Os produtos vinculados a um procedimento e associados ao ""Kit"" serão lançados na conta do paciente ao realizar o exame, com movimentação do tipo ""Kit do exame"", não sendo necessário dar saída para o paciente.
+
+Obs.: A configuração do kit precisa estar devidamente parametrizada, com seus respectivos produtos e procedimentos; caso contrário, o lançamento na conta do paciente não ocorrerá como esperado.
+
+Necessário validar se a funcionalidade disponível no DIAGN atende à necessidade do setor, pois, se um paciente for realizar um exame com contraste, o volume do contraste poderá variar de acordo com o peso do paciente. Dessa forma, não é possível definir um gasto padrão no kit.
+
+Contudo, há a facilidade na tela de Laudo por meio do botão- Gasto, que direciona o usuário para a tela de Saída de Produtos para Pacientes. Por isso, é importante validar junto ao setor qual o melhor cenário: vincular os exames ao kit ou utilizar a tela de saída de produtos, por meio do atalho conforme informado acima.
+",Não teve,https://drive.google.com/open?id=1u29lrZzH6ZrZBaZ50BpTa91Yld0CRTDW,jonatha.acioly@mv.com.br,Assistencial,495346-1,SOULMV-H5.2020.8.94.ADT-RC119,Validado,https://docs.google.com/forms/d/e/1FAIpQLScUgKnLCJRTptflXzEoZT87sUFDuKhm7xbCUJV3tcwbDedANA/viewform?edit2=2_ABaOnufp8ZhUFNMAqCFFuMVgAHPKfmSAueTnxoBzRAnK1ZKlGNRHH2EH9QtCbAWaEXw8gf4,https://docs.google.com/document/d/19-TmWGCJhIf-rg1tFRynHmY1jpSx-toLJ-u6iiC-czk/edit?usp=drivesdk,13,https://drive.google.com/file/d/152p52XHJwh0Ga4AhyHou5f6jjZIU3bsK/view?usp=drivesdk
+02/04/2026 16:29:42,Solicitação de desvincular o usuário DBAMV aplicação com o usuário DBAMV do banco de dados,"Solicitamos que o usuário DBAMV utilizado atualmente na aplicação MV seja desvinculado do usuário do banco de dados DBAMV.
+Sempre que alteramos a senha do DBAMV no sistema, a senha do banco de dados é alterada, precisamos resolver essa situação. Obrigada 
+","Não teve
+","a orientação vigente é não realizar a criptografia das senhas dos usuários dbamv e dbasgu.
+Essa decisão se baseia nos seguintes pontos:
+•	Os usuários dbamv e dbasgu são estratégicos e utilizados exclusivamente na implantação inicial do sistema.
+•	Após a conclusão da implantação, esses usuários podem ser inativados, eliminando qualquer risco de acesso indevido.
+•	A senha deve ser alterada pela equipe DBA da instituição e não deve ser compartilhada.
+•	Para acessos futuros ao banco de dados, novos usuários devem ser criados, com permissões controladas conforme as diretrizes da instituição.
+•	A tabela dbasgu.usuarios pode ter suas permissões revogadas para usuários comuns de SQL, evitando exposição de credenciais.
+•	Usuario dbamv e dbasgu não devem ser usados para conexão de produtos, seguir orientações de instalação e de cada produto.",Não teve,https://drive.google.com/open?id=1kbs6_WV_vVkuB6Kv2MLzNI27OGwGAFy1,jonatha.acioly@mv.com.br,Assistencial,329370-1,SOULMV-H5.2025.009.03,Validado,https://docs.google.com/forms/d/e/1FAIpQLScUgKnLCJRTptflXzEoZT87sUFDuKhm7xbCUJV3tcwbDedANA/viewform?edit2=2_ABaOnucYcDbsc6sN-7QIR0phQ-Ga2_qAmiceiRRV0V3IOBEPjvsn2wJ3wvjD3ZskyuOB80s,https://docs.google.com/document/d/1b0pavOwR-9AC3yIj_IKC4CgRVAOXYgAyjWoRaGrxFeU/edit?usp=drivesdk,14,https://drive.google.com/file/d/127HSWPANW0FOHqnY3epuBm1BqXxJ8oS3/view?usp=drivesdk
+02/04/2026 16:34:03,Precisamos de uma orientação formal dos processos de prioridade de atendimento,Precisamos de uma orientação formal dos processos de prioridade de atendimento para alinhamento dos fluxos internos da unidade,Não teve,"O entendimento do que seria prioridade, atualmente a regra de ordenação baseado no objeto do SACR contém uma parte não configurável, se dividindo em subgrupos de ordem com o seguinte escopo para o MVPEP:
+
+Primeiramente a lista é dividida quanto ao status do atendimento na seguinte ordem:
+
+1- NÃO ATENDIDOS ou AGUARDANDO REAVALIAÇÃO
+2- COM PRESCRIÇÃO DIA
+3- EM ATENDIMENTO
+4- ATENDIDO
+5- DE ALTA
+
+Cada item desse grupo é subdividido de acordo com a classificação na seguinte ordem:
+
+Classificados dos mais graves para os menos graves
+Sem classificação
+Cada subgrupo também é subdividido de acordo com o tipo de senha na seguinte ordem:
+
+1- Senha Preferencial Octogenária
+2- Senha Preferencial
+3- Senha Normal
+4- Senha sem classificação
+
+Novamente cada subgrupo é ordenado, agora sim configurável:
+
+Configuração ""Prioridade + Totem"":
+
+Tempo de espera a partir da emissão da senha no totem ou a partir do atendimento Administrativo (caso não tenha emissão de senha no totem)
+Da mais antiga para a mais recente
+
+Configuração ""Prioridade + Tempo de Classificação"":
+
+Tempo de espera a partir do fim da classificação, emissão da senha no totem (caso não foi classificado ainda) ou a partir do atendimento administrativo (caso não tenha emissão de senha no totem)
+Da mais antiga para a mais recente.",não teve,https://drive.google.com/open?id=1JNDXy5Xhut6JJOT0TgWE5Nn5UhZSfMyE,jonatha.acioly@mv.com.br,Assistencial,494224-1,SOULMV-H5.2025.9.4-RELEASE,Validado,https://docs.google.com/forms/d/e/1FAIpQLScUgKnLCJRTptflXzEoZT87sUFDuKhm7xbCUJV3tcwbDedANA/viewform?edit2=2_ABaOnuccGh5oU8470a4sjvALXJwLZ5bgchqlyt4ABnkLi89Sc_0YV50WiL9rsc5hsLf-fOE,https://docs.google.com/document/d/1v5YDSn-pzdlb2QDoh1_0YWNV9VlBhAv2h1kFv9LO0wU/edit?usp=drivesdk,15,https://drive.google.com/file/d/1RGWh6tYvF_1RUnoMUT7rIONDD3mab9DF/view?usp=drivesdk
+02/04/2026 16:42:15,Apoio liberação de encaixe,"Olá pessoal, por gentileza poderiam nos orientar quando ocorrer solicitação de libraçao de encaixe?",Não teve,"Sobre a dúvida relatada o Encaixe só é realizado quando o mesmo é parametrizado dentro da Escala, se no momento do cadastro de uma escala for parametrizado um valor de quantidades permitida, o mesmo poderá ocorrer deliberadamente quando a agenda estiver disponível.",Realização informada pelo analista ,https://drive.google.com/open?id=1DSwyvlkAPaD02IiVhhrWnZOnYNhxTySC,jonatha.acioly@mv.com.br,Assistencial ,469038-1,ATEND.2019.033.00.LTS,Validado,https://docs.google.com/forms/d/e/1FAIpQLScUgKnLCJRTptflXzEoZT87sUFDuKhm7xbCUJV3tcwbDedANA/viewform?edit2=2_ABaOnue3MGFRGyG_QBD6KP4JS9_Fie2zq2xHGIAn1rSSCotm1jjJLj2lIDlkZfckMlcnIrs,https://docs.google.com/document/d/1E_8aBuZ4Qnp-HcJ-gjqZJDMxYcmZtHRDA8qF7r8yyI4/edit?usp=drivesdk,16,https://drive.google.com/file/d/17_ZiYp40Qi0nCTI7UTJXJ1RMVtP35jef/view?usp=drivesdk
+02/04/2026 16:45:36,Tipo de cobrança de honorário cirúrgico na tela de confirmação cirúrgica diferente do aviso,"Temos identificado muitos erros em conta, relacionado a forma de pagamento do prestador (P ou C), nos lançamentos do CC. O secretário não está conseguindo corrigir esta informação, na tela de confirmação do aviso. No exemplo enviado, na tela de descrição cirúrgica, o tipo de pagamento está marcado como convênio (acredito que foi o cirurgião quem inseriu a informação), mas na tela de confirmação de cirurgia (que é utilizada pelo secretário), aparece a mensagem ""o prestador nâo está credenciado para o convênio."" O cadastro do prestador está correto, mesmo assim na tela de confirmação de cirurgia não deixa trocar para convenio.",Não teve,"Segue orientação:
+Configurações quanto a forma de pagamento do Centro Cirúrgico (Atendimento > Centro Cirúrgico e Obstétrico > Configurações > Parâmetros) que define se será lançado a forma de pagamento padrão (definido na configuração), se o usuário irá escolher a forma de pagamento, se caíra como não faturado ou se será aplicado as configurações de credenciamento do faturamento. ",Não teve,,jonatha.acioly@mv.com.br,Assistencial ,336078-1,SOULMV-H5.2022.11.3-RELEASE,Validado,https://docs.google.com/forms/d/e/1FAIpQLScUgKnLCJRTptflXzEoZT87sUFDuKhm7xbCUJV3tcwbDedANA/viewform?edit2=2_ABaOnueOVyW_1njWkl90-NWf10PSe3RQ9v9I852qcHgSi0Mlti1hgwGhf_ZU0ZIaTpmuAQA,https://docs.google.com/document/d/1Td5qUhMPdk8cIzuzgenMKqS5pXKV6C9C4VuYJA70MYo/edit?usp=drivesdk,17,https://drive.google.com/file/d/1T_k6H87ZoN7KieasFvM0VO86gs5GjmEr/view?usp=drivesdk
+13/04/2026 16:25:32,Importação de guia SADT no lote não traz procedimentos,"Ao tentar importar a guia 70032749 para o lote de contas médicas 166859, o
+sistema cria uma nova conta e preenche os dados gerais, porém não importa nenhuma
+informação de procedimentos da guia para dentro do lote.",N/A,"Foi identificado que a guia informada é do tipo SADT - Solicitação/Execução e
+não possui execução registrada, Nesses casos, o sistema não importa os itens de
+procedimento para a conta médica, como forma de evitar pagamento indevido ao prestador,
+uma vez que não há comprovação de execução do procedimento, Trata-se de
+comportamento esperado do sistema.",N/A,https://drive.google.com/open?id=1KU376fkhIliuwmR-G6GqyusYIP5ZfViP,luan.silva@mv.com.br,Plano de saúde ,19670-1,SOULMV-O5.2022.162.11-RELEASE,Validado,https://docs.google.com/forms/d/e/1FAIpQLScUgKnLCJRTptflXzEoZT87sUFDuKhm7xbCUJV3tcwbDedANA/viewform?edit2=2_ABaOnuckWgUiH6LbyzFMmrg5yKnHr8VpEZJZsDuWP6kMVnhQFuVU8Ntt0fHRjTN6qjHcxEc,https://docs.google.com/document/d/1ATN0MtCb3JAgAcWP2iZAPLvQkLXSbHM7KVMG-QXl1so/edit?usp=drivesdk,18,https://drive.google.com/file/d/1K1OifWnA1NHZ6QjoOg8LLZn2LjbwpEPG/view?usp=drivesdk
+13/04/2026 16:27:22,Conta médica não consta no Livro de Eventos Conhecidos - competência 11/2024,"O setor de Contabilidade solicitou verificação do motivo pelo qual a conta
+médica 16031168 não consta no Livro de Eventos Conhecidos da competência 11/2024.
+Foram enviados prints da tela de consulta da conta médica e da tentativa de rastreio no
+arquivo gerado, além de planilha anexa para conferência.",N/A,"Foi identificado que a conta médica possui o tipo ""Cobra e não paga"", e,
+conforme a regra do sistema, contas com esse tipo não são consideradas na geração do
+Livro de Eventos Conhecidos, Trata-se de comportamento esperado do sistema, não
+havendo inconsistência ou erro no processamento,",,,luan.silva@mv.com.br,Plano de Saúde,108044-1,SOULMV-O5.1.161.3-RELEASE,Validado,https://docs.google.com/forms/d/e/1FAIpQLScUgKnLCJRTptflXzEoZT87sUFDuKhm7xbCUJV3tcwbDedANA/viewform?edit2=2_ABaOnucULGaAv36sXCcWyk_IgAII2K83ivuM5PT_GfAoijW2x18ueYT6j44sGkgpI2kQJK4,https://docs.google.com/document/d/1R5qCN9vKK5HuqswQKExp_eiqCURyUomL7n-bByFtwOk/edit?usp=drivesdk,19,https://drive.google.com/file/d/1GBOF5nJKpgDXIUjtGRAJz6jdp1wirhSE/view?usp=drivesdk
+13/04/2026 16:33:25,Livro PPCNG / Faturamento Antecipado sem informações,"Foi identificado que o livro PPCNG / Faturamento Antecipado estava sendo
+gerado sem registros, apresentando-se completamente vazio, sem informações disponíveis
+para consulta.",N/A,"Foi verificado que os lotes contábeis necessários para a geração do livro não
+estavam importados no sistema. Para que o livro PPCNG seja gerado corretamente, é
+necessário realizar todo o processo de integração contábil e, após a conclusão sem
+pendências, efetuar a geração dos livros auxiliares, incluindo o PPCNG, Lotes contábeis
+com pendências não podem ser importados e impedem a geração correta do livro.",,,luan.silva@mv.com.br,Plano de Saúde,113625-1,SOULMV-O5.2022.163.12-RELEASE,Validado,https://docs.google.com/forms/d/e/1FAIpQLScUgKnLCJRTptflXzEoZT87sUFDuKhm7xbCUJV3tcwbDedANA/viewform?edit2=2_ABaOnudJtCgq70Vhb302ajd7l_AYmBeB55CtTdHOCkmGq2y7BLB_p5kaOHXPAT52f0VvNAY,https://docs.google.com/document/d/1X9N_vXqo73p5dVWu_oqrUgj9RBAS-vaUYoXd1eKNj-4/edit?usp=drivesdk,20,https://drive.google.com/file/d/1DAveezhl-rz8wWsWVJkyExjSFcVu9--c/view?usp=drivesdk
+13/04/2026 16:35:21,Percentual incorreto para primeiro auxiliar em equipes cirúrgicas distintas,"Foi identificado no lote 440501 que o sistema aplicou percentuais incorretos (100% e 50%) para a atividade médica do primeiro auxiliar, mesmo sendo médicos distintos. Para a participação do cirurgião, os percentuais aplicados estavam corretos, sendo 100% para ambos os códigos, indicando inconsistência apenas no cálculo do primeiro auxiliar.",N/A,"Após alinhamento com a equipe responsável, foi identificado que a chave CONTMED_CONSIDERA_HORA_LISTA estava habilitada. Essa chave faz com que a rotina da lista referencial considere não apenas a data, mas também a hora de realização do procedimento para identificação e agrupamento das contas conforme a regra da lista referencial. Com essa configuração ativa, o sistema passou a aplicar percentuais de forma incorreta para o primeiro auxiliar. Após a desativação da chave, a rotina passou a se comportar conforme o esperado, aplicando corretamente os percentuais.",,,luan.silva@mv.com.br,Plano de Saúde,144006-1,SOULMV-O5.2022.162.3-RELEASE,Validado,https://docs.google.com/forms/d/e/1FAIpQLScUgKnLCJRTptflXzEoZT87sUFDuKhm7xbCUJV3tcwbDedANA/viewform?edit2=2_ABaOnudNOHSxelxzKz4XFn_2-kETTsrzKbBHx7dgJ-LEpFHZi7vsmF7Qav2Cnvi-pTSzzVw,https://docs.google.com/document/d/1__tHuATYxfJ0WJ2ySh0SppZfc9F2IZXF4o82BO-e9Qo/edit?usp=drivesdk,21,https://drive.google.com/file/d/1N-Wbz_coAsTWPj9c61yGbCBTy2gjNvKA/view?usp=drivesdk
+13/04/2026 16:36:52,Bloqueio por carência com tratamento diferenciado para urgência/emergência,"Cliente questiona se é possível, em situações de urgência/emergência, não
+aplicar a regra de negativa automática por carência e encaminhar o guia para análise,
+mantendo a negativa automática apenas para atendimentos eletivos. ",N/A,"Foi orientado que, ao configurar o motivo de glosa com a opção Ação
+Urgência/Emergência definida para análise/estudo, o sistema manterá os guias com caráter
+de atendimento urgência/emergência em análise ou auditoria, mesmo que a opção Negar
+Automático esteja habilitada. Para guias de caráter eletivo, a negativa automática
+continuará sendo aplicada normalmente. Para que esse comportamento ocorra, a glosa
+deve estar configurada com as seguintes chaves: ATEND_UNI_GUI_URGENCIA = N e
+ATEND_REGRA_URG_EMERG = S.",,,luan.silva@mv.com.br,Plano de Saúde,144146-1,1.162,Validado,https://docs.google.com/forms/d/e/1FAIpQLScUgKnLCJRTptflXzEoZT87sUFDuKhm7xbCUJV3tcwbDedANA/viewform?edit2=2_ABaOnuf8KvJrIdD6H_SYvpFZekymPqz3y1Sw9lzgTsAov85H69bSjthr2bpUmTEoJOn44Fc,https://docs.google.com/document/d/1r7vX8zMpcUZrtdlNSnnpkW7tbsVjSntXCY3kTH92E90/edit?usp=drivesdk,22,https://drive.google.com/file/d/13uYh_xKiRdUUBxicmYqFsjkgQpSsI9Yh/view?usp=drivesdk
+13/04/2026 16:39:26,Beneficiário inelegível no portal com desligamento programado em data futura,"Beneficiária com desligamento programado para 18/06 encontra-se ativa no
+sistema, porém ao consultar a elegibilidade no portal é apresentada como inelegível. O
+atendimento está agendado para data anterior ao desligamento programado.",N/A,"Foi identificado que o beneficiário retornava como inelegível devido à chave
+ELEG_VERIF_AGEND_DESLIGAMENTO estar ativa. Essa chave faz com que o sistema
+considere o desligamento programado para fins de elegibilidade, mesmo que a data ainda
+não tenha sido alcançada, Para que o beneficiário seja considerado elegível até a data
+efetiva do desligamento, é necessário desativar essa chave, fazendo com que a
+inelegibilidade ocorra apenas após a data agendada.",,,luan.silva@mv.com.br,Plano de Saúde,214470-1,"SOULMV-O5,1,161.10-RELEASE",Validado,https://docs.google.com/forms/d/e/1FAIpQLScUgKnLCJRTptflXzEoZT87sUFDuKhm7xbCUJV3tcwbDedANA/viewform?edit2=2_ABaOnueQHVb-L2-oBGj-NFgbbSpSIyUxQKed-x3A6SoNKA4O2QzIdgwJeJXVNK2BwUgMeA0,https://docs.google.com/document/d/1Mot8HPwPwZyVxe3ZJPsdVeZv8EuKnV2W1MUYUJdUgD8/edit?usp=drivesdk,23,https://drive.google.com/file/d/1x5EySQWV1lXYbCnd1MVDbgw0qstwAmEf/view?usp=drivesdk
+13/04/2026 16:44:34,Rejeição de arquivo TISS pela ANS - erros 5001 e 5014,"O arquivo TISS referente à competência de março foi rejeitado pela ANS.
+Inicialmente, foi retornado o erro 5001, indicando que o arquivo estava fora do padrão TISS,
+devido à ausência de uma tag obrigatória antes de outra, em desacordo com a sequência
+definida no schema da ANS. Após tentativa de correção manual no XML, o arquivo foi
+rejeitado novamente com o erro 5014 - código hash inválido, indicando possível corrupção
+da mensagem.","5014-CÓDIGO HASH
+INVÁLIDO. MENSAGEM
+PODE ESTAR
+CORROMPIDA.","Conforme as diretrizes da ANS, não é permitida a alteração direta do arquivo
+XML. A análise identificou que a ausência da tag obrigatória ocorreu devido ao não
+preenchimento do campo glosaGuia na tela de monitoramento do sistema, o que resultou
+na geração incompleta da estrutura do XML. A segunda rejeição ocorreu em função da
+edição manual do arquivo, que invalida o código hash. Para correção, é necessário ajustar a
+guia diretamente no sistema, preenchendo corretamente o campo glosaGuia, e em seguida
+gerar um novo arquivo XML, Com isso, o arquivo será emitido automaticamente conforme o
+padrão TISS esperado pela ANS.",,,luan.silva@mv.com.br,Plano de Saúde,214828-1,"SOULMV-O5,1,161,10-RELEASE",Validado,https://docs.google.com/forms/d/e/1FAIpQLScUgKnLCJRTptflXzEoZT87sUFDuKhm7xbCUJV3tcwbDedANA/viewform?edit2=2_ABaOnufDHKK5BhsFVmXt0KrnEh0iUoctgNGn0phR1t0zEYbEM35NBiRIPtlWucTrzgDnqYk,https://docs.google.com/document/d/1qbPYj0StHhUqPoWr4Rxf1U0jmoZaHPcoxTFRKZL5fLs/edit?usp=drivesdk,24,https://drive.google.com/file/d/1MDZJDSLiFFdapGs05QAwne9K18MIqgVq/view?usp=drivesdk
+13/04/2026 16:45:49,Auxílio para exportação d arquivos de layout bancário,"Cliente solicita auxílio para realizar a exportação dos arquivos de layout
+bancário utilizados no sistema, informando dificuldade para localizar e extrair os layouts
+cadastrados.",N/A,"Para exportar os arquivos de layout bancário, deve-se acessar a tela Bancos e
+contas correntes (M_BANCO_MVS), localizada em Plano de Saúde / Faturamento / Tabelas
+- Cobranças, pesquisar o banco desejado e identificar qual layout está associado no
+cadastro, Em seguida, acessar a tela Layout de arquivos (M_LAYOUT_ARQUIVO),
+localizada em Finanças e Controladoria / Finanças / Tabelas / Intercâmbio eletrônico,
+selecionar o layout correspondente e utilizar a opção Extrair para realizar a exportação do
+arquivo.",,,luan.silva@mv.com.br,Plano de Saúde,217714-1,"SOULMV-H5,2022.66.2.PATCH-RC37",Validado,https://docs.google.com/forms/d/e/1FAIpQLScUgKnLCJRTptflXzEoZT87sUFDuKhm7xbCUJV3tcwbDedANA/viewform?edit2=2_ABaOnudQHe8LFJoexqG5qjmA4QXcs-gnzrThI9bl3K_hetykTKKz-hWZqEKD4erVvcC9mVY,https://docs.google.com/document/d/1_fWZvIQGn5Zdl9aDjrJab3MgZcoserYKhyEtF9QV6Yw/edit?usp=drivesdk,25,https://drive.google.com/file/d/1gu6SLOqp6G1urCnJx03fB5yfBMo0138Z/view?usp=drivesdk
+13/04/2026 16:49:24,Guia SADT de solicitação sem prestador executante,"Ao emitir uma guia do tipo SADT - Solicitação, o sistema não permite
+informar o prestador executante no momento da emissão. No Autorizador Web, o prestador
+executante não vem preenchido, gerando erro quando a guia entra em análise e impedindo
+a continuidade do processo.",N/A,"Na análise do cenário apresentado, foi identificado que, para guias SADT de
+solicitação, o prestador executante não é preenchido nesse momento, pois essa informação
+é registrada apenas na etapa de execução da guia, As informações do prestador executante
+passam a constar após a execução, sendo possível visualizá-las no SOUL, na aba
+Execuções, e no Autorizador por meio do registro de cada execução no recibo verde.
+Trata-se de comportamento esperado do sistema.",,,luan.silva@mv.com.br,Plano de Saúde,219963-1,"1.0,165",Validado,https://docs.google.com/forms/d/e/1FAIpQLScUgKnLCJRTptflXzEoZT87sUFDuKhm7xbCUJV3tcwbDedANA/viewform?edit2=2_ABaOnuc3W25eGtEUwPjkSYaOZUt7UzqNEgoMdtVbWlikDH_b3-Ls476FNzdPJa3GRUkq5Ok,https://docs.google.com/document/d/1btdrPj9wj3NYSMABvOY43cOESm-qfYjGphu4mkgLfec/edit?usp=drivesdk,26,https://drive.google.com/file/d/1EgodeIy5a2lJyq6H_ogwff0ISBlGDrbv/view?usp=drivesdk
+13/04/2026 16:57:17,Consulta de motivo de desligamento retorna nulo no banco,"Cliente questiona em qual tabela é possível consultar o motivo de
+desligamento do beneficiário, pois ao realizar consulta direta no banco o campo retorna
+valor nulo, enquanto na tela M_USUARIO o motivo de desligamento é apresentado
+corretamente. Foi informado como exemplo o beneficiário de matrícula 3169740051.",N/A,"O motivo de desligamento do beneficiário é armazenado na tabela
+MOT_DESLIG. A consulta deve ser realizada nessa tabela para obtenção da informação
+correta apresentada na tela M_USUARIO.",,,luan.silva@mv.com.br,Plano de Saúde,221391-1,SOULMV-05.2022.163.12-RELEASE,Validado,,,27,https://drive.google.com/file/d/1-I_l23NirUcpIHj5so5vAoAAekcbeXZG/view?usp=drive_link
+13/04/2026 17:03:41,Campos de recurso de glosa não preenchidos automaticamente,"Foi identificado que, ao enviar o recurso de glosa pelo Autorizador Web, os
+campos quantidade recursada e quantidade acatada permanecem em branco, gerando
+retrabalho para a equipe, que precisa preencher manualmente procedimento a
+procedimento.",N/A,"Foi verificado que, ao selecionar a opção ""Sim"" no pop-up exibido durante o
+envio do recurso, o sistema realiza o preenchimento automático dos campos quantidade
+recursada e quantidade acatada, conforme exigido para o monitoramento TISS. Trata-se de
+comportamento esperado condicionado à confirmação no pop-up.",,,luan.silva@mv.com.br,Plano de Saúde,221764-1,164.8,Validado,,,28,https://drive.google.com/file/d/1twbm5WnnQnXrbLhp43KIKw4bp8yn4W-6/view?usp=drive_link
+13/04/2026 17:09:57,Autorização de guias não respeita níveis de acesso,"Após atualização do sistema, foi identificado que procedimentos configurados
+com nível de acesso 5 estavam sendo autorizados automaticamente, sem encaminhamento
+para análise, desconsiderando a regra de níveis de acesso previamente configurada.",N/A,"Na análise do problema, foi identificado que a chave
+ATEND_GUIA_SOLIC_USA_NIVEL estava desabilitada. Com a habilitação dessa chave, o
+sistema passou a respeitar corretamente os níveis de acesso configurados, direcionando os
+procedimentos de nível 5 para análise por meio de glosa, conforme o comportamento
+esperado,",,,luan.silva@mv.com.br,Plano de Saúde,222300-1,1.0.166,Validado,,,29,https://drive.google.com/file/d/1ZLQt8t9cYmu3qOV6RLSAZqPnb2Ci9sUB/view?usp=drive_link
+13/04/2026 17:11:48,Nova glosa 9801 após atualização do sistema,"Após atualização do sistema, passou a ser apresentada nova glosa
+na conta 578256 do lote 43198, a qual não estava sendo possível remover,
+gerando dúvida quanto à sua origem e regra de aplicação.",N/A,"Identificado que a glosa 9801 foi criada recentemente e sua regra
+está descrita no campo ""Significado da Glosa"" no cadastro do motivo. A glosa é
+gerada quando o procedimento informado não é do tipo medicamento e possui
+unidade de medida preenchida. Caso a operadora não deseje utilizar essa regra,
+é possível desativar a glosa diretamente na tela M_MOTGLO, no caminho: Plano
+de Saúde / Contas Médicas / Tabelas - Contas Médicas / Motivos de Glosa.",,,luan.silva@mv.com.br,Plano de Saúde,222461-1,Não informado,Validado,,,30,https://drive.google.com/file/d/12svmC9S5Cpa23Ivibm93jY-cqqV2ol76/view?usp=drive_link
+13/04/2026 17:12:55,Crítica na emissão de guia SP/SADT Solicitação,"Identificada inconsistência na emissão de guias do tipo 11 -
+SP/SADT Solicitação. Mesmo com o tipo configurado na tela M_TIPGUIA para
+não exigir contrato executante e local de atendimento, foram encontradas guias
+com local de atendimento preenchido e, em novos testes, o sistema passou a
+exigir profissional executante.",N/A,"Após análise e alinhamento com a usuária, verificamos que o
+comportamento está relacionado à chave ATEND_GUIA_VALIDA_END_ESPEC,
+cuja validação está associada ao cadastro do Prestador. A exigência ocorre
+devido a essa regra ativa. Caso a operadora não deseje que a crítica seja
+aplicada nesse cenário, é necessário desativar a referida chave.",,,luan.silva@mv.com.br,Plano de Saúde,222898-1,162,Validado,,,31,https://drive.google.com/file/d/1Ti6LH3TILzmlMrQM414x9mSYFCOCXvf2/view?usp=drive_link
+13/04/2026 17:14:06,Mensagem de reajuste não exibida no Portal Empresa,"A mensagem de reajuste configurada na tela M_CONTRATO não
+estava sendo apresentada no Portal Empresa (TISS), conforme esperado.",N/A,"Após análise, identificamos que o contrato não possuía plano
+associado. Como o reajuste está diretamente vinculado ao plano, na ausência
+dessa associação o sistema não realiza a chamada responsável por retornar as
+informações, impedindo a exibição da mensagem no portal. Após teste com
+contrato devidamente vinculado a um plano, a mensagem de reajuste passou a
+ser apresentada corretamente.",,,luan.silva@mv.com.br,Plano de Saúde,223123-1,162,Validado,,,32,https://drive.google.com/file/d/10wHDdATQmV-FhiJ7ezk6W2GXCCS-R3-z/view?usp=drive_link
+16/04/2026 09:33:00,Movimentação divergente na importação do lote contabil.,Ao importar o lote contábil do dia 27/01 o sistema apresenta divergências nas quais não entendemos a causa raiz.,"PGTO CRISTALIA PROD QUIMICOS FARMACEUTICOS OC:436066 REF. COMPRA DE MATERIAIS, FORN .: CRISTALIA PROD QUIMICOS
+FARMACEUTICOS, NF: 551707, VENCIMENTO: 26/12/2024 DT PGTO. 27/01/2025 DOC 551707 3150154","Mediante contato e conexão, identificamos que a data/hora estava divergente para titulo apontado como movimentação divergente. Onde realizamos ajuste pontual atualizando o registro para mesma data/hora, e orientamos excluir o lote 54393 e importa novamente o período.",,"https://drive.google.com/open?id=1hBgCG634u1WrVVdB2PhuIxCmn2htuLf4, https://drive.google.com/open?id=1ilZVV6xXw8eWsh5exoSr4GcwhSiHP3cO",geraldo.neto@mv.com.br,ERP,126741-1,SOULMV-H5.2022.4.2.PATCH-RC64,Não Validado,,,33,
+16/04/2026 09:37:07,O_GERA_DMED - validação - Geração de arquivo da DMED,"Solicitamos ajuda para analisar os erros do arquivo DMED, identificamos duplicidade em alguns CPF´s, erro em em alguns pacientes que apareceu como se não tivesse CPF cadastrado porem esta tudo certo no MV e temos uma situação de valores de 2ª via de laudo que gerou recebimento e nota fiscal que não deveria subir no arquivo.","Erro na geração do arquivo DMED
+","Conforme contato via Googlechat e em conexão foi identificado que para o atendimento 42947526 utilizado como exemplo a paciente/beneficiário (ANA LUCIA ELLER) também é a responsável pelo atendimento.
+Com isso existem dois blocos distintos , no cadastro do responsável existe CPF cadastrado, porém no cadastro da paciente CAD_PAC não têm o CPF cadastrado e é esse ponto que precisa ser ajustado conforme o log de crítica da Receita federal. Todas as linhas estão com a mesma critica informamos ainda que não se trata de duplicidade pois são linhas distintas conforme layout :
+RPPSS Responsável pelo pagamento ao prestador do serviço de saúde
+BRPPSS Beneficiário do serviço pago
+
+RPPSS|03338381654|ANA LUCIA ELLER||
+BRPPSS||19700610|ANA LUCIA ELLER|31000|
+ 
+
+Cliente orientado a realizar o ajuste e gerar novo arquivo para validação.
+
+Mediante orientação ticket em validação.",,"https://drive.google.com/open?id=1ZMu0me_kPM_UXxjVqmz_EBwsZ0NxV1Yw, https://drive.google.com/open?id=1LjgKz841GgHmQudUCsP62fJBe3A2y3bQ, https://drive.google.com/open?id=1lfexep3tu6DOaAbOLLsBV_Pwqo8NyscE",geraldo.neto@mv.com.br,ERP,141614-1,AUTENTICAD.2022.2.0-RELEASE CLASRISCO.02.098.00 DIAGN-WS.2019.6.00-RELEASE LIBERTY.2020.006.09 PAGU.2020.11.18-RELEASE RPWDES.2022.0.3-RELEASE RPWEXE.2022.0.3-RELEASE SIT-E.2022.10.0-RELEASE SMA-PEP.2020.11.25.PATCH-RC14 SOULFULL.2020.8.94-RELEASE SOULMV-,Não Validado,,,34,
+16/04/2026 09:40:51,Exclusão de contas a pagar (M_CONPAG_RES),"Não esta sendo possível excluir uma previsão de pagamento, pois o sistema informa que está vinculando os impostos em um outro pagamento quitado (pago).","Mensagem ao Usuario
+Não é possivel excluir o registro: ORA-00604:
+ocorreu um erro no nivel 1 SQL recursivo
+ORA-06502: PLSQL: erro: buffer de string de
+caracteres pequeno demais numérico ou de valor
+ORA-06512: em line 16
+ORA-02291: restrição de integridade
+(DBAMV.CNT_MÖV_CAIXA_ITIM_MV_CX_1_FK)
+violada - chave me nao localizada
+ORA-06512: em ""DBAMV.PACK_FNCC"", line 8898
+ORA-06512: em ""DBAMV.PACK_FNCC"", line 749
+ORA-06512: em line 1
+ORA-06512: em line 1
+Exclusão ou alteração não foi salva.","Mediante contato e conexão realizado ajuste pontual e as contas solicitadas foram excluidas.
+Orientamos acompanhar o processo e caso volte a ocorrer pode nos acionar com novo chamado mencionando este.
+Mediante contato e conexão com Bruno vimos que ao excluir conta a pagar estava disparando mensagem mencionando outro con_pag
+com ajuda de Victtoria ao consultar via banco de dados foi identificado que estava ocorrendo devido a tabela ittip_det_con_pag
+O contas a pagar 486488  faz parte do calculo do imposto do contas a pagar 509480. Antes da exclusão deverá ser excluído o contas a pagar 509480.
+O contas a pagar 491012  faz parte do calculo do imposto do contas a pagar 511337. Antes da exclusão deverá ser excluído o contas a pagar 511337.
+Foi realizada a exclusão via base das contas 486488  e  491012.
+orientamos realizar novos testes e nos acionar caso volte a ocorrer.
+",,"https://drive.google.com/open?id=14oBnXUj5t3m1N-vetXqft8zp9lTnhP5K, https://drive.google.com/open?id=1h9WkcegFForQjFldKOgmVH_5Rom1eday",geraldo.neto@mv.com.br,ERP,141552-1,SOULMV-H5.2022.66.2.PATCH-RC9,Não Validado,,,35,
+16/04/2026 09:46:29,RELATÓRIO R_LANEXTR APRESENTA VALORES A CONCILIAR DE MOVIMENTAÇÃO COM VALOR JÁ CONCILIADO.,"O sistema está apresentando no relatório R_LANEXTR um valor de R$ 1.131,06 (lançamento do dia 11/12/2024)a conciliar, porém, ao fazer algum recebimento e solicitar a conciliação, essa movimentação não aparece como opção (Segue vídeos em anexo). Ao realizar análise via BD na tabela mov_concor, cd_mov_concor = 1021625, observamos que o valor do crédito está todo conciliado. Observamos também que os valores dos recebimentos conciliados batem com o valor integral da movimentação. Dúvidas, estou à disposição para conexão.","Deseja CONCILIAR o recebimento com DEPÓSITO
+NÃO IDENTIFICADO? (Conciliação Financeira)","Mediante analise do caso descrito pedimos verificar as configurações que seguem para o processo de conciliação
+
+Sobre o processo de conciliação de crédito de convênio, é preciso que esteja sendo verificado:
+
+1- Se o valor que está sendo recebido da conta é igual ou menor do que o valor do crédito do convênio que há para conciliar; Se o valor da conta que está sendo recebido for maior que o crédito a conciliar este não aparece;
+2- Se a conta corrente que está sendo informada para o recebimento do convênio é a mesma onde foi lançada o crédito do convênio;
+3- Se o fornecedor que está para o convênio é o mesmo informado no lançamento do crédito do convênio. (O fornecedor do convênio pode ser verificado em Faturamento de Convênios - Tabelas - Gerais - Convênios e Planos - aba complemento);
+4- Se o código do lançamento bancário do crédito do convênio lançado é o mesmo que está informado na configuração do financeiro em Controle Financeiro - Configuração -  Financeiro - Aba Lançamentos - Campo Lacto de Crédito de Convênio no Extrato.
+",,"https://drive.google.com/open?id=1IRKJ3YieMs056S1lxd9MIcmDixCTh-E7, https://drive.google.com/open?id=1uo0RtuJ0N6RN2SufSpzV10Not3Yc4oEg, https://drive.google.com/open?id=1wjHEDm-5KLMkdPVgRt2W23Wfv1ID43iu, https://drive.google.com/open?id=1RKus4ZlWLyK7Vj7RknZR_c3ypksLMC29, https://drive.google.com/open?id=1sFO3QEehCS_gX4eRCV6HZIXdssb7Opo9, https://drive.google.com/open?id=1mbHPQK7mPVBhZevZ_9YhgQmYdAk5cNw5, https://drive.google.com/open?id=1BjkVBT0EOrbjIf1-du7hn3Q9D4IIYeKJ",geraldo.neto@mv.com.br,ERP,134531-1,SOULMV-H5.2020.11.64.ADT-RC53,Validado,,,36,https://drive.google.com/file/d/14Vvn6Ad2Z5piN4H_iZIMSeOiPaSOohrD/view?usp=drive_link
+16/04/2026 10:53:20,Erro Arquivo de Retorno – Oracle,Sistema gera mensagem de erro 100501: non-ORACLE exception ao tentar importar o arquivo de retorno gerado pelo banco.,Atencao 1: 100501: non-ORACLE exception,"Mediante contato e conexão identificamos que o layout 15 estava com falha na extrutura e que o arquivo estava com nome muito extenso, realizamos o ajuste e validação do layout no sistema e indicamos renomear o arquivo e salvar dentro da pasta configurada para o layout na tela de configuração do FIEA, onde vimos que a importação ocorreu com sucesso sem erros.",,"https://drive.google.com/open?id=1RbGbqOLdo4oDVuYGtDhLC9OQMllONYYX, https://drive.google.com/open?id=1YB0CssqjdKaMp-2SSRDu6OnCvoZLy5M0, https://drive.google.com/open?id=1pS64skrs1odWXTzqnKzaAf56xnRXEHNA, https://drive.google.com/open?id=1_B4kPshcY9CyA2oBZan-LCmNikeNshZz",geraldo.neto@mv.com.br,MV2000,132753-1,4.0.8(J152),Não Validado,,,37,
+16/04/2026 11:04:27,Erro na importação Notas Estoque para o Financeiro,"Estamos com erro na tela de Entrada de Produtos. Estamos com todas as configurações corretas, porem o sistema não está dando continuidade.","Mensagem ao Usuario
+Erro ao processar informações: Erro na
+Importação do Documento.
+Fornecedor:28Nr Doc:211390Nr Serie:2
+Estoque 44/Especie 7 n?o possui configurac?o de
+conta contabil !","Mediante contato e conexão  revisamos as configurações da conta via base de dados e atualizamos o campo para sim , para usar o plano de contas da empresa consolidadora, onde o mesmo apareceu na tela e salvou com sucesso.",,"https://drive.google.com/open?id=1lkL_5clLOnXz2GkPwUWNC0G41CqLsy4Q, https://drive.google.com/open?id=1ogc1EPGCTg9aUIiUBEVnqjDtYEbkNaBK, https://drive.google.com/open?id=1WSPnbVGvbhLN3yGaib-N1HEcLojCAbkI, https://drive.google.com/open?id=1uaZHC1xft-k0kFqjbvc6QrULqmmGGxWj, https://drive.google.com/open?id=1UfKBHaoPdUlmaWcrUsurI2sO4hvXsp66",geraldo.neto@mv.com.br,SOULMV,129548-1,SOULMV-H5.2022.66.2.PATCH-RC4,Não Validado,,,38,
+16/04/2026 11:11:33,cancelamento de importação notas Abramge,"possibilidade do cancelamento/exclusão da nota RPS 50008 no mv, a nota mesmo cancelada continua importada impactando na contabilidade","Mensagem ao Usuário
+Inconsistência na Liberação das Movimentações
+do Processo:
+: 3.1.1.2.1 - Contas a Receber de Convenio.
+Motivo: ORA-20003: Inserção não permitida,
+Conta Contabil: 6.9.1.1.1.9.01 1 01 00099.
+APURACAO CUSTO REDE PROPRIA esta
+desativada
+ORA-06512: em
+""DBAMV.TRG_LCTO_CONTABIL_ATIVACAO"", line
+31
+ORA-04088: erro durante a execuçao do gatilho
+'DBAMV.TRG_LCTO_CONTABIL_ATIVACAO'
+Contas a receber: 233185","Mediante contato e conexão verificamos que conforme mensagem anexa, o contas a receber foi inserida utilizando uma conta contábil desabilitada no compartilhamento.
+Orientamos realizar a ativação da conta contábil para conseguir efetuar a liberação da movimentação desejada.
+",,https://drive.google.com/open?id=1rlP8tw77xpUfZ63sY4d2NTCpD8QvcExL,geraldo.neto@mv.com.br,SOULMV,129286-1,2022.002.06.PATCH,Não Validado,,,39,
+16/04/2026 11:17:56,Configuração financeiro - Tela CONFIG_FINANC aba Controle -Dúvidas de uso,"Na tela CONFIG_FINANC, na aba Controle, é só inserir o ano? outra duvida é sobre o botao controle que fala que é exclusivo da mv, ele serve para que?","Foi um esclarecimento de dúvidas de uso da tela, realizado do produto ao cliente, por conta disso não existe mensagem de erro apresentado na tela.","Mediante contato via chat segue orientação quanto ao processo da tela CONFIG_FINANC, na aba Controle, e sobre o botão Controle o mesmo ainda não tem funcionalidade.
+
+Conforme analise sobre a duvida para a geração da DMED ou DIRF 2023/2024, Para que esteja apto a geração do DIRF ano calendário 2024-2023, deverá obter o ""Código Identificador"" no leiaute, disponíveis no site da Receita Federal, para que possa configurar o código identificador no sistema Controladoria > financeiro -> configuração>aba > CONTROLE. Nesta aba, devera criar o ano calendário de referencia e ano calendário atual.
+Exemplo:
+DIRF/ DMED: Ano Atual - 2025
+Ano Referencia - 2025
+Ano Calendário - 2024
+Cód Identificador DMED ou  DIRF - Código disponível no layout publicado no site da RFB.
+DIRF (https://www.in.gov.br/en/web/dou/-/ato-declaratorio-executivo-cofis-n-35-de-8-de-novembro-de-2024-596130533 )
+DMED não tem ID (http://normas.receita.fazenda.gov.br/sijut2consulta/link.action?idAto=141485)
+Mas informações poderá baixar no portal de atendimento ao cliente o Guia - Financeiro/ Guia DIRF. Contendo todo o passo a passo acima informado
+",,https://drive.google.com/open?id=1Y6aur1LMhinaCN9E14ujs9lmx08XfPlY,geraldo.neto@mv.com.br,SOULMV,117534-1,2020.011.92.ADT,Validado,,,40,https://drive.google.com/file/d/1WYNY7-zdigNernIi1JqDSvM7Tf9pyAUB/view?usp=drive_link
+16/04/2026 11:23:12,M_CONPAG_RES - COntas a pagar - Erro ao concluir cadastro do contas a pagar na modalidade parcelado.,Não esta possivel concluir cadastro de Contas a Pagar do Tipo Parcelado. Sistema mostra diferentes mensagens de erro.,"Mensagem ao Usuario
+ORA-01400: não é possivel inserir NULL em
+(""DBAMV"".""ITCON_PAG"".""NR_PARCELA"")","Informamos que o caso descrito já foi solucionado e saiu em versão *SOULMV-H5.2022.11.0-RC5.* Solicitamos, por gentileza, que entre em contato com o seu CRC para disponibilização desta correção. 
+","*_AÇÕES REALIZADA NESTE CHAMADO:_*
+
+Teste realizado na versão mais atual do cliente *SOULMV-H5.2022.11.0-RC5*. O erro não ocorre. Segue vídeo em anexo do teste realizado:
+
+BASES EM QUE OS TESTE FORAM REALIZADOS: *CLNQSOUL / CLNTKT*
+
+!FUNCIONANDO - FINAN-36887.mp4|width=100%,alt=""FUNCIONANDO – FINAN-36887.mp4""!
+","https://drive.google.com/open?id=1DAIyZnfvxxdlCLvD5l6UDyXdjXl-eW3n, https://drive.google.com/open?id=1xpiFp_JXe2Tirwc1BOpKBB2EO51nRyHl, https://drive.google.com/open?id=1G7XudLp6NEBEbKzgAmf1lLjvOWGnupXj, https://drive.google.com/open?id=1xDt46lBCTLfjbyQkPWPIgYyUbpiSo_ay, https://drive.google.com/open?id=1W6vGtdAfRl-LrE8yDW_kosi9uGDEvfRR",geraldo.neto@mv.com.br,SOULMV,115029-1,AUTENTICAD.2022.2.0-RELEASE CLASRISCO.02.098.00 DIAGN-WS.2019.6.00-RELEASE LIBERTY.2020.006.09 PAGU.2020.11.17-RELEASE RPWDES.2022.0.3-RELEASE RPWEXE.2022.0.3-RELEASE SIT-E.2022.10.0-RELEASE SMA-PEP.2020.11.25.PATCH-RC14 SOULFULL.2020.8.94-RELEASE SOULMV-,Não Validado,,,41,
+16/04/2026 11:26:55,Erro em recebimento de convênio,"NA TELA DE RECEBIMENTO DE CONVÊNIOS, A HORA QUE IRÍAMOS EFETUAR O RECEBIMENTO DETALHADO DEU UM AVISO EM TELA, COMO PODEM OBSERVAR NO VIDEO QUE O VALOR DO DESCONTO NO ITEM 20203047, ERA DE -0,76 CENTAVOS. PORÉM O VALOR DE DESCONTO É 0,76 CENTAVOS POSITIVO. ESSE VALOR ESTÁ CORRETO. SE SOMADO O VALOR DOS DESCONTOS E ACRÉSCIMOS BATEM COM O VALOR QUE FOI INFORMADO NA ABA DE DADOS DO RECEBIMENTO. AINDA O SISTEMA DÁ A ORIENTAÇÃO DE LIMPAR OS DADOS DA NOTA FISCAL, QUE IRÁ LIMPAR TODOS OS DADOS QUE JÁ FORAM RECEBIDOS DE CADA CONTA, TENDO QUE REFAZER TODO O PROCESSO NOVAMENTE. GOSTARIA DE ENTENDER O PORQUE DESTE AVISO EM TELA E PORQUE ESTÁ ACONTECENDO ISSO, TENDO EM VISTA QUE O RECEBIMENTO ESTÁ CORRETO NO VALOR DE 90.300,99.","Mensagem ao Usuário
+Erro ao inserir itens de recebimento!
+Recebimento: 23484
+Atendimento: 11154
+Procedimento: 20203047
+Valor: -0.76
+Açao: Clicar em 'Limpar itens da Nota Fiscal' e
+refazer o recebimento desta conta","Mediante contato e conexão em call com setor orientamos e acompanhamos quanto ao processo de recebimento de convenio.
+
+Segue o passo a passo do processo de recebimento dos valores da nota fiscal  deve ser acessado a tela de Recebimento de Convênio e vai indicar na aba de  itens da nota Fiscal  o valor da glosa e depois vai  marcar o Glosa identificada e indica em dados da nota que é glosa diferença.
+Depois clica em efetuar recebimento.
+Tens que acessar o  FFAG e vai em glosas por procedimento ou grupo de
+procedimento vais  indicar o motivo da glosa e depois fazer a entrega do recurso da glosa e quando for enviado pelo convênio  vai no FNFI e faz o recebimento do recurso de glosa e depois no FFAG e faz o recebimento do recurso. E se no momento do recebimento do recurso no FFAG, for informado que vai recorrer vai ser gerado o recurso do recurso, faz a entrega e depois o recebimento no FNFI. Até fazer recebimento ou aceita a glosa.
+",,"https://drive.google.com/open?id=1QMgQPwWBbQSHuqwEbxoHi2l5nbzN-leT, https://drive.google.com/open?id=1qU3lV1_omiokSKXXJsArljEQkXg4EWq_",geraldo.neto@mv.com.br,SOULMV,114227-1,SOULMV-H5.2022.10.2-RELEASE,Validado,,,42,https://drive.google.com/file/d/1daAsXABQYTEZrknQtJ5g0tHA_wR9ucGC/view?usp=drive_link
+16/04/2026 16:20:23,ALTERAÇÃO DE NOMENCLATURA DE LANÇAMENTO BANCÁRIO,ALTERAÇÃO DE NOMENCLATURA DE LANÇAMENTO BANCÁRIO,"Não exibiu mensagem, pois é uma solicitação que o sistema não reproduz, sendo necessário a desativação do cadastro citado.","Informamos que conforme manual não é possível alteração após cadastro.
+
+Após o cadastro do lançamento, não é possível modificá-lo ou exclui-lo, caso exista alguma movimentação para ele. Somente será permitida sua desativação;
+Indicamos criar um novo com a nomenclatura desejada.
+",,https://drive.google.com/open?id=1VMGoGPvPVYPKx3R7q3wzbPv16j5DyV6A,geraldo.neto@mv.com.br,SOULMV,113695-1,2022.008.33,Validado,,,43,https://drive.google.com/file/d/18pR9z0LFAiXpKBSadKZJU0IdeknWUqX7/view?usp=drive_link
+16/04/2026 16:24:07,Alterar limite de campo na coluna NR_CONTA - Na tela M_CONCOR,"Na tela ""M_CONCOR"" o usuario precisa informar na coluna NR_CONTA um valor com 13 digitos porem a coluna só aceita 12 digitos. Posso realizar o ajuste na estrutura dessa coluna sem gerar impacto? ou qual seria a maneira adequada de realizar esse ajuste para o usuario final?","Sistema não apresenta erro, apenas não permite mais de 12 caracteres no campo citado pelo cliente.","Conforme analise em sua solicitação, informamos que hoje o campo NR_CONTA é composto de 12 caracteres, caso precise que esse campo seja alterado, precisa fazer uma solicitação através de um novo ticket de serviço no portal de atendimento ao cliente explicando por qual motivo esse campo precisa ser alterado.
+
+Respondendo a sua pergunta não pode realizar o ajuste pois impacta na geração dos relatórios e outras telas que usam os dados da conta bancária.
+
+Como abrir tickets de Customização?
+
+Na tela inicial, clique no card ""Serviços""
+Em seguida, clique no card ""Serviços de customização
+Nesta tela, preencha as informações necessárias nos campos solicitados e, depois, clique no botão < Solicitar >, localizado no canto inferior direito da tela. Após clique no botão
+< Solicitar >, o sistema exibirá uma janela solicitando a confirmação do processo.
+Para finalizar, clique no botão < Ok >. Por fim, o sistema exibirá uma janela confirmando a abertura de solicitação do serviço desejado no Portal. Clique em < Ok > e você será redirecionado para a Home.
+",,https://drive.google.com/open?id=1Hej-2aUW5l7CjboDTLs-KCXoaT6nc10I,geraldo.neto@mv.com.br,SOULMV,112988-1,2020.010.01,Não Validado,,,44,
+17/04/2026 09:04:17,DUVIDA NA DEVOLUÇÃO,"GENTILEZA VERIFICAR SE É POSSIVEL PERMITIR QUE A DEVOLUÇÃO DE MATERIAIS E MEDICAMENTOS DISPENSADOS PARA O PACIENTE SEJA REALIZADA PARA UM ESTOQUE DIFERENTE DAQUELE QUE HOUVE A DISPENSAÇÃO.
+
+EX: PACIENTE VINCULADO AO SETOR 630 E DISPENSAÇÃO DO ESTOQUE 58.
+VERIFICAR SE É POSSÍVEL A DEVOLUÇÃO SER REALIZADA TANTO PARA O ESTOQUE 58 QUANTO PARA O ESTOQUE 62",Duvidas sobre devolução do paciente na tela M_DEVPAC,"Conforme análise da descrição do chamado gostaríamos de informar que não é possível alterar o estoque da saída no momento da devolução pois o sistema utiliza como base todas as características da saída para salvar o consumo do paciente portanto o estoque é uma das chaves primárias de validação da rotina, não sendo passível de alteração. ",,https://drive.google.com/open?id=1WG1Liy-u0WWA0Gm-xuHzHo9PZhtCasUL,renata.silva@mv.com.br,SUPRI (Suprimentos),SUP-287294,SUPRI.2019.030.00.LTS,Validado,,,45,https://drive.google.com/file/d/1seQMiK-EkbqHdPleONijSmjf7cHDzv2E/view?usp=drive_link
+17/04/2026 09:14:38,Dúvidas na exclusão de movimento,"Necessito de esclarecimento quanto ao cancelamento de movimentação sem atendimento vinculado.
+Feito uma saída de gasto de sala, mas com aviso sem atendimento vinculado. Feito o cancelamento, na tela cancela gasto de sala sem atendimento vinculado. Os produtos voltaram para o estoque aberto (desmontou o KIT que foi dispensado). O movimento ficou como uma saída setor. Se consultar pelo Código de barras do KIT dispensado encontra-se a movimentação.
+Dúvida: Ao fazer esse processo de cancelamento, fica o debito para o setor? Mesmo voltando os materiais para o estoque? Qual o processo correto a ser feito?",DEVOLUÇÃO DE PRODUTOS PARA GASTO DE SALA,"Ao utilizar a tela de cancelamento de gasto de sala sem atendimento o sistema realiza uma critica em tela questionando se deseja realizar a devolução para setor automaticamente no cancelamento caso seja escolhida a opção sim o sistema irá realizar a devolução automática da saída setor, caso seja escolhida a opçaõ não o sistema manterá apenas a saída setor. Em caso de maiores dúvidas estamos a disposição para melhores esclarecimentos, desde já agradecemos pela atenção.",,,renata.silva@mv.com.br,SUPRI (Suprimentos),SUP-243414,SUPRI.2019.031.01.LTS,Validado,,,46,https://drive.google.com/file/d/1Q_jYmISnwQ85c3j4x7OCbCDEzSdh6UG-/view?usp=drive_link
+17/04/2026 09:36:11,Dúvidas/orientações,"Gostaria de saber se é possível impedir que itens de uma determinada espécie e classe de produtos não sejam solicitados de maneira avulsa, nem havendo prescrição",Duvida na tela M_CLASIFICACA ,"Para o produto não ser solicitado de modo avulso ou via prescrição, é necessário bloquear o produto para movimentação na tela de cadastro de produtos, no campo ""Moviment"", indicando como ""não"". Para bloquear uma espécie, classe ou subclasse de ser movimentada, pode ser removido o vínculo da espécie com os estoques na tela ""Espécie por Estoque(M_ESPEST)"" e ainda remover o vínculo das espécies, classes, subclasses com a geração de solicitações na tela M_CONEST, impedindo de ser solicitado via prescrição ou avulso.",,https://drive.google.com/open?id=1pgahBVgKbLI06lePqNiDFfUEYeNgC7aV,renata.silva@mv.com.br,SUPRI (Suprimentos),SUP-336834,SOULFULL.2018.008.00.LTS,Validado,,,47,https://drive.google.com/file/d/1KPlbTsoptlVUbdtjPOLlMcH1CctFR3-m/view?usp=drive_link
+17/04/2026 09:57:32,DÚVIDAS - DATAMATRIX,"1 - No que implica a alteração da etiqueta ser alterada de ""Sistema"" para ""Forn Com Lote/Validade"" no cadastro do produto? Por que tem que ser feita essa alteração da etiqueta?
+
+2 - No cadastro do ""De Para Produto MV - Fornecedor"", ao cadastrar um produto e relacioná-lo à um fornecedor e seu código correspondente (com o código DataMatrix), ao dar entrada de produtos basta bipar o DataMatrix que o lote e a validade serão preenchidos automaticamente. Se recebermos no mês que vem o mesmo produto com lote e validade diferentes, porém do mesmo fornecedor, tem que ser cadastrado novamente seu De Para?",Não aplicavel ,"- Para entendimento correto do sistema sobre a estrutura do datamatrix e para passar na validação da entrada no momento de bipar o código de barras, é necessário que a etiqueta seja do tipo ""Forn com Lote e Validade"".
+
+2 - Conforme testado e exemplificado para o Cliente, o DE-PARA feito irá informar ao sistema qual o código do produto e do fornecedor existente dentro do código de barras, amarrando o código EAN do produto e fornecedor com o código MV de ambos. Feito isso, o sistema irá entender a localização de outros lotes e validades, desde que a estrutura do datamatrix se mantenha. Será necessário criar novos cadastros quando existir um novo produto do fornecedor ou produto com fornecedor diferente.",,https://drive.google.com/open?id=1HEZQGVxEH09ZFpjz4d3-J3eLwfUa13Dv,renata.silva@mv.com.br,SUPRI (Suprimentos,SUP-433903,2019.33.0.LTS,Validado,,,48,https://drive.google.com/file/d/1DhR2XBGj_I2pSeyU4jp3Lgdr4H31Fj4P/view?usp=drive_link
+17/04/2026 10:01:12,AVALIAÇÃO AVULSA SERVIÇO - duvida,"Gostaria de tirar algumas dúvidas sobre a tela de Avaliação de Forncedeores:
+
+1- Existe a possibilidade de realizar de forma avulsa ( sem necessidade de nota fiscal) avaliação de fornecedor de serviço? Anexo tela que acho que seria possível.
+Materiais e Logistica>Ordem de Compra> Avaliação do Fornecedor
+
+2- A informação lançada na tela citada acima irá aparecer no relatório Qualidade dos Fornecedores?
+Materiais e Logistica>Relatórios>Administrativos> Qualidade dos Fornecedores
+
+3-Esta tela Avaliação iria liberar para os gestores quais parâmetros teria que alterar nestes logins?
+
+4- A tela anexo existe aba somente de produto é possível inserir aba de serviços?",Não aplicável ,"Referente as dúvidas abaixo segue esclarecimentos, conforme solicitação:
+
+1- Existe a possibilidade de realizar de forma avulsa ( sem necessidade de nota fiscal) avaliação de fornecedor de serviço? Anexo tela que acho que seria possível.
+Materiais e Logistica>Ordem de Compra> Avaliação do Fornecedor
+
+R=Sim é possível realizar a avalição do fornecedor de forma avulsa sem vinculo com entradas. 
+
+ 
+
+2- A informação lançada na tela citada acima irá aparecer no relatório Qualidade dos Fornecedores?
+Materiais e Logistica>Relatórios>Administrativos> Qualidade dos Fornecedores
+
+R= Sim as informações emitidas são disponibilizadas de acordo com o ranking dos fornecedores realizado pela avaliação.
+
+3-Esta tela Avaliação iria liberar para os gestores quais parâmetros teria que alterar nestes logins?
+
+R= Os privilégios não são a nível de usuários, havendo configurações de parametrizações espeficicas a nível de tipos de entrada nas configurações de exceções de avaliação ao fornecedor. 
+
+Almoxarifado\configurações\funcionamento. 
+
+Abrir o paramêtro de exceção de avaliação ao fornecedor.
+
+Podendo gerar tipos de exceções para avaliação. 
+
+ 
+
+4- A tela anexo existe aba somente de produto é possível inserir aba de serviços?",,,renata.silva@mv.com.br,SUPRI-COMP (Compras WEB),SUP-242906,SOULMV-H5.2020.3.3-RELEASE,Validado,,,49,https://drive.google.com/file/d/1onwh7jp2QyVg8Z1l0kNZP-597IDQAnuc/view?usp=drive_link
+17/04/2026 10:19:47,Problemas no usuário GIF,"O usuário já esteve ativo e teve a senha alterada algumas vezes, porém o problema persiste, pois a conta continua sendo desativada. O acesso é liberado temporariamente, mas volta a ser bloqueado no dia seguinte.
+
+Diante disso, solicitamos a criação de um usuário com perfil master para atendimento da necessidade",Usuário Desativado ,"Quando o usuário é apresentado como desabilitado no sistema GIF, isso ocorre por uma questão de segurança, indicando que a senha cadastrada não atende aos critérios mínimos definidos.
+
+Nesse caso, é necessário realizar a atualização da senha, adotando uma combinação mais segura.
+
+Para fortalecer o login, a nova senha deve atender aos seguintes requisitos:
+
+Mínimo de 8 caracteres
+Conter pelo menos 1 número
+Conter pelo menos 1 caractere especial (ex: !, @, #, $, %)
+Conter pelo menos 1 letra maiúscula
+Não pode conter o nome ou sobrenome do usuário
+
+Recomendamos que a nova senha seja única e de difícil identificação. Caso a alteração ainda não tenha sido realizada, orientamos que seja feita o quanto antes para garantir a segurança da conta","Foi realizado contato com o cliente via G chat, e informado o passo a passo para a configuração.",https://drive.google.com/open?id=1a6CB9m_xSpORj7jf7I4KFBZTLdlfc6cZ,bruno.guedes@mv.com.br,GIF 1.0,505831-1,2023.0.10-RC2,Validado,,,50,https://drive.google.com/file/d/1LYTVTl1QRMUiB8F-Nn74GJvB8phO4FWL/view?usp=drive_link
+17/04/2026 10:38:57,Acrescentar convênio e plano no relatório,"Bom dia !é possível acrescentar o convênio e plano do atendimento no relatório R_FATURA_AMBULATORIAL. Atualmente só temos convênio e plano da conta. Se os dois foram iguais ok, mas tem casos que mudam e o faturamento precisa dessa informação.",Dúvidas do Cliente ,"No padrão atual do sistema, o relatório R_FATURA_AMBULATORIAL considera as informações de convênio e plano vinculadas à conta, não sendo possível incluir, via parametrização padrão, os dados de convênio e plano diretamente do atendimento.
+
+Essa limitação ocorre porque a estrutura do relatório foi concebida para refletir os dados faturados, que são consolidados na conta — podendo, em alguns cenários, divergir das informações originalmente registradas no atendimento.
+
+Dessa forma, no momento, não há possibilidade de realizar esse ajuste no relatório padrão.",,https://drive.google.com/open?id=1xnefsLQZuZ1Oic7l50gBHV0VLCPgtp68,bruno.guedes@mv.com.br,Faturamento ,504849-1,SOULMV-H5.2022.8.31-RELEASE,Validado,,,51,https://drive.google.com/file/d/1A9x76PPMx54gOY7a51l_jAkbpq1RXByl/view?usp=drive_link
+17/04/2026 16:00:56,Dúvida de como mudar o status de uma ordem de compra não autorizada,"Estamos implementando o fluxo de autorização em série das ordens de compras, porém, precisamos entender, como fazer quando o autorizador não autoriza a ordem de compra e ela fica como não autorizada, para voltar para o comprador poder modificá-la e submeter novamente ao processo de autorização. (Ela pode voltar a ficar aberta?",Não aplicável ,"Quando uma ordem de Compra, é não autorizada  o sistema não reabre a Solicitação de Compras para criar outra. Se algum usuário não autorizar, é necessário verificar entre os autorizadores e compradores  o que impediu seguir com o fluxo de autorização para que sejam feitos os devidos ajustes  na OC e depois ela siga autorizada",,,renata.silva@mv.com.br,SUPRI (Suprimentos),SUP-223129,SUPRI.2018.030.03.LTS,Validado,,,52,https://drive.google.com/file/d/1y5opWeh0wyvqfZFipICg4Qx5bfI2WOiI/view?usp=drive_link
+17/04/2026 16:05:57,CADASTRO DE COTA PARA REPOSIÇÃO DE KITS,NA TELA DE CADASTRO DE COTAS NÃO E POSSIVEL REALIZAR CADASTRO DE COTA PARA REPOSIÇÃO DE KITS. POIS NAO APARECE O CODIGO DO PRODUTO. COMO PROCEDER? ANEXO MSG ERRO; KIT É UM PRODUTO EX> KIT DIPIRONA COD. 516; KIT HIGIENE ORAL COD. 510; (COM O CADASTRO DE COTAS AUMENTA OS CONTROLES NAS FARMACIAS SATELITES),"Atencao: Codigo do Produto Invalido ou Sua Especie Nao Esta Ligada ao Estoque Informado ou e um
+KIT!","setor que costuma fazer solicitações com basicamente os mesmos produtos e quantidades. Ela visa facilitar o preenchimento da solicitação. O Kit também é um facilitador, ele visa dispensar uma determinada quantidade de produtos de um procedimento específico,porém a rotina de produção de Kit e de Cotas (consumo previsto) são rotinas distintas , embora tenham o princípio parecido. Qualquer alteração do kit deve ser realizada na tela de produção de kit , salientando que as movimentações serão baseadas nas configurações de kit, disponíveis na tela de configurações de funcionamento do estoque. ",,https://drive.google.com/open?id=1aShbrbb6nBk5M7gvdOzJHhp22bJs_OAo,renata.silva@mv.com.br,SUPRI (Suprimentos),SUP-77288,2.018.008,Validado,,,53,https://drive.google.com/file/d/1hkn49XbeGdScNT_VeblT56gTNzJJEkuB/view?usp=drive_link
+17/04/2026 16:12:22,Dúvida urgente transferencia entre empresas de itens reprocessado,"Usuário precisa fazer transferência entre empresas de alguns produtos reprocessados, porém sistema não permite.
+Como podemos fazer isso?",Não aplicável ,"Gostaríamos de informar que não é possível realizar transferências entre empresas com produtos re-processados. Caso seja necessário ter o produto na empresa destino , orientamos realizar transferência dos itens da composição e realizar a produção do produto re-processado, diretamente na empresa destino",,,renata.silva@mv.com.br,SUPRI (Suprimentos),SUP-140403,SUPRI.2019.008.00.LTS,Validado,,,54,https://drive.google.com/file/d/1tfU2ZBcWLqbemPcqkpJjz-OLtdr1szWK/view?usp=drive_link
+17/04/2026 17:45:54,Dúvida sobre possível configuração de envio de notificação ao e-mail do comprador após a aprovação de uma ordem de compra.,"gostaríamos de orientação sobre uma possível função no SOULMV para que, após a aprovação do gestor na ordem de compras, seja enviado automaticamente um e-mail para o comprador responsável pela referida ordem de compras. É possível realizar essa configuração, ou se já existe e está desabilitada?",Não aplicável ,"A configuração para envio de e-mail para o comprador na autorização da OC encontra-se na tela M_CONFIG_EST.
+
+Almoxarifado - Configurações - Funcionamento - Parâmetros de Compras.
+
+""Envia e-mail para o comprador na autorização da OC?"", colocar ""Sim"".
+
+Lembrando que é importante que o comprador tenha e-mail vinculado na tela M_COTADOR e que seu usuário do sistema tbm tenha email vinculado na tela M_USUARIOS.",,,renata.silva@mv.com.br,SUPRI (Suprimentos),SUP-531517,SOULMV-H5.2020.011.88,Validado,,,55,https://drive.google.com/file/d/1GfXKmRW7yK2YxgSYPYqqFdIDe3_e44uI/view?usp=drive_link
+20/04/2026 09:23:10,GIF - Exclusão grupo OPME,"Precisamos verificar uma forma de realizar a exclusão de materiais que estão no grupo de OPME de forma simultanea. Atualmente o sistema não permite, exibindo a mensagem que não é permitida a ação para OPME e serviços com Equipe. Existe a possibilidade de liberar o processo para OPME?",Dúvida,"Atualmente, não é possível realizar a exclusão em massa de materiais vinculados ao grupo de OPME no sistema GIF.
+
+Esse comportamento ocorre devido a regras de integridade e segurança do sistema, que impedem esse tipo de ação para itens classificados como OPME e também para serviços que possuem vínculo com equipe. Essa restrição garante a consistência das informações, principalmente em cenários que envolvem rastreabilidade, faturamento e composição de equipes assistenciais.
+
+Dessa forma, no padrão atual do sistema, a exclusão deve ser realizada de forma individual, respeitando as validações existentes.",,,bruno.guedes@mv.com.br,"GIF 1.0
+",534091-1, PT-BR | 2023.0.10-RC2,Validado,,,56,https://drive.google.com/file/d/1uCfjNWDgv0xgwSQ8b-sLsCIAVhDVD16s/view?usp=drive_link
+20/04/2026 09:38:06,"Entendimento de lançamento e procedimento (data, hora, minuto e segundo","o sistema SOULMV_HTML5 não realiza o controle completo de data e hora, incluindo minutos e segundos, para os seguintes procedimentos: OPME, diária, procedimento médico, material, medicamento, pacote e taxas.
+
+Atualmente, quando um mesmo código de procedimento de uma tabela de preços é lançado mais de uma vez na mesma guia ou em guias distintas, considerando a mesma data, hora, minutos e segundos, o sistema interpreta como duplicidade.
+
+No entanto, foi identificado que o sistema SOULMV_HTML5, nas linhas de lançamento, realiza o controle apenas até o nível de data, hora e minutos, não contemplando os segundos.",Dúvida,"Acesse a tela Faturamento/Faturamento de Convênios e Particulares/Configurações/Configurações TISS por Convênio, consulte o convênio em questão, clique no botão ""Detalhamento"", em Serviço selecione ""Lote de Envio de Faturamento TISS"" em Elemento do Serviço selecione ""Guia de SP-SADT"", no ID-1473, no campo ""Query Alternativa"" realize o seguinte ajuste:
+
+Aplicar nas configurações da guia de resumo de internação.
+
+Segue orientação passada:
+
+o campo hora final esteja configurado como horário do lançamento do item (igual ao campo Hora inicio) + query.
+
+Query: SELECT TO_CHAR( TO_date( :val , 'HH24:MI:SS') + 1/1440, 'HH24:MI:SS') FROM dual
+
+o valor 1/1440 corresponde a 1 minuto, caso queira adicionar 30 minutos o valor tem que ser 30/1440.",,,bruno.guedes@mv.com.br,Faturamento Convênios ,495186-1, 2018.003.03,Validado,,,57,https://drive.google.com/file/d/18Mc5GisaJd3iu7482FfCZ_dt9mVMvDug/view?usp=drive_link
+20/04/2026 09:39:55,Como identificar os Procedimento sem vinculo com o Procedimento Faturamento,Gostaria de verificar se tem algum filtro ou relatório onde consigo identificar todos os PRODUTOS cadastrados no MV que estão sem o vinculo com PROCEDIMENTO FATURAMENTO.,Dúvida,"Atualmente, o sistema não possui um relatório específico para essa consulta. No entanto, a verificação pode ser realizada diretamente via consulta no banco de dados.
+
+Exemplo de query que pode ser utilizada:
+
+SELECT *
+FROM DBAMV.PRODUTO
+WHERE CD_PRO_FAT IS NULL;
+Essa consulta irá retornar os registros de produtos que não possuem código de produto de faturamento vinculado.",,,bruno.guedes@mv.com.br,Suprimentos,495186-1,SOULFULL.2020.10.1-RELEASE,Validado,,,58,https://drive.google.com/file/d/1VQJEWAtVkYA7MQNm8dPScrzi4JknHovz/view?usp=drive_link
+20/04/2026 11:58:07,Dúvida urgente identificar nota fiscal de entrada de um produto,"Usuário reportou dificuldade com relação à localizar um produto específico com sua nota fiscal de entrada. Pois é de extrema importância ao devolver um item ao fornecedor ou também para rastrear um produto que foi lançado na conta de um paciente, saber qual foi a nota fiscal de entrada. Teria algum meio disponível no MV pra isso?",Não se aplicável ,"Na rotina de consignado foi desenvolvida não existia validação a nível de produto X fornecedor e lote, Diante deste cenário poucos relatórios foram desenvolvidos neste sentido restando as opções abaixo para análise das informações de consumo consignado.
+
+Segue lista de relatórios que podem ser avaliados para identificar se os itens já tiveram suas respectivas entradas :
+
+Almoxarifado\relatórios\operacionais\análise do custo médio dos produtos\ FICHA de rastreabilidade do lote.
+
+Este relatório irá demonstrar todas as movimentações referente ao lote, consumos (exibindo os dados do paciente), entradas (exibindo o fornecedor) e transferências.
+
+*Cuidado para não confundir com o relatório de rastreabilidade de lote (simples) o FICHA de rastreabilidade irá demonstrar o detalhamento.
+
+Abaixo teremos o relatório de entrada que demonstra os lotes da entrada, porém não pode ser parametrizado pelo lote.
+
+Almoxarifado\relatórios\operacionais\documento de entrada\entrada de produtos.
+
+Abaixo vamos ter uma tela que irá demonstrar todo o ciclo do consignado :
+
+Almoxarifado\Consultas\ consulta consumo do consignado
+
+Está tela irá demonstrar o ciclo do consignado, seus consumos, entradas e possíveis devoluções, apresentando um contexto geral sobre o saldo pendente de entrada caso não possua entrada de nota fiscal.
+
+A tela poderá ser parametrizada por produto, fornecedor e o atendimento. Porém não poderá ser parametrizada pelo lote.
+
+os demais relatórios de consignados encontrasse no menu abaixo porém conforme relatado muitos foram desenvolvidos antes do controle produto x fornecedor e lote, portanto podem não atender a demanda necessitada, sendo mais aconselhavel a consulta da tela em conjunto com a ficha de rastreabilidade de lote.",,,renata.silva@mv.com.br,SUPRI (Suprimentos),SUP-123202,SUPRI.2018.014.00.LTS,Validado,,,59,https://drive.google.com/file/d/1__yaH_ZmCTfaGYkln4S0WYJDwjfnCMt3/view?usp=drive_link
+22/04/2026 08:24:30,Como funciona o fluxo de cadastro e escolha de salas,"Duvida sobre como funciona o fluxo de cadastro e escolha de salas, gostaria de saber qual a importância do vinculo da maquina com o nome da sala, exemplo: cadastrei minha maquina como 'teste ti', porem na hora de chamar os pacientes eu consigo escolher a sala que vai aparecer no painel",Não tem,"Após realizar o cadastro de máquina, é necessário que, na tela do PEP, seja selecionada a sua sala e confirmada para salvar o registro. Dessa forma, essa função ficará salva em sua máquina, e não será mas necessário refazer o processo novamente.
+Obs.: Sempre que realizar a limpeza de histórico da máquina, (Cache), pois é necessário refazer todo processo novamente. 
+",,,bruno.pessoa@mv.com.br,PEP,166318-1,Versão: 2020.008.94.ADT,Validado,,,60,https://drive.google.com/file/d/1m4v8sGDZCuue7jplvG7eVmnuZcY-lGoZ/view?usp=drive_link
+22/04/2026 08:31:53,Erro ao tentar realizar impressão do documento da alta de um paciente específico,"Bom dia, não estamos conseguindo realizar a impressão do documento de alta do paciente GUSTAVO REGO COELHO, Atendimento: 11214483, pois apresenta a mensagem do print em anexo.","MVReport: Nao foi possivel recuperar o nome da pasta para o
+relatório: exames lab. Verifique o valor do parametro
+
+Doação de Orgãos
+
+NM_RELATORIO para o Relatório na tela ""Tipos de Objetos de
+Prontuario"".","Seguir o passo a passo abaixo:
+1 - Configuração do relatório para o Atendimento, na tela M_REPO_ATE:
+ 
+2 - Configurar o tipo de Saída par ao parâmetro TP_IMPRESSAO - valor REPORT:
+ 
+3 - Informar o nome do relatório, o que está na descrição( item 1), sem espaços, e: HUGO:
+ 
+4 - Verificar a URL que está sendo chamada no PEP. Ex: https://qahotfix.mv.com.br/report-executor//mvreport?name=Relat%C3%B3rios%20Teste%20Auto%203\HUGO&cdPaciente=15214&imprimedireto=true&cdModulo=MVPEP_TEMA_FECHAMENTO&NM_RELATORIO=HUGO&cdAtendimento=1000005669&cdIdPaciente=15214&cdGeral=&cdMultiEmpresa=5",,"https://drive.google.com/open?id=1XRHD3H1TbOA5FnS6gAtYXwXQgyUsSyoB, https://drive.google.com/open?id=1xrv-8gRVwS4pA9lSRc8pM2Gh8ogLhZ4G, https://drive.google.com/open?id=1AGM8xNjtYRl-TQElS07DMVNeKqr_zsZJ, https://drive.google.com/open?id=1sVDrgByc5kzDov0WF8pRHeau_-HtsR03",bruno.pessoa@mv.com.br,PEP,143968-1,Versão: 2022.003.09,Validado,,,61,https://drive.google.com/file/d/1cnL6lG7Hokd8IFAEKaC0-wIo5kqd5aUl/view?usp=drive_link
+22/04/2026 08:41:51,Peso não aparecendo na prescrição de oncologia,"Solicito apoio na seguinte questão: O peso dos pacientes não está saindo na prescrição de oncologia, somente a altura, o que está dificultando a análise da equipe farmacêutica oncológica",Não tem,"O sistema oferece três layouts distintos para a impressão do Relatório de Tratamento:
+1.	MVPEP_REL_PRESCTRAT_SESSAO
+2.	MVPEP_REL_PRESCTRAT_CICLO
+3.	MVPEP_REL_PRESCTRAT_ITEM
+O layout que exibe as informações de PESO, ALTURA e Superfície Corpórea (SC) é o MVPEP_REL_PRESCTRAT_SESSAO.
+Portanto, para que estas informações sejam devidamente impressas, é necessário que seja realizada a correta configuração na tela M_PAGU_OBJETO, associando a saída do relatório de tratamento a este layout específico.
+",,,bruno.pessoa@mv.com.br,PEP,253246-1,Versão: 2019.032,Validado,,,62,https://drive.google.com/file/d/17jxSLUEnVZ-H0cim4T-DCK502ZDedPln/view?usp=drive_link
+22/04/2026 08:55:07,"Campo ""NIVEL DE CONCIENCIA"" não preenche os campos ao selecionar opção - Multiempresa 01 Hospital da pessoa idosa do Recife","AS OPÇÕES ""RESPONDE A VOZ"" E ""SEM RESPOSTA""AO SEREM SELECIONADAS NÃO PREENCHEM O CAMPO ""NIVEL DE CONCIENCIA"" DO NEWS DOS REGISTROS DE SINAIS VITAIS DO PEP, VIDEO DEMONSTRATIVO EM ANEXO",Não tem,"Conforme análise realizada, em conjunto com a analista (N3), foi identificado que o erro estava ocorrendo devido a um espaçamento indevido nas informações do sistema. 
+Após a verificação, realizamos o ajuste necessário nas respostas configuradas, e o funcionamento foi normalizado, conforme evidenciado na imagem em anexo.
+Para conferência do caminho, seguem as orientações:
+M_PAGU_FORMULA
+•	Buscar o nome da tela que consta na escala News (exemplo: %NEWS%);
+•	Clicar em Fazer Fórmula;
+•	Identificar o nome da descrição da pergunta;
+•	Selecionar a resposta e verificar se existe espaçamento indevido entre as informações configuradas.
+",,,bruno.pessoa@mv.com.br,"PEP
+",398522-1,Versão: SMA-PEP.2020.11.16-RELEASE,Validado,,,63,https://drive.google.com/file/d/1xot_UNJnu-GJYONJjLSA6YlufMmfKxNA/view?usp=drive_link
+22/04/2026 09:02:56,Erro ao carregar as alergias no MVPEP,"Estamos com erro na tela de alergia a diversas versões, e ainda não foi corrigido.",Não tem,"Colocar no perfil dos usuários da TI o módulo MVPEP_ALERGIA_PACIENTE e realizar a manutenção, ou seja, inativa todas as alergias, depois entra na tela MVPEP_ALERGIAS_EVENTOS e inclui novamente, pois ambos módulos usam tabelas distintas.
+Salientando que o módulo MVPEP_ALERGIA_PACIENTE foi descontinuado, e somente, só é para ser usado pela TI para manutenção de registros de alergia. 
+lembrando que:
+Na versão que você está, as telas M_SUBPAC e MVPEP_ALERGIA_PACIENTE, foram descontinuadas e não realizamos mais manutenção nesse módulo. Por gentileza utilizar o módulo ""MVPEP_ALERGIAS_EVENTOS"" que é o módulo atualizado.
+Lembro que o legado registrado no módulo antigo não é apresentado no módulo novo, por isso orientamos continuar usando o antigo para consulta de histórico com o parâmetro SN_HISTORICO =S.
+Para excluir dados antigos, utilizar a tela MVPEP_ALERGIA_PACIENTE.
+Tabelas que grava os dados da alergia:
+DBAMV.SUBS_PAC
+DBAMV.HIST_SUBS_PAC
+DBAMV.PW_DOC_ALERGIA_PAC
+DBAMV.PW_DOCUMENTO_CLINICO
+",,,bruno.pessoa@mv.com.br,PEP,138137-1,Versão: SMA-PEP.2020.11.25.PATCH-RC14,Validado,,,64,https://drive.google.com/file/d/1xot_UNJnu-GJYONJjLSA6YlufMmfKxNA/view?usp=drive_link
+22/04/2026 09:23:14,tabelas que compoe a lista de Paciente para reavaliação do PEP,"Preciso das tabelas que compoe a lista de Paciente para reavaliação do PEP, para elaboraçaõ de relatorio",Tabelas,"PW_FECHAMENTO_HORARIO_CHECAGEM
+PW_HORARIO_FECHADO_CHECAGEM
+ FECHAMENTO_PAGU
+hritpre_cons",Foi identificado os campos com ás informações solicitadas e repassadas ao cliente,,jose.xavier@mv.com.br,PEP,537408-1,SMA-PEP.2020.011.16,Validado,,,65,https://drive.google.com/file/d/1GemTgSdcPd_OdjPsG9pPf2F4cthimmZK/view?usp=drive_link
+22/04/2026 09:28:03,Habilitar campo de código do paciente,"Gostaríamos de saber se existe algum parâmetro para ativação do campo de código do paciente, para que a busca possa ser realizada pelo código ou nome.",Habilitar o campo código na tela C_AGENDA_CIRURGIA,Foi realizado a orientação de uma nova solicitação de customização do serviço.,"Analisando melhor a informação, a função no sistema não encontra-se disponível para ativação,",,jose.xavier@mv.com.br,ASSISTENCIAL,533301-1,SOULMV-H5.2022.54.0-RELEASE,Não Validado,,,66,
+22/04/2026 10:56:54,"Chave para criação de Multiempresa
+","Chave para criação de Multiempresa
+",Solicitamos chave para criação de nova empresa no sistema (MULTIEMPRESA) conforme CNPJ,"Conforme analise da solicitação para criação de cadastro de uma nova empresa no sistema, a liberação da chave para tal fim, é uma demanda conduzida junto ao setor - Administrativo MV pelo contato de e-mail: controladoriadeservicos@mv.com.br, por gentileza enviar a devida solicitação.
+Se for para liberar módulos, a liberação da chave é com o financeiro@mv.com.br.
+Caso necessite de acompanhamento para tal ação, orientamos contatar seu CRC.","Conforme analise da solicitação para criação de cadastro de uma nova empresa no sistema, a liberação da chave para tal fim, é uma demanda conduzida junto ao setor - Administrativo MV pelo contato de e-mail: controladoriadeservicos@mv.com.br, por gentileza enviar a devida solicitação.
+Se for para liberar módulos, a liberação da chave é com o financeiro@mv.com.br.
+Caso necessite de acompanhamento para tal ação, orientamos contatar seu CRC.",,jose.xavier@mv.com.br,ASSISTENCIAL,538552-1,SOULMV-H5.2025.3.1-RELEASE,Validado,,,67,https://drive.google.com/file/d/1qGxaZ43hdip6mbI3gwP_q8mvBgX0sb62/view?usp=drive_link
+22/04/2026 16:21:46,Parametrização de Usuário GIF,precisamos parametrizar um usuário no GIF para que possa selecionar apenas algumas opções de recepção no fechamento massivo. Como pode fazer?,Dúvida ,"Será necessário realizar a criação de um perfil de acesso dentro do GIF, onde é possível cadastrar usuários e definir/limitar as ações permitidas, incluindo vínculo com múltiplas empresas e atribuição de funcionalidades específicas por usuário.
+
+Passo a passo para criação do perfil:
+
+Acesse o sistema com um usuário master (administrador).
+Clique no ícone de engrenagem (Configurações).
+Acesse a opção Cadastro de Usuário.
+Clique no botão “+ Novo” para iniciar o cadastro.
+Preencha os campos obrigatórios e defina uma senha que atenda aos critérios de complexidade do sistema.
+Após o preenchimento, acesse a aba Permissões.
+Selecione as permissões desejadas, definindo as funcionalidades e acessos que o usuário poderá utilizar.
+Com isso, será possível controlar de forma adequada os acessos e ações disponíveis para cada usuário.",,,bruno.guedes@mv.com.br,GIF 1.0,539258-1,SOULMV-WI5.2022.009.07,Validado,,,68,https://drive.google.com/file/d/1-wi0Amg5i4zGrB1z23MruGBWVyDSpU8r/view?usp=drive_link
+22/04/2026 17:43:56,CNPJ Alfanumérico,"Sobre o chamado 424663-1, já foi finalizada a implementação? Precisamos fazer algo para atualizar o tipo do campo NR_CGC_CPF de NUMBER para VARCHAR2? Temos algumas tabelas e objetos que ainda estão como numérico.",Dúvida do cliente.,"Informamos que o sistema já possui uma DL em desenvolvimento para adequação ao novo padrão de CNPJ Alfanumérico.
+
+Esta atualização visa atender à determinação da Receita Federal, que passará a emitir números de CNPJ contendo letras e números a partir de julho de 2026 para novas empresas.
+
+O que isso significa na prática:
+
+Compatibilidade:
+
+Estamos revisando todos os campos de cadastro, máscaras de entrada e processos de integração (contábil, fiscal e faturamento) para garantir que o sistema aceite e processe o novo formato sem inconsistências.
+
+Prazos:
+
+Como a implementação oficial pelo governo ocorrerá apenas no segundo semestre de 2026, nossa equipe de Produto está trabalhando para disponibilizar a atualização de layout e banco de dados com a antecedência necessária para homologação.
+
+CNPJs existentes:
+
+É importante destacar que o CNPJ Alfanumérico será atribuído exclusivamente a novas inscrições a partir de julho de 2026. Os números de CNPJ já existentes não sofrerão nenhuma alteração, ou seja, todos os inscritos atualmente manterão seus números válidos.
+
+Assim que a funcionalidade for liberada nas próximas versões do sistema, enviamos um informativo de liberação com os detalhes técnicos e procedimentos de atualização.",,https://drive.google.com/open?id=1baSKjnP1JsCBCAJ7VnWjsVpi2JJathhg,geraldo.neto@mv.com.br,SOULMV,527377-1,SOULMV-H5.2022.008.08,Validado,,,69,https://drive.google.com/file/d/1gJ71BbSqf8TllhUX7ROBQU_HMXQ9o9ot/view?usp=drive_link
+22/04/2026 17:56:19,Como habilitar o campo de código de barras do bem patrimonial?,"Como habilitar o campo e código de barras do bem patrimonial e de onde vem essa informação? Temos vários bens com esse código, mas não conseguimos identificar de onde vem esta informação. Precisamos de apoio.",Dúvida do cliente.,"Conforme análise realizada, o campo de código de barras é habilitado no momento em que é realizado o tombamento. Após cadastro o campo é salvo e esmaecido. ",,https://drive.google.com/open?id=1DFRnzF0pKWTJRrwPbcfwC4iiLe1TjI4i,geraldo.neto@mv.com.br,SOULMV,457786-1,2020.8.13 Release,Validado,,,70,https://drive.google.com/file/d/13awAeyU7_9RzxBqDNzvO_npzOqqIBu5U/view?usp=drive_link
+22/04/2026 18:02:56,ERRO NO CÁLCULO DE CUSTOS (PACIENTE),"Estamos com algumas divergências no relatório de apresentação de centro de custos (R_ANA_CUSTO_SETOR) por não conseguir calcular totalmente o custo do período. Na tela de cálculo de custo da competência 08/2025 ao chegar na parte do Paciente, está dando o seguinte erro (ORA-01476: o divisor é igual a zero ORA-06512: em ""DBAMV.PACK_FFCH"", line 1038 ORA-06512: em ""DBAMV.PACK_FFCH"", line 1038 ORA-06512: em ""DBAMV.PACK_FFCH_CONSOLIDA"", line 1035 ORA-06512: em line 1). Precisamos de suporte para ajuste no BD para podermos calcular o custo da competência de forma completa. Segue em anexo log de eventos do custo e print do erro","ORA-01476: o divisor é igual a zero ORA-06512: em ""DBAMV.PACK_FFCH"", line 1038 ORA-06512: em ""DBAMV.PACK_FFCH"", line 1038 ORA-06512: em ""DBAMV.PACK_FFCH_CONSOLIDA"", line 1035 ORA-06512: em line 1","Após análise técnica detalhada no atendimento 8007725, identificamos uma divergência entre o campo de data e o campo de hora na informação de alta do paciente. Como o sistema de Custos Hospitalares funciona sob uma lógica de auditoria rigorosa, qualquer alteração em campos críticos após o processamento da competência gera uma crítica de validação.
+
+Essa inconsistência impede a correta associação dos custos ao período e bloqueia a realização de novos cálculos para este atendimento, visando garantir a integridade dos dados financeiros.
+
+Para regularizar a situação e permitir o recálculo da competência, é necessário:
+
+Validar com o setor responsável se a alteração da data de alta foi realizada via sistema (tela de alta/atendimento) ou se houve alguma intervenção direta em nível de banco de dados.
+
+É necessário que as informações de data e hora de alta estejam coerentes entre si. Caso o erro tenha sido operacional, o ajuste deve ser realizado preferencialmente via tela do sistema para manter a rastreabilidade.
+
+Após a correção dos dados de alta, acesse o menu Controladoria / Custos / Cálculos / Cálculo Geral Custos e processe novamente o atendimento para validar se a crítica foi sanada.
+
+O sistema utiliza a data de alta como parâmetro para encerrar a apropriação de custos diretos e indiretos. Quando há divergência, o motor de cálculo não consegue determinar o fim da estada do paciente, resultando em erro de processamento.
+",,"https://drive.google.com/open?id=1m4V9sutmWz6ZzTvedd2QAZfkqkfCrhJy, https://drive.google.com/open?id=1syjwxazdORE7-LBIxdrJFAD8olnwqVNF, https://drive.google.com/open?id=1y8YKSRA-1Oe2Nvs97r4KXsTsto7iLXue",geraldo.neto@mv.com.br,SOULMV,435007-1,SOULMV-H5.2025.9.3-RELEASE,Validado,,,71,https://drive.google.com/file/d/1DwVup5YA4FG7cNyZ6D9ak2s19aYd_DZ4/view?usp=drive_link
+22/04/2026 18:05:45,Erro no Cadastro de Bens,"Ao cadastrar um bem na tela M_CAD_BEM, o sistema não aceita nenhum valor no campo Valor aquisicao. Tentamos colocar um valor inteiro, valor com "","", valor com ""."" e não aceita nenhuma delas.",Mensagem falando que o valor do item é inválido.,"Após análise do chamado, identificamos que a habilitação do campo no cadastro de bens depende das Configurações Gerais de Patrimônio.
+
+Para corrigir, sugerimos que verifique os seguintes parâmetros no sistema:
+
+A opção ""Integrado com a contabilidade"" está marcada?
+
+O campo ""Valor de referência dos bens para despesas operacionais"" está preenchido corretamente?
+
+Essas duas condições são obrigatórias para liberar o campo em questão.
+
+Atenção: Caso as configurações estejam corretas e o problema persista, orientamos rejeitar o chamado adicionando as novas evidências (prints das configurações e da tela de erro) para uma investigação mais aprofundada.",,https://drive.google.com/open?id=1lFJbRgB0rvKBLDvUc9d4oIA6aCmk44Og,geraldo.neto@mv.com.br,SOULMV,428506-1,2019.0.30LTS,Validado,,,72,https://drive.google.com/file/d/1KJmUGkinFU9ElG_bvyuhjpDJvS5zDkIn/view?usp=drive_link
+22/04/2026 18:08:24,"Erro ao gerar ""calculo geral de custos"" para a competência 11/2025","Apresenta a mensagem: MSG: ORA-02292: restrição de integridade (DBAMV.RATCON_PAG_CUSTO_PRIM_FK) violada - registro filho localizado ORA-06512: em ""DBAMV.PACK_FFCH_PRIMARIO"", line 2615 ORA-06512: em ""DBAMV.PACK_FFCH_PRIMARIO"", line 1057 ORA-06512: em line 1 STMT: BEGIN dbamv.pkg_mv2000.atribui_empresa(1); dbamv.pack_ffch_primario.c1_00_gera_contas( 16825 , to_date('01/11/2025 00:00:00', 'dd/mm/yyyy hh24:mi:ss') ); END;","MSG: ORA-02292: restrição de integridade (DBAMV.RATCON_PAG_CUSTO_PRIM_FK) violada - registro filho localizado ORA-06512: em ""DBAMV.PACK_FFCH_PRIMARIO"", line 2615 ORA-06512: em ""DBAMV.PACK_FFCH_PRIMARIO"", line 1057 ORA-06512: em line 1 STMT: BEGIN dbamv.pkg_mv2000.atribui_empresa(1); dbamv.pack_ffch_primario.c1_00_gera_contas( 16825 , to_date('01/11/2025 00:00:00', 'dd/mm/yyyy hh24:mi:ss') ); END;","Após análise do chamado, identificamos que a divergência no cálculo do custo primário está relacionada ao processo de Repasse Médico.
+
+Verificamos que o lançamento de origem é realizado na Empresa 1, porém o setor vinculado pertence à Empresa 2. Com isso, o sistema de custo critica no momento do cálculo de custo primário.
+
+Sugerimos verificar, no módulo de Repasse Médico, o lançamento que está sendo realizado para o setor 298 (SADT - CMD).",,"https://drive.google.com/open?id=1nlRlhdiyixYwnY2x4MW0QRKBqjWgqT-I, https://drive.google.com/open?id=1yZXlQhnWJTOv8dlylUbY3OAzuGD17sdG, https://drive.google.com/open?id=1fKfUND3Wgd_XSs0MUKZNwCETIwfa048A, https://drive.google.com/open?id=1czMwGXZ31ql1XNFbtJbriMERcDd2HyXF",geraldo.neto@mv.com.br,SOULMV,425531-1,AUTENTICAD.2022.2.0-RELEASE DIAGN-WS.2019.5.3-RELEASE GLOBALSERV.2022.1.0-RELEASE LIBERTY.2020.006.09 PAGU.2020.11.16-RELEASE RPWDES.2022.0.1-RELEASE RPWEXE.2022.0.1-RELEASE SIT-E.2022.11.0-RELEASE SMA-CS.02.065.00 SMA-PEP.2020.11.18.ADT-RC26 SOULFULL.202,Validado,,,73,https://drive.google.com/file/d/1FZHPLNf-1NAqWqg6vw-edT7BLOmRc9Nk/view?usp=drive_link
+22/04/2026 18:11:11,"CALCULO GERAL DE CUSTOS: ERRO NO FECHAMENTO DE LOTES, VALORES DE RECEITA NEGATIVOS"," ACESSANDO A TELA PARA GERAR O CALCULO GERAL DE CUSTOS O_GERA_CALCULOS, APÓS GERAÇÃO DE CALCULO OS VALORES DE RECEITAS FICAM NEGATIVOS, CONFORME COLABORADOR OS VALORES NÃO DEVERÃO ESTAR NEGATIVOS.",N/A,"Formalizando nosso contato, verificamos que o cenário no cálculo de custos ocorria porque o Lote de Apuração de Resultado já estava gerado para a competência 12/2025.
+
+Foi sugerido a realização da exclusão do lote de apuração. Isso permitiu que o sistema processasse o cálculo de custos corretamente, trazendo os valores de Receita Não Operacional conforme esperado (veja o anexo validado pelo setor de custos).
+
+Para concluir o fechamento sem novos erros, siga estritamente esta ordem:
+
+Finalize todos os processos de Cálculo de Custos pendentes.
+
+Somente após finalizar os custos, gere novamente o Lote de Apuração de Resultado.",,"https://drive.google.com/open?id=1CVIhPl6o_vKPh8grv_sXJzgP_chbKXf0, https://drive.google.com/open?id=1LmuhApMddxO9qvrkhkdtDfH4irY0WhwN, https://drive.google.com/open?id=1WCIGKEAd_UFJM2UP7fMkrwoY8UAAYO5c, https://drive.google.com/open?id=1jji-dFtA1HV1gt5iTRlKsx8EHqHJ3uSt, https://drive.google.com/open?id=12Z10hoS8HLhYKJDWvL-snDcVMEuEVv_M, https://drive.google.com/open?id=1viTgkAieVt9206UyZqCkkw0wADXy_qk7, https://drive.google.com/open?id=1hYa3UWsLT1MdVg8Wfm39i5BljFamDjBS",geraldo.neto@mv.com.br,SOULMV,412810-1,SOULMV-H5.2022.8.22-RELEASE,Validado,,,74,https://drive.google.com/file/d/1ki0I-a23TkliM0fTRgqJzDJoNvHa4st0/view?usp=drive_link
+22/04/2026 18:15:46,Entrada de Serviços - M_ENTRADA_SERV,Ao tentar inserir os dados da duplicata os campos não estão habilitados não permitindo inserir as informações.,"Erro ..: Total da Nota(10000), não fecha com o
+valor dos servicos - Desconto + Valor acréscimo
+(0)!","Conforme conexão, verificamos que no ambiente TS1 estava apresentado a mensagem de alerta devido a não ter sido preenchido o valor total do serviço. Após teste realizado, vimos que o sistema funcionou perfeitamente.",,"https://drive.google.com/open?id=1gIA54abjkKI1RcQR8e-MZINVtW1l8l8G, https://drive.google.com/open?id=1KY8CQdZNtZmqL5M6kF9LYPn5NKJezLju, https://drive.google.com/open?id=1XDJs6eTKcFC-UJtbo0RDzqG6FIcqrKKq, https://drive.google.com/open?id=1thoo-fCuj6z7UIkVdrTEfhMlH77Jr7Za",geraldo.neto@mv.com.br,SOULMV,407766-1,SOULMV-H5.2025.3.0-RELEASE,Não Validado,,,75,
+22/04/2026 18:19:26,Erro ao realizar o tombamento de um item,Solicito apoio por gentileza: Estamos encontrando dificuldades para realizar o tombamento de um item. O Erro informa: Não foi possível determinar o Lote do produto que será tombado. Verifique se ainda existe saldo para os produtos da entrada.,Não foi possível determinar o Lote do produto que será tombado. Verifique se ainda existe saldo para os produtos da entrada.,"Esse cenário ocorre quando, após a entrada do produto, não é realizado o tombamento imediato — o que é essencial por se tratar de um bem patrimonial. Nesses casos, acabam ocorrendo movimentações do produto antes que o tombamento seja concluído.
+
+O fluxo correto para produtos de tipo patrimonial é: Entrada de Produto (NF) >> Tombamento >> Movimentação.
+
+Para verificação, pode utilizar o relatório de produto R_FICHA_ESTOQUE, onde apresenta todo o histórico do produto em questão. Sugerimos utilizar um intervalo grande entre as datas para que apresente todas as movimentações.",,"https://drive.google.com/open?id=1Ig-dySP-H2ABtM24BN8q6NlGyOD1oUmx, https://drive.google.com/open?id=1HBuyM9p2J37BIfFI3pYpAZLnvz9dJS9r",geraldo.neto@mv.com.br,SOULMV,394718-1,2.019.032,Validado,,,76,https://drive.google.com/file/d/1zAgqI7JusTzb3iy_k9Xc_jZCrIesz-WK/view?usp=drive_link
+24/04/2026 11:40:52,Duvida - Por que esta caindo F ao invés de P,em alguns exames alguns prestadores estão caindo como F ao invés de P. Por que?,Dúvida ,"A forma de pagamento atribuída na conta é definida conforme o cadastro do prestador no caminho:
+Serviços de Apoio / Diretoria Clínica / Tabelas / Prestadores (CAD_PRE).
+
+Segue a regra de comportamento:
+
+Quando o prestador estiver com tipo de vínculo = Pessoa Física (aba Complemento), a forma de pagamento será “P” (Produtividade).
+Caso o prestador seja Pessoa Física e possua credenciamento ativo para o convênio (aba Credenciamento), a forma de pagamento será “C” (Convênio), indicando que o repasse será realizado pelo convênio.
+Quando o vínculo estiver como Funcionário, a forma de pagamento será “F”, ou seja, o pagamento é realizado pelo hospital.
+
+Importante:
+Após qualquer alteração no cadastro do prestador, é necessário atualizar manualmente a forma de pagamento na conta já existente ou realizar um novo lançamento, para que a mudança seja refletida corretamente.",,,bruno.guedes@mv.com.br,FFCV,527849-1, SOULMV-H5.2022.13.4-RELEASE,Validado,,,,
+24/04/2026 17:49:48,Habilitar o bloqueio prescrição de medicamentos para pacientes que tem alergia,Solicito suporte referente configuração do bloqueio de prescrição de medicamentos para para pacientes que contem alergia a determinada substância.,Não tem ,"O sistema não bloqueia o médico de prescrever o medicamento que o paciente é alérgico, o que o sistema faz é alerta/justificar, agora se o alerta/justificativa não aparece será necessário verificar a configuração abaixo:
+
+Caminho: Clínica e Assistencial > Gerenciamento de Unidades > Configuração > Tabelas > PEP > Alertas Prescrição
+Tela: M_ALERTAS_PRESCRICAO
+AVS - Alergia Paciente
+Obs.: Configurar Alertas onde irá aparecer e onde irá justificar, lembrando que pode ser configurado por setor no botão de Exceções.
+
+Ou
+
+Caminho: Clínica e Assistencial > Gerenciamento de Unidades > Configuração > Configurações
+Tela: M_CONFIG_PAGU
+AVS - Alergia Paciente
+
+Obs.: Configurar Alertas onde irá aparecer e onde irá justificar, lembrando que pode ser configurado por setor no botão de Exceções.",,,bruno.pessoa@mv.com.br,"PEP
+",501069-1,SMA-PEP.2020.011.25.PATCH,Validado,,,,
+24/04/2026 18:01:09,Exclusão de horario de checagem ,Exclusão de horários de checagem,não tem,"Segue o processo.:
+
+Exclusão de horários de checagem
+Será possível excluir um horário de checagem quando o parâmetro ""SN_PERMITE_EXCLUIR_HORARIO"" estiver configurado para o módulo de checagem com o valor ""S"". Dessa forma, ao abrir o aprazamento de um item cujo esquema esteja configurado para controlar checagem, o usuário poderá clicar sobre o(s) horário(s) de checagem que deseja excluir e acionar o botão da lixeira . No entanto, somente poderão ser excluídos horários quando não houver solicitação gerada para o item.
+
+Exemplo: Quando a validade da prescrição é de 24h, de 14h do dia atual as 14h do dia seguinte. Se o médico prescrever um item com frequência de 6h em 6h e o enfermeiro aprazar o primeiro horário a partir das 19h, redefinindo os horários, o último horário extrapola o período de validade da prescrição e ficará imprensado entre o penúltimo horário redefinido e o horário limite que foi até às 14h do dia posterior. Por essa razão, esse horário poderá ser excluído e não checado como ""Não administrado"".
+
+O parâmetro SN_PERMITE_EXCLUIR_HORARIO, quando configurado como ""S"", possui prioridade sobre a configuração de limite de aprazamento. Desta forma, ao realizar o processo de aprazamento de item, o prestador será questionado pelo sistema sobre a exclusão de valores de fora da faixa da prescrição.
+
+Suspendendo os itens não checados
+Para suspender um item, faz-se necessário que a prescrição esteja fechada/assinada.
+
+Para suspender os itens ""Não checados"", basta clicar no botão , será exibida a janela ""Suspender Não Checados"".
+
+O usuário deve justificar a suspensão e salvar. Para suspender um item, é necessário que os horários posteriores estejam checados como ""Não administrado"".
+
+Após salvar a suspensão dos itens não checados, eles são exibidos na tela com o ícone .
+
+Fechar auditoria
+Para fechar a auditoria da checagem deve-se clicar no botão . Porém, a auditoria só pode ser realizada em pacientes com alta ou até uma hora antes da validade da prescrição, e que todos os itens tenham sido checados como administrado ou não administrado. Exemplo: ""Validade: 24/09/2016 18h"", até às 17h dessa data a auditoria não pode ser fechada.",,,bruno.pessoa@mv.com.br,PEP,,SMA-PEP.2020.011.25.PATCH,Validado,,,,
+24/04/2026 18:02:36,Erro ao gerar Guia Tiss no PEP,Erro ao gerar Guia Tiss no PEP,Não tem ,"Prezado Cliente,
+
+Para gerar guia tiss no pep segue configurações:
+
+Configuração faixa de guia:
+Faturamento > Faturamento de Convênios e Particulares > Tabelas > Gerais > Faixa de guias por Convênio/Empresa
+Tela: M_FAIXA_GUIA_CONVENIO
+Deverá ter uma linha com uma faixa de guia com uma quantidade de Guias Disponíveis.
+
+Configuração do relatório:
+
+Caminho: Clínica e Assistencial > Gerenciamento de Unidades > Configuração > Configurações
+Tela: M_CONFIG_PAGU
+Aba: Impressão
+Linha: FFCV\R_GUIA_TISS_SP_SADT
+
+Após configurado realizar nova prescrição, informamos ainda que esse processo vai gerar guia apenas para procedimentos de exame.
+",,,bruno.pessoa@mv.com.br,"PEP
+",,SMA-PEP.2020.011.25.PATCH,Validado,,,,
+24/04/2026 18:04:22,Quando um item de prescrição não aparece na prescrição,Quando um item de prescrição não aparece na prescrição,Não tem,"verificar as configurações abaixo:
+
+1 - Verificar se o item de prescrição está ativo no cadastro de itens para prescrever
+Caminho: Gerenciamento de Unidades > Configuração > Tabelas > Itens para Prescrever
+Tela: M_TIPPRE
+Campo: Ativo = Sim
+
+Obs.: No cadastro do item de prescrição o campo TIPO DE PRESCRIÇÃO, está configuração só é valida para o PAGU/MV2000 e MVPEP 1.0.
+
+2 - Configurar o esquema no grupo de prescrição:
+Caminho: Gerenciamento de Unidades > Configuração > Tabelas > PEP > Apresentação dos Itens de Prescrição
+Tela: M_GRUPO_ITEM_PADRAO
+Verificar se o esquema CIH está em algum grupo de prescrição se não estiver, terá que colocar em um grupo de prescrição já existente ou criar um grupo de prescrição;
+
+3 - Verificar qual o código do objeto de prescrição no perfil:
+Caminho: Gerenciamento de Unidades > Configuração > Tabelas > PEP > Perfil do usuário
+Tela: M_CONFIG_PERFIL_USUARIO
+Módulo: MVPEP_PRESCRICAO
+Parâmetro: CD_OBJETO
+
+4 - Verificar se o grupo de prescrição está vinculado a um objeto:
+Caminho: Gerenciamento de Unidades > Configuração > Tabelas > Tipos de Objetos de Prontuário
+Tela: M_PAGU_OBJETO
+Controle: PRESC
+Objeto: Selecionar o objeto (Item: 03) e na aba parâmetro incluir o grupo de prescrição ou verificar se o mesmo já está configurado;
+
+5 - Verificar se o item de prescrição está vinculado ao setor e se esse setor é o da prescrição
+Caminho: Gerenciamento de Unidades > Configuração > Tabelas > Itens para Prescrever
+Tela: M_TIPPRE
+Aba: Setor",,,bruno.pessoa@mv.com.br,PEP,,SMA-PEP.2020.011.25.PATCH,Validado,,,,
+24/04/2026 18:05:43,Médico Assumir o Paciente de outro Médico,Médico Assumir o Paciente de outro Médico,Não tem,"O processo de atualização do prestador deverá seguir da seguinte maneira :
+
+1 - Cria-se o atendimento para um código do prestador geral configurado na tela M_CONFIG_PAEU.
+2 - O médico ao assumir o paciente na lista de urgência do PEP, é realizada a alteração.
+
+Ao realizar um atendimento com prestador geral(plantonista), quando o médico acessar o paciente e fizer uma alteração no prontuário (evolução, documento, prescrição e etc) o sistema irá transferir o paciente do prestador geral para o médico que acessou o prontuário e fez a alteração, agora pra isso acontecer será necessário fazer a configuração abaixo:
+
+Atendimento > Urgência e Emergência > Configurações > Parâmetros/Aba: Geral
+
+Campo: Informe o cód. do prestador geral para atendimentos de urgência e emerg. que será visto nos consultórios médicos
+Código do prestador: Exemplo: Plantonista, esse prestador terá todas as especialidades que atendem na urgência
+
+Obs.: Essa configuração é por empresa, se o atendimento for para um prestador diferente do prestador configurado no sistema PAEU (Urgência) o sistema não irá transferir o paciente para outro prestador que fez o atendimento.
+
+Caindo na conta o prestador que finalizou o atendimento de urgência:
+Caminho: Faturamento > Faturamento de Convênios e Particulares > Configurações > Parâmetros\Campo Atualiza Prestador = SIM
+Obs.: Essa configuração do convênio também impacta no atendimento ambulatório do SUS.
+
+Caso o atendimento já seja criado para um prestador que não seja geral e sim relacionado a esse, o atendimento não seguirá para o próximo prestador, mesmo ele prescrevendo ou criando um documento.
+
+Salientando que a alteração também se dar no processo de alta médica via PEP tem uma configuração em que ele altera/atualizada no momento da alta. Para isso, a configuração FATURAMENTO DE CONVÊNCIOS E PARTICULARES > CONFIGURAÇÃO > PARÂMETROS > atualiza prestador = 'Sim' vai alterar. Deve-se colocar como 'Não, para não realizar a alteração do médico no momento da alta. Contudo, deve verificar se a configuração está de acordo com as diretrizes do hospital, se é para alterar. Qualquer duvida sobre esta configuração, poderá entrar em contato com o pessoal do Faturamento, que realizar estas configurações.
+",,,bruno.pessoa@mv.com.br,PEP,,SMA-PEP.2020.011.25.PATCH,Validado,,,,
+27/04/2026 11:39:50,Assinatura Digital Laudo Laboratorio,"- Em cumprimento da obrigatoriedade a ser cumprida mediante ao item 27 da RDC786/2023, com a assinatura legalmente válida do responsável pela liberação do laudo, necessitamos de uma orientação de como parametrizar o sistema de laboratório para que possamos atender a Vigilância Sanitária Atualmente o equipamento DB, disponibiliza o laudo com todos esses dados, porém, ao realizar a integração com MV, a máscara não carrega as assinaturas do Biomédicos que estão liberando o resultado.",Parametrização inconforme ,"Atualmente, no produto Diagnóstico e Terapia, apenas o módulo de Laboratório de Análises Clínicas possui funcionalidade para comunicação com a Certificadora Digital para assinatura de laudos.
+
+Para utilização, é necessário que os seguintes componentes estejam atualizados:
+
+Diagnóstico WS
+Cartório Digital
+SOUL MV
+Orientamos seguir o manual para realizar a configuração da comunicação entre os três produtos.",,"https://drive.google.com/open?id=14xbe0ZpZegKbPFzF0Zw22W8so5kr63Rk, https://drive.google.com/open?id=1NYEGC_3n48dvrat3i3xiysHjP9mYNqqI",bruno.guedes@mv.com.br,ASSISTENCIAL ,529413-1,SOULMV-WI5.2022.009.07,Validado,,,,

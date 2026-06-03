@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Interativo - Insights</title>
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <!-- PapaParse for CSV parsing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #020617;
+            /* Slate 950 */
+            --card-bg: rgba(15, 23, 42, 0.65);
+            /* Slate 900 with opacity */
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-primary: #f8fafc;
+            /* Slate 50 */
+            --text-secondary: #94a3b8;
+            /* Slate 400 */
+            --accent-blue: #3b82f6;
+            --accent-cyan: #06b6d4;
+            --accent-purple: #8b5cf6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at top right, #0f172a, #020617 100%);
+            color: var(--text-primary);
+            padding: 2.5rem;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Ambient glowing effect for premium look */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -20%;
+            left: -10%;
+            width: 50%;
+            height: 50%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.15), transparent 60%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -20%;
+            right: -10%;
+            width: 50%;
+            height: 50%;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.12), transparent 60%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        header {
+            margin-bottom: 3.5rem;
+            text-align: center;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #60a5fa, #c084fc, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            drop-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        p.subtitle {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            font-weight: 400;
+        }
+
+        /* Grid Layout Fixes */
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            opacity: 0;
+            /* Starts hidden for animation */
+        }
+
+        @media (max-width: 1100px) {
+            .dashboard-container {
+                grid-template-columns: 1fr;
+            }
+
+            .chart-card.wide {
+                grid-column: auto;
+            }
+        }
+
+        .chart-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chart-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .chart-card.wide {
+            grid-column: 1 / -1;
+            /* Spans across all columns */
+        }
+
+        .chart-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            letter-spacing: 0.01em;
+        }
+
+        .chart-title::before {
+            content: '';
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            box-shadow: 0 0 12px var(--accent-cyan);
+        }
+
+        .chart-wrapper {
+            flex-grow: 1;
+            min-height: 350px;
+            position: relative;
+            width: 100%;
+        }
+
+        /* KPIs */
+        .kpi-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0;
+        }
+
+        .kpi-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid var(--card-border);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+        }
+
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.04), transparent 70%);
+            pointer-events: none;
+        }
+
+        .kpi-icon {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            opacity: 0.25;
+            color: var(--text-primary);
+        }
+
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+            letter-spacing: -0.02em;
+        }
+
+        .kpi-label {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
+
+        /* Colorful KPI Values */
+        .kpi-card.total .kpi-value {
+            background: linear-gradient(135deg, #60a5fa, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .kpi-card.success .kpi-value {
+            background: linear-gradient(135deg, #34d399, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .kpi-card.danger .kpi-value {
+            background: linear-gradient(135deg, #f87171, #ef4444);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .kpi-card.rate .kpi-value {
+            background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .kpi-card.versions .kpi-value {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Loader */
+        #loader {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            z-index: 50;
+            transition: opacity 0.4s ease;
+        }
+
+        .loader-ring {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255, 255, 255, 0.05);
+            border-top-color: var(--accent-blue);
+            border-right-color: var(--accent-cyan);
+            border-radius: 50%;
+            animation: spin 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+        }
+
+        .loader-text {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            animation: pulse 1.5s infinite ease-in-out;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 0.6;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Painel de Documentação da IA</h1>
+        <p class="subtitle">Visão Estratégica Interativa dos Chamados</p>
+    </header>
+
+    <div id="loader">
+        <div class="loader-ring"></div>
+        <span class="loader-text">Analisando Inteligência de Dados...</span>
+    </div>
+
+    <!-- Novo Layout de KPIs -->
+    <div class="kpi-container" id="kpis" style="display: none;">
+        <div class="kpi-card total">
+            <div class="kpi-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+            </div>
+            <div class="kpi-value" id="total-chamados">0</div>
+            <div class="kpi-label">Total de Chamados</div>
+        </div>
+
+        <div class="kpi-card success">
+            <div class="kpi-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+            </div>
+            <div class="kpi-value" id="total-validados">0</div>
+            <div class="kpi-label">Documentos Validados</div>
+        </div>
+
+        <div class="kpi-card danger">
+            <div class="kpi-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+            </div>
+            <div class="kpi-value" id="total-nao-validados">0</div>
+            <div class="kpi-label">Não Validados</div>
+        </div>
+
+        <!-- NOVO KPI: Taxa de Validação -->
+        <div class="kpi-card rate">
+            <div class="kpi-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                </svg>
+            </div>
+            <div class="kpi-value" id="taxa-validacao">0%</div>
+            <div class="kpi-label">Taxa de Validação</div>
+        </div>
+
+        <div class="kpi-card versions">
+            <div class="kpi-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"></path>
+                    <polyline points="21 3 21 8 16 8"></polyline>
+                </svg>
+            </div>
+            <div class="kpi-value" id="total-versoes">0</div>
+            <div class="kpi-label">Versões Distintas</div>
+        </div>
+    </div>
+
+    <!-- Novo Layout do Dashboard (2 colunas perfeitas) -->
+    <div class="dashboard-container" id="dashboard" style="display: none;">
+
+        <!-- Span 2: Timeline Chart (Line/Area para melhor visualização) -->
+        <div class="chart-card wide">
+            <h2 class="chart-title">Evolução Temporal dos Chamados</h2>
+            <div class="chart-wrapper" id="timelineChart"></div>
+        </div>
+
+        <!-- Span 1: Produtos (Horizontal Stacked Bar p/ arrumar layout torto) -->
+        <div class="chart-card">
+            <h2 class="chart-title">Top 10 Produtos Envolvidos</h2>
+            <div class="chart-wrapper" id="produtoChart"></div>
+        </div>
+
+        <!-- Span 1: Status Donut Chart -->
+        <div class="chart-card">
+            <h2 class="chart-title">Status Global dos Documentos</h2>
+            <div class="chart-wrapper" id="validadoChart"></div>
+        </div>
+
+        <!-- Span 1: Versões (Horizontal) -->
+        <div class="chart-card">
+            <h2 class="chart-title">Top 10 Versões Reportadas</h2>
+            <div class="chart-wrapper" id="versaoChart"></div>
+        </div>
+
+        <!-- Span 1: Origem por E-mail (Horizontal) -->
+        <div class="chart-card">
+            <h2 class="chart-title">Top 10 Canais Solicitantes</h2>
+            <div class="chart-wrapper" id="emailChart"></div>
+        </div>
+
+    </div>
+
+    <script>
+        const CSV_URL = "https://docs.google.com/spreadsheets/d/1B9B_qYgUJiObiKTyknc3FJYJbrHX7hTsu1n2xEOFmII/export?format=csv";
+
+        Papa.parse(CSV_URL, {
+            download: true,
+            header: true,
+            skipEmptyLines: true,
+            complete: function (results) {
+                const data = results.data.filter(row => Object.keys(row).length > 2);
+                processData(data);
+
+                // Hide loader smoothly
+                const loader = document.getElementById('loader');
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+
+                    // Show content and trigger animation
+                    const kpis = document.getElementById('kpis');
+                    const dashboard = document.getElementById('dashboard');
+                    kpis.style.display = 'grid';
+                    dashboard.style.display = 'grid';
+
+                    // Small delay to ensure CSS applies before animating
+                    setTimeout(() => {
+                        kpis.classList.add('fade-in');
+                        dashboard.classList.add('fade-in');
+                    }, 50);
+                }, 400);
+            },
+            error: function (error) {
+                document.getElementById('loader').innerHTML = `<span style='color: var(--danger)'>Erro ao carregar dados: ${error.message}</span>`;
+            }
+        });
+
+        // Utils
+        function cleanString(str) {
+            return (str || "").trim() || "Não Informado";
+        }
+
+        function findColumnName(data, keyword) {
+            if (!data || data.length === 0) return null;
+            const keys = Object.keys(data[0]);
+            return keys.find(k => k.toLowerCase().includes(keyword.toLowerCase()));
+        }
+
+        function countBy(data, key) {
+            if (!key) return {};
+            const counts = {};
+            data.forEach(row => {
+                let val = cleanString(row[key]);
+                counts[val] = (counts[val] || 0) + 1;
+            });
+            return counts;
+        }
+
+        // Global Chart Styling Template
+        const layoutTemplate = {
+            plot_bgcolor: 'transparent',
+            paper_bgcolor: 'transparent',
+            font: { color: '#94a3b8', family: 'Inter', size: 12 },
+            margin: { t: 20, l: 40, r: 20, b: 40 },
+            xaxis: {
+                gridcolor: 'rgba(255,255,255,0.05)',
+                zerolinecolor: 'rgba(255,255,255,0.05)',
+                tickfont: { color: '#94a3b8' }
+            },
+            yaxis: {
+                gridcolor: 'rgba(255,255,255,0.05)',
+                zerolinecolor: 'rgba(255,255,255,0.05)',
+                tickfont: { color: '#94a3b8' }
+            },
+            hoverlabel: {
+                bgcolor: '#1e293b',
+                font: { family: 'Inter', color: '#f8fafc' },
+                bordercolor: 'rgba(255,255,255,0.1)'
+            }
+        };
+
+        const config = { responsive: true, displayModeBar: false };
+
+        function processData(data) {
+            const totalChamados = data.length;
+            document.getElementById('total-chamados').innerText = totalChamados;
+
+            let validadosNum = 0;
+            let naoValidadosNum = 0;
+            const validadoCol = findColumnName(data, 'validado');
+
+            data.forEach(row => {
+                const status = validadoCol ? cleanString(row[validadoCol]).toLowerCase() : 'não informado';
+                if (status === 'validado') validadosNum++;
+                else naoValidadosNum++;
+            });
+
+            document.getElementById('total-validados').innerText = validadosNum;
+            document.getElementById('total-nao-validados').innerText = naoValidadosNum;
+
+            // Novo Indicador
+            const taxa = totalChamados > 0 ? ((validadosNum / totalChamados) * 100).toFixed(1) : 0;
+            document.getElementById('taxa-validacao').innerText = taxa + '%';
+
+            const versaoCol = findColumnName(data, 'versão') || findColumnName(data, 'versao');
+            const versoesMap = countBy(data, versaoCol);
+            const qtyVersoes = Object.keys(versoesMap).filter(v => v !== 'Não Informado').length;
+            document.getElementById('total-versoes').innerText = qtyVersoes;
+
+            const emailCol = findColumnName(data, 'e-mail') || findColumnName(data, 'email');
+
+            renderTimeline(data, validadoCol);
+            renderProdutoChart(data, findColumnName(data, 'produto'), validadoCol);
+            renderValidadosChart(data, validadoCol);
+            renderVersaoChart(versoesMap);
+            renderEmailChart(countBy(data, emailCol));
+        }
+
+        // Gráfico 1: Timeline com Linhas Suaves e Preenchimento em Área (Premium)
+        function renderTimeline(data, validadoCol) {
+            const timelineMapValid = {};
+            const timelineMapInvalid = {};
+            const allDates = new Set();
+            const dateCol = findColumnName(data, 'data/hora') || findColumnName(data, 'data');
+
+            data.forEach(row => {
+                const rawDate = dateCol ? cleanString(row[dateCol]) : 'Não Informado';
+                const status = validadoCol ? cleanString(row[validadoCol]).toLowerCase() : 'nv';
+
+                if (rawDate !== 'Não Informado') {
+                    const datePart = rawDate.split(' ')[0];
+                    allDates.add(datePart);
+
+                    if (status === 'validado') {
+                        timelineMapValid[datePart] = (timelineMapValid[datePart] || 0) + 1;
+                    } else {
+                        timelineMapInvalid[datePart] = (timelineMapInvalid[datePart] || 0) + 1;
+                    }
+                }
+            });
+
+            const parseDate = s => {
+                const parts = s.split('/');
+                return parts.length === 3 ? new Date(parts[2], parts[1] - 1, parts[0]) : new Date(0);
+            };
+
+            const sortedDates = Array.from(allDates).sort((a, b) => parseDate(a) - parseDate(b));
+
+            const traceValid = {
+                x: sortedDates,
+                y: sortedDates.map(date => timelineMapValid[date] || 0),
+                name: 'Validados',
+                type: 'scatter',
+                mode: 'lines',
+                line: { color: '#10b981', width: 3, shape: 'spline', smoothing: 0.8 },
+                fill: 'tozeroy',
+                fillcolor: 'rgba(16, 185, 129, 0.2)',
+                stackgroup: 'one'
+            };
+
+            const traceInvalid = {
+                x: sortedDates,
+                y: sortedDates.map(date => timelineMapInvalid[date] || 0),
+                name: 'Não Validados',
+                type: 'scatter',
+                mode: 'lines',
+                line: { color: '#ef4444', width: 3, shape: 'spline', smoothing: 0.8 },
+                fill: 'tonexty',
+                fillcolor: 'rgba(239, 68, 68, 0.2)',
+                stackgroup: 'one'
+            };
+
+            const layout = {
+                ...layoutTemplate,
+                xaxis: { ...layoutTemplate.xaxis, type: 'category', tickangle: -45 },
+                margin: { t: 20, l: 40, r: 20, b: 60 },
+                legend: { font: { color: '#f8fafc' }, orientation: 'h', y: 1.15, x: 0 },
+                hovermode: 'x unified'
+            };
+
+            Plotly.newPlot('timelineChart', [traceValid, traceInvalid], layout, config);
+        }
+
+        // Gráfico 2: Produtos - Alterado para Barras Horizontais (Corrige o layout torto)
+        function renderProdutoChart(data, produtoCol, validadoCol) {
+            const mapValid = {};
+            const mapInvalid = {};
+            const produtos = new Set();
+
+            data.forEach(row => {
+                let prod = produtoCol ? cleanString(row[produtoCol]) : 'Não Informado';
+                if (prod.length > 25) prod = prod.substring(0, 25) + "...";
+
+                const status = validadoCol ? cleanString(row[validadoCol]).toLowerCase() : 'nv';
+
+                produtos.add(prod);
+                if (status === 'validado') mapValid[prod] = (mapValid[prod] || 0) + 1;
+                else mapInvalid[prod] = (mapInvalid[prod] || 0) + 1;
+            });
+
+            const sortedProdutos = Array.from(produtos).sort((a, b) => {
+                const sumA = (mapValid[a] || 0) + (mapInvalid[a] || 0);
+                const sumB = (mapValid[b] || 0) + (mapInvalid[b] || 0);
+                return sumB - sumA;
+            }).slice(0, 10); // Top 10 para não estourar layout
+
+            sortedProdutos.reverse(); // Maior no topo
+
+            const traceV = {
+                y: sortedProdutos,
+                x: sortedProdutos.map(p => mapValid[p] || 0),
+                name: 'Validados',
+                type: 'bar',
+                orientation: 'h',
+                marker: { color: '#10b981', opacity: 0.9 }
+            };
+
+            const traceNV = {
+                y: sortedProdutos,
+                x: sortedProdutos.map(p => mapInvalid[p] || 0),
+                name: 'Não Validados',
+                type: 'bar',
+                orientation: 'h',
+                marker: { color: '#ef4444', opacity: 0.9 }
+            };
+
+            const layout = {
+                ...layoutTemplate,
+                barmode: 'stack',
+                yaxis: { ...layoutTemplate.yaxis, type: 'category', categoryorder: 'trace' },
+                margin: { t: 20, l: 180, r: 20, b: 40 },
+                legend: { font: { color: '#f8fafc' }, orientation: 'h', y: 1.15, x: 0 }
+            };
+
+            Plotly.newPlot('produtoChart', [traceV, traceNV], layout, config);
+        }
+
+        // Gráfico 3: Status de Validação (Donut chart fino e elegante)
+        function renderValidadosChart(data, validadoCol) {
+            const map = countBy(data, validadoCol);
+            const labels = Object.keys(map);
+            const values = Object.values(map);
+
+            const colors = labels.map(l => l.toLowerCase() === 'validado' ? '#10b981' : (l.toLowerCase() === 'não validado' ? '#ef4444' : '#f59e0b'));
+
+            const trace = {
+                labels: labels,
+                values: values,
+                type: 'pie',
+                hole: 0.65,
+                marker: {
+                    colors: colors,
+                    line: { color: '#0f172a', width: 3 }
+                },
+                textinfo: 'percent',
+                hoverinfo: 'label+value+percent',
+                textposition: 'inside',
+                textfont: { size: 14, color: '#ffffff', weight: 'bold' }
+            };
+
+            const layout = {
+                ...layoutTemplate,
+                showlegend: true,
+                legend: { orientation: 'h', font: { color: '#f8fafc' }, x: 0.5, y: -0.1, xanchor: 'center' },
+                margin: { t: 20, l: 20, r: 20, b: 20 }
+            };
+            delete layout.xaxis;
+            delete layout.yaxis;
+
+            Plotly.newPlot('validadoChart', [trace], layout, config);
+        }
+
+        // Gráfico 4: Versões (Barra Horizontal)
+        function renderVersaoChart(versoesMap) {
+            let mapped = Object.entries(versoesMap).filter(item => item[0] !== 'Não Informado');
+            let sorted = mapped.sort((a, b) => b[1] - a[1]).slice(0, 10);
+            sorted.reverse();
+
+            const trace = {
+                x: sorted.map(item => item[1]),
+                y: sorted.map(item => item[0]),
+                type: 'bar',
+                orientation: 'h',
+                marker: { color: '#8b5cf6', opacity: 0.9 },
+                text: sorted.map(item => item[1]),
+                textposition: 'auto',
+                hoverinfo: 'y+x'
+            };
+
+            const layout = {
+                ...layoutTemplate,
+                yaxis: { ...layoutTemplate.yaxis, type: 'category', categoryorder: 'trace' },
+                margin: { t: 20, l: 150, r: 20, b: 40 }
+            };
+            Plotly.newPlot('versaoChart', [trace], layout, config);
+        }
+
+        // Gráfico 5: Origem por E-mail (Barra Horizontal)
+        function renderEmailChart(map) {
+            let sorted = Object.entries(map).filter(m => m[0] !== 'Não Informado');
+            sorted = sorted.sort((a, b) => b[1] - a[1]).slice(0, 10);
+            sorted.reverse();
+
+            const trace = {
+                x: sorted.map(item => item[1]),
+                y: sorted.map(item => item[0]),
+                type: 'bar',
+                orientation: 'h',
+                marker: { color: '#06b6d4', opacity: 0.9 },
+                text: sorted.map(item => item[1]),
+                textposition: 'auto',
+                hoverinfo: 'y+x'
+            };
+
+            const layout = {
+                ...layoutTemplate,
+                yaxis: { ...layoutTemplate.yaxis, type: 'category', categoryorder: 'trace' },
+                margin: { t: 20, l: 220, r: 20, b: 40 }
+            };
+            Plotly.newPlot('emailChart', [trace], layout, config);
+        }
+    </script>
+</body>
+
+</html>
