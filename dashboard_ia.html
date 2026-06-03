@@ -340,6 +340,159 @@
                 transform: translateY(0);
             }
         }
+
+        /* Estilos da Barra de Filtros */
+        .filter-bar {
+            max-width: 1400px;
+            margin: 0 auto 2rem auto;
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 20px;
+            padding: 1rem 1.5rem;
+            border: 1px solid var(--card-border);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .filter-bar label {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .filter-bar select {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            color: var(--text-primary);
+            padding: 0.6rem 1.2rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            outline: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-bar select:hover, .filter-bar select:focus {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Estilos para Tabela de Metas */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 1rem;
+        }
+
+        .meta-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .meta-table th {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+            padding: 1rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .meta-table td {
+            padding: 1rem;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            vertical-align: middle;
+        }
+
+        .meta-table tbody tr:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .badge-meta {
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .badge-meta.success {
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.1);
+        }
+
+        .badge-meta.warning {
+            background: rgba(245, 158, 11, 0.15);
+            color: #fbbf24;
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.1);
+        }
+
+        .badge-meta.danger {
+            background: rgba(239, 68, 68, 0.15);
+            color: #f87171;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.1);
+        }
+
+        /* Barra de Progresso */
+        .progress-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            min-width: 150px;
+        }
+
+        .progress-bar-bg {
+            flex-grow: 1;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .progress-bar-fill.success {
+            background: linear-gradient(90deg, #10b981, #059669);
+            box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+        }
+
+        .progress-bar-fill.warning {
+            background: linear-gradient(90deg, #f59e0b, #d97706);
+            box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+        }
+
+        .progress-bar-fill.danger {
+            background: linear-gradient(90deg, #ef4444, #b91c1c);
+            box-shadow: 0 0 8px rgba(239, 68, 68, 0.4);
+        }
+
+        .progress-value {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            min-width: 35px;
+            text-align: right;
+        }
     </style>
 </head>
 
@@ -349,6 +502,14 @@
         <h1>Painel de Documentação da IA</h1>
         <p class="subtitle">Visão Estratégica Interativa dos Chamados</p>
     </header>
+
+    <!-- Barra de Filtros -->
+    <div class="filter-bar" id="filter-section" style="display: none;">
+        <label for="month-filter">Filtrar por Mês:</label>
+        <select id="month-filter" onchange="filterByMonth(this.value)">
+            <option value="todos">Todos os Meses</option>
+        </select>
+    </div>
 
     <div id="loader">
         <div class="loader-ring"></div>
@@ -455,18 +616,47 @@
             <div class="chart-wrapper" id="emailChart"></div>
         </div>
 
+        <!-- Span 2: Tabela de Metas dos Analistas -->
+        <div class="chart-card wide">
+            <h2 class="chart-title">Desempenho dos Analistas e Metas do Mês</h2>
+            <div class="table-responsive">
+                <table class="meta-table">
+                    <thead>
+                        <tr>
+                            <th>Analista</th>
+                            <th>Total Enviado</th>
+                            <th>Validados</th>
+                            <th>Meta Mensal</th>
+                            <th>Status da Meta</th>
+                            <th>Progresso</th>
+                        </tr>
+                    </thead>
+                    <tbody id="analyst-meta-body">
+                        <!-- Dynamic content -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
     </div>
 
     <script>
         const CSV_URL = "https://docs.google.com/spreadsheets/d/1B9B_qYgUJiObiKTyknc3FJYJbrHX7hTsu1n2xEOFmII/export?format=csv";
+        let allData = [];
+        const monthsNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
 
         Papa.parse(CSV_URL, {
             download: true,
             header: true,
             skipEmptyLines: true,
             complete: function (results) {
-                const data = results.data.filter(row => Object.keys(row).length > 2);
-                processData(data);
+                allData = results.data.filter(row => Object.keys(row).length > 2);
+                
+                const dateCol = findColumnName(allData, 'data/hora') || findColumnName(allData, 'data');
+                populateMonthFilter(allData, dateCol);
+                
+                const initialMonth = document.getElementById('month-filter').value;
+                filterByMonth(initialMonth);
 
                 // Hide loader smoothly
                 const loader = document.getElementById('loader');
@@ -477,13 +667,16 @@
                     // Show content and trigger animation
                     const kpis = document.getElementById('kpis');
                     const dashboard = document.getElementById('dashboard');
+                    const filterSection = document.getElementById('filter-section');
                     kpis.style.display = 'grid';
                     dashboard.style.display = 'grid';
+                    filterSection.style.display = 'flex';
 
                     // Small delay to ensure CSS applies before animating
                     setTimeout(() => {
                         kpis.classList.add('fade-in');
                         dashboard.classList.add('fade-in');
+                        filterSection.classList.add('fade-in');
                     }, 50);
                 }, 400);
             },
@@ -571,6 +764,11 @@
             renderValidadosChart(data, validadoCol);
             renderVersaoChart(versoesMap);
             renderEmailChart(countBy(data, emailCol));
+            
+            // Atualiza a tabela de metas dos analistas
+            const monthFilter = document.getElementById('month-filter');
+            const selectedMonth = monthFilter ? monthFilter.value : 'todos';
+            renderAnalystMetaTable(data, selectedMonth);
         }
 
         // Gráfico 1: Timeline com Linhas Suaves e Preenchimento em Área (Premium)
@@ -775,6 +973,182 @@
                 margin: { t: 20, l: 220, r: 20, b: 40 }
             };
             Plotly.newPlot('emailChart', [trace], layout, config);
+        }
+
+        // Funções auxiliares para Filtro de Meses e Metas dos Analistas
+        function getMonthYearStr(dateStr, dateCol) {
+            if (!dateStr || dateStr === 'Não Informado') return 'Não Informado';
+            const datePart = dateStr.split(' ')[0];
+            const parts = datePart.split('/'); // DD/MM/YYYY
+            if (parts.length === 3) {
+                const monthIndex = parseInt(parts[1], 10) - 1;
+                if (monthIndex >= 0 && monthIndex < 12) {
+                    return `${monthsNames[monthIndex]} / ${parts[2]}`;
+                }
+            }
+            return 'Não Informado';
+        }
+
+        function populateMonthFilter(data, dateCol) {
+            const select = document.getElementById('month-filter');
+            if (!select) return;
+            select.innerHTML = '<option value="todos">Todos os Meses</option>';
+            
+            const months = new Set();
+            data.forEach(row => {
+                const rawDate = dateCol ? cleanString(row[dateCol]) : 'Não Informado';
+                if (rawDate !== 'Não Informado') {
+                    const monthYear = getMonthYearStr(rawDate, dateCol);
+                    if (monthYear !== 'Não Informado') {
+                        months.add(monthYear);
+                    }
+                }
+            });
+
+            const parseMonthYear = s => {
+                const parts = s.split(' / ');
+                const monthIdx = monthsNames.indexOf(parts[0]);
+                const year = parseInt(parts[1]);
+                return new Date(year, monthIdx, 1);
+            };
+
+            const sortedMonths = Array.from(months).sort((a, b) => parseMonthYear(a) - parseMonthYear(b));
+            
+            sortedMonths.forEach(m => {
+                const opt = document.createElement('option');
+                opt.value = m;
+                opt.textContent = m;
+                select.appendChild(opt);
+            });
+
+            if (sortedMonths.length > 0) {
+                select.value = sortedMonths[sortedMonths.length - 1]; // Seleciona o mês mais recente por padrão
+            }
+        }
+
+        function filterByMonth(selectedMonth) {
+            let filtered;
+            const dateCol = findColumnName(allData, 'data/hora') || findColumnName(allData, 'data');
+            if (selectedMonth === 'todos') {
+                filtered = allData;
+            } else {
+                filtered = allData.filter(row => {
+                    const rawDate = dateCol ? cleanString(row[dateCol]) : 'Não Informado';
+                    return getMonthYearStr(rawDate, dateCol) === selectedMonth;
+                });
+            }
+            
+            processData(filtered);
+        }
+
+        function renderAnalystMetaTable(data, selectedMonth) {
+            const emailCol = findColumnName(allData, 'e-mail') || findColumnName(allData, 'email') || findColumnName(allData, 'endereço de e-mail');
+            const validadoCol = findColumnName(allData, 'validado');
+            
+            const tbody = document.getElementById('analyst-meta-body');
+            if (!tbody) return;
+            tbody.innerHTML = '';
+
+            if (!emailCol) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--danger); padding: 2rem;">Coluna de analista não encontrada no CSV.</td></tr>';
+                return;
+            }
+
+            const analystStats = {};
+
+            // Inicializa todos os analistas conhecidos da base global
+            allData.forEach(row => {
+                let email = cleanString(row[emailCol]);
+                if (email !== 'Não Informado' && email.includes('@')) {
+                    analystStats[email] = { total: 0, validados: 0 };
+                }
+            });
+
+            // Soma chamados da seleção atual (filtrada)
+            data.forEach(row => {
+                let email = cleanString(row[emailCol]);
+                if (email !== 'Não Informado' && email.includes('@')) {
+                    if (!analystStats[email]) {
+                        analystStats[email] = { total: 0, validados: 0 };
+                    }
+                    analystStats[email].total++;
+                    
+                    const status = validadoCol ? cleanString(row[validadoCol]).toLowerCase() : 'não informado';
+                    if (status === 'validado') {
+                        analystStats[email].validados++;
+                    }
+                }
+            });
+
+            const sortedAnalysts = Object.entries(analystStats).map(([email, stats]) => ({
+                email,
+                total: stats.total,
+                validados: stats.validados
+            })).sort((a, b) => b.total - a.total);
+
+            const target = 15;
+
+            sortedAnalysts.forEach(analyst => {
+                const tr = document.createElement('tr');
+                
+                const rawName = analyst.email.split('@')[0];
+                const displayName = rawName.split('.').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+                
+                const percentage = Math.min(Math.round((analyst.total / target) * 100), 100);
+                
+                let statusBadge = '';
+                let progressClass = '';
+                
+                if (analyst.total >= target) {
+                    statusBadge = `<span class="badge-meta success">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        Bateu a Meta
+                    </span>`;
+                    progressClass = 'success';
+                } else if (analyst.total > 0) {
+                    statusBadge = `<span class="badge-meta warning">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                        Em progresso
+                    </span>`;
+                    progressClass = 'warning';
+                } else {
+                    statusBadge = `<span class="badge-meta danger">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="15" y1="9" x2="9" y2="15"></line>
+                            <line x1="9" y1="9" x2="15" y2="15"></line>
+                        </svg>
+                        Não iniciou
+                    </span>`;
+                    progressClass = 'danger';
+                }
+
+                tr.innerHTML = `
+                    <td>
+                        <div style="font-weight: 600; color: var(--text-primary);">${displayName}</div>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary);">${analyst.email}</div>
+                    </td>
+                    <td style="font-weight: 700; font-size: 1.15rem; color: var(--accent-cyan);">${analyst.total}</td>
+                    <td style="font-weight: 600; color: var(--success);">${analyst.validados}</td>
+                    <td style="color: var(--text-secondary); font-weight: 500;">${target}</td>
+                    <td>${statusBadge}</td>
+                    <td>
+                        <div class="progress-container">
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar-fill ${progressClass}" style="width: ${percentage}%"></div>
+                            </div>
+                            <span class="progress-value">${percentage}%</span>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
         }
     </script>
 </body>
