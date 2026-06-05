@@ -85,7 +85,7 @@
             background: linear-gradient(135deg, #60a5fa, #c084fc, #ec4899);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            drop-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.25));
         }
 
         p.subtitle {
@@ -126,7 +126,8 @@
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s;
             display: flex;
             flex-direction: column;
-            min-width: 0; /* Permite que o container de gráficos Grid encolha corretamente */
+            min-width: 0;
+            /* Permite que o container de gráficos Grid encolha corretamente */
         }
 
         .chart-card:hover {
@@ -190,7 +191,8 @@
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
-            min-width: 0; /* Permite encolhimento em viewports estreitas */
+            min-width: 0;
+            /* Permite encolhimento em viewports estreitas */
         }
 
         .kpi-card:hover {
@@ -380,7 +382,8 @@
             transition: all 0.3s ease;
         }
 
-        .filter-bar select:hover, .filter-bar select:focus {
+        .filter-bar select:hover,
+        .filter-bar select:focus {
             border-color: var(--accent-blue);
             box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
         }
@@ -501,25 +504,32 @@
             body {
                 padding: 1.5rem 1rem;
             }
+
             h1 {
                 font-size: 2.2rem;
             }
+
             p.subtitle {
                 font-size: 1rem;
             }
+
             .filter-bar {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 0.75rem;
                 padding: 1rem;
             }
+
             .filter-bar select {
                 width: 100%;
             }
-            .meta-table th, .meta-table td {
+
+            .meta-table th,
+            .meta-table td {
                 padding: 0.75rem 0.5rem;
                 font-size: 0.85rem;
             }
+
             .meta-table td:first-child {
                 max-width: 150px;
             }
@@ -682,10 +692,10 @@
             skipEmptyLines: true,
             complete: function (results) {
                 allData = results.data.filter(row => Object.keys(row).length > 2);
-                
+
                 const dateCol = findColumnName(allData, 'data/hora') || findColumnName(allData, 'data');
                 populateMonthFilter(allData, dateCol);
-                
+
                 const initialMonth = document.getElementById('month-filter').value;
                 filterByMonth(initialMonth);
 
@@ -788,14 +798,14 @@
             const qtyVersoes = Object.keys(versoesMap).filter(v => v !== 'Não Informado').length;
             document.getElementById('total-versoes').innerText = qtyVersoes;
 
-            const emailCol = findColumnName(data, 'e-mail') || findColumnName(data, 'email');
+            const emailCol = findColumnName(data, 'e-mail') || findColumnName(data, 'email') || findColumnName(data, 'endereço de e-mail');
 
             renderTimeline(data, validadoCol);
             renderProdutoChart(data, findColumnName(data, 'produto'), validadoCol);
             renderValidadosChart(data, validadoCol);
             renderVersaoChart(versoesMap);
             renderEmailChart(countBy(data, emailCol));
-            
+
             // Atualiza a tabela de metas dos analistas
             const monthFilter = document.getElementById('month-filter');
             const selectedMonth = monthFilter ? monthFilter.value : 'todos';
@@ -1024,7 +1034,7 @@
             const select = document.getElementById('month-filter');
             if (!select) return;
             select.innerHTML = '<option value="todos">Todos os Meses</option>';
-            
+
             const months = new Set();
             data.forEach(row => {
                 const rawDate = dateCol ? cleanString(row[dateCol]) : 'Não Informado';
@@ -1044,7 +1054,7 @@
             };
 
             const sortedMonths = Array.from(months).sort((a, b) => parseMonthYear(a) - parseMonthYear(b));
-            
+
             sortedMonths.forEach(m => {
                 const opt = document.createElement('option');
                 opt.value = m;
@@ -1068,14 +1078,14 @@
                     return getMonthYearStr(rawDate, dateCol) === selectedMonth;
                 });
             }
-            
+
             processData(filtered);
         }
 
         function renderAnalystMetaTable(data, selectedMonth) {
             const emailCol = findColumnName(allData, 'e-mail') || findColumnName(allData, 'email') || findColumnName(allData, 'endereço de e-mail');
             const validadoCol = findColumnName(allData, 'validado');
-            
+
             const tbody = document.getElementById('analyst-meta-body');
             if (!tbody) return;
             tbody.innerHTML = '';
@@ -1103,7 +1113,7 @@
                         analystStats[email] = { total: 0, validados: 0 };
                     }
                     analystStats[email].total++;
-                    
+
                     const status = validadoCol ? cleanString(row[validadoCol]).toLowerCase() : 'não informado';
                     if (status === 'validado') {
                         analystStats[email].validados++;
@@ -1115,22 +1125,22 @@
                 email,
                 total: stats.total,
                 validados: stats.validados
-            })).sort((a, b) => b.total - a.total);
+            })).sort((a, b) => b.validados - a.validados || b.total - a.total);
 
             const target = 15;
 
             sortedAnalysts.forEach(analyst => {
                 const tr = document.createElement('tr');
-                
+
                 const rawName = analyst.email.split('@')[0];
                 const displayName = rawName.split('.').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-                
-                const percentage = Math.min(Math.round((analyst.total / target) * 100), 100);
-                
+
+                const percentage = Math.min(Math.round((analyst.validados / target) * 100), 100);
+
                 let statusBadge = '';
                 let progressClass = '';
-                
-                if (analyst.total >= target) {
+
+                if (analyst.validados >= target) {
                     statusBadge = `<span class="badge-meta success">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                             <polyline points="20 6 9 17 4 12"></polyline>
@@ -1138,7 +1148,7 @@
                         Bateu a Meta
                     </span>`;
                     progressClass = 'success';
-                } else if (analyst.total > 0) {
+                } else if (analyst.validados > 0) {
                     statusBadge = `<span class="badge-meta warning">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                             <circle cx="12" cy="12" r="10"></circle>
@@ -1182,15 +1192,19 @@
             });
         }
 
-        // Redimensionar os gráficos Plotly automaticamente ao redimensionar a tela
+        // Redimensionar os gráficos Plotly automaticamente ao redimensionar a tela (com debounce)
+        let resizeTimeout;
         window.addEventListener('resize', () => {
-            const chartIds = ['timelineChart', 'produtoChart', 'validadoChart', 'versaoChart', 'emailChart'];
-            chartIds.forEach(id => {
-                const el = document.getElementById(id);
-                if (el && el.style.display !== 'none') {
-                    Plotly.Plots.resize(el);
-                }
-            });
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                const chartIds = ['timelineChart', 'produtoChart', 'validadoChart', 'versaoChart', 'emailChart'];
+                chartIds.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el && el.offsetParent !== null) {
+                        Plotly.Plots.resize(el);
+                    }
+                });
+            }, 150);
         });
     </script>
 </body>
