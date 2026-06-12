@@ -667,6 +667,7 @@
                             <th>Analista</th>
                             <th>Total Enviado</th>
                             <th>Validados</th>
+                            <th>Não Validados</th>
                             <th>Meta Mensal</th>
                             <th>Status da Meta</th>
                             <th>Progresso</th>
@@ -1091,7 +1092,7 @@
             tbody.innerHTML = '';
 
             if (!emailCol) {
-                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--danger); padding: 2rem;">Coluna de analista não encontrada no CSV.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: var(--danger); padding: 2rem;">Coluna de analista não encontrada no CSV.</td></tr>';
                 return;
             }
 
@@ -1101,7 +1102,7 @@
             allData.forEach(row => {
                 let email = cleanString(row[emailCol]);
                 if (email !== 'Não Informado' && email.includes('@')) {
-                    analystStats[email] = { total: 0, validados: 0 };
+                    analystStats[email] = { total: 0, validados: 0, naoValidados: 0 };
                 }
             });
 
@@ -1110,13 +1111,15 @@
                 let email = cleanString(row[emailCol]);
                 if (email !== 'Não Informado' && email.includes('@')) {
                     if (!analystStats[email]) {
-                        analystStats[email] = { total: 0, validados: 0 };
+                        analystStats[email] = { total: 0, validados: 0, naoValidados: 0 };
                     }
                     analystStats[email].total++;
 
                     const status = validadoCol ? cleanString(row[validadoCol]).toLowerCase() : 'não informado';
                     if (status === 'validado') {
                         analystStats[email].validados++;
+                    } else {
+                        analystStats[email].naoValidados++;
                     }
                 }
             });
@@ -1124,7 +1127,8 @@
             const sortedAnalysts = Object.entries(analystStats).map(([email, stats]) => ({
                 email,
                 total: stats.total,
-                validados: stats.validados
+                validados: stats.validados,
+                naoValidados: stats.naoValidados
             })).sort((a, b) => b.validados - a.validados || b.total - a.total);
 
             const target = 15;
@@ -1177,6 +1181,7 @@
                     </td>
                     <td style="font-weight: 700; font-size: 1.15rem; color: var(--accent-cyan);">${analyst.total}</td>
                     <td style="font-weight: 600; color: var(--success);">${analyst.validados}</td>
+                    <td style="font-weight: 600; color: var(--danger);">${analyst.naoValidados}</td>
                     <td style="color: var(--text-secondary); font-weight: 500;">${target}</td>
                     <td>${statusBadge}</td>
                     <td>
